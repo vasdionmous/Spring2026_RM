@@ -1,6 +1,6 @@
 This repository contains material (in Greek) for the course Rings and Modules, taught at the University of Crete in Spring 2026. 
 
-For more information, see the course website: (https://sites.google.com/view/vasmous/ringsmodules).
+For more information, see the course website: https://sites.google.com/view/vasmous/ringsmodules.
 
 This work is licensed under a [Creative Commons Attribution 4.0 International License][cc-by].
 
