@@ -1,0 +1,554 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{theorem}{Θεώρημα}
+\newtheorem{proposition}[theorem]{Πρόταση}
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{corollary}[theorem]{Πόρισμα}
+\newtheorem{conjecture}[theorem]{Εικασία}
+\newtheorem{problem}[theorem]{Πρόβλημα}
+\newtheorem*{claim}{Ισχυρισμός}
+\newtheorem{observation}[theorem]{Παρατήρηση}
+\newtheorem{definition}[theorem]{Ορισμός}
+\newtheorem{question}[theorem]{Ερώτημα}
+\newtheorem*{questions}{Ερωτήματα}
+\newtheorem*{que}{Ερώτημα}
+\newtheorem{example}[theorem]{Παράδειγμα}
+\newtheorem{exercise}{Άσκηση}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Παρατήρηση}
+
+% fixes the correct numbering of environments
+\numberwithin{theorem}{section}
+\numberwithin{exercise}{section}
+\numberwithin{equation}{section}
+
+% math ops 
+% fields
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+
+% bold
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{26 Φεβρουαρίου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{section}{2}
+\setcounter{theorem}{11}
+% \setcounter{equation}{}
+\begin{center}
+    \textbf{3. Πολυωνυμικοί δακτύλιοι και παραγοντοποίηση
+} 
+\end{center}
+
+Έστω $R$ ένας μεταθετικός δακτύλιος. Ένας \defn{πολυωνυμικός δακτύλιος σε μία μεταβλητή} είναι ο ένας μεταθετικός δακτύλιος $R[x]$ που προκύπτει από τον $R$ \textquote{προσθέτοντας} ένα νέο στοιχείο $x$ το οποίο μετατίθεται με κάθε στοιχείο του $R$, δηλαδή
+\[
+xr = rx
+\]
+για κάθε $r \in R$ και είναι \textquote{ελέυθερο σχέσεων} στο $R$, δηλαδή αν 
+\[
+a_0 + a_1x + \cdots + a_nx^n = 0
+\]
+για κάποια $a_0, a_1, \dots, a_n \in R$ είναι μία \textquote{σχέση} στο $R$, τότε 
+\[
+a_0 = a_1 = \cdots = a_n = 0.
+\]
+Για την απόδειξη της ύπαρξης ενός τέτοιου δακτύλιου παραπέμπουμε στο \cite[Θεώρημα~2.2.1]{VDEMT13}.
+
+Τα στοιχεία αυτού του δακτύλιου, τα οποία ονομάζονται \defn{πολυώνυμα} είναι 
+\begin{itemize}
+    \item τα στοιχεία του $R$ (\defn{σταθερά πολυώνυμα}),
+    \item δυνάμεις του $x$ (\defn{μονώνυμα}), και
+    \item πεπερασμένοι \textquote{$R$-γραμμικοί συνδυασμοί} δυνάμεων του $x$, δηλαδή 
+    \[
+    a, \ a + bx, \ a + bx + cx^2, \ \dots 
+    \]
+    για $a, b$ και $c \in R$.
+\end{itemize}
+Πιο συγκεκριμένα, 
+\[
+R[x] = \{ a_0 + a_1x + \cdots + a_nx^n : n \in \NN, a_0, a_1, \dots, a_n \in R\}.
+\]
+Αν 
+\[
+f = f(x) = a_0 + a_1x + \cdots + a_nx^n \ \in \ R[x]
+\]
+με $a_n \neq 0$, τότε το 
+\begin{itemize}
+    \item $a_0$ ονομάζεται \defn{σταθερός όρος} του $f$
+    \item $a_n$ ονομάζεται \defn{μεγιστοβάθμιος συντελεστής} του $f(x)$
+    \item $n$ ονομάζεται \defn{βαθμός} του $f$ και συμβολίζεται με $\deg(f(x))$.
+\end{itemize}
+
+Πολλές από τις αριθμητικές ιδιότητες του δακτύλιου $R$ που συζητήσαμε στις προηγούμε\-νες δύο ενότητες μεταφέρονται και στον πολυωνυμικό δακτύλιο $R[x]$. Για παράδειγμα, αν ο $R$ είναι ακέραια περιοχή, τότε το ίδιο ισχύει και για τον $R[x]$. Πράγματι, έστω $f, g \in R[x]$ δύο μη σταθερά πολυώνυμα βαθμού $n$ και $m$, αντίστοιχα. Τότε 
+\begin{align*}
+    fg 
+    &= (a_0 + a_1x + \cdots + a_nx^n)(b_0 + b_1x + \cdots + b_mx^m) \\ 
+    &= a_nb_m x^{n+m} + \ \left(\text{μονώνυμα βαθμού $< n + m$}\right) \neq 0, 
+\end{align*}
+καθώς $a_nb_m \neq 0$, διότι ο $R$ είναι ακέραια περιοχή. 
+
+Ο παραπάνω υπολογισμός μας πληροφορεί ότι αν ο $R$ είναι μια ακέραια περιοχή, τότε 
+\begin{equation}
+    \label{eq:degree}
+    \deg(fg) = \deg(f) + \deg(g)
+\end{equation}
+για κάθε $f, g \in R[x]$. Γενικότερα, ισχύει η ανισότητα 
+\[
+\deg(fg) \leq \deg(f) + \deg(g)
+\]
+(γιατί;). Για παράδειγμα, αν $R = \ZZ_6$, τότε 
+\[
+(2)\cdot(3x) = 6x = 0
+\]
+στο $\ZZ_6[x]$.
+
+Μια ακόμη πληροφορία που παίρνουμε από τον υπολογισμό αυτόν είναι ότι αν ο $R$ είναι ακέραια περιοχή, τότε 
+\[
+\left(R[x]\right)^\times = R^\times.
+\]
+Πράγματι, έστω $f \in \left(R[x]\right)^\times$. Τότε $fg = 1$, για κάποιο  $g \in R[x]$. Από την Ταυτότητα \eqref{eq:degree} έπεται ότι 
+\[
+0 = \deg(1) = \deg(fg) = \deg(f) + \deg(g).
+\]
+Συνεπώς, $f, g \in R$ και γι αυτό $f \in R^\times$. Άρα, $\left(R[x]\right)^\times \subseteq R^\times$ και η άλλη κατεύθυνση είναι προφανής (γιατί;).
+
+Το στοιχείο $x$ μπορούμε να το φανταστούμε ως μεταβλητή με την εξής έννοια.
+\begin{proposition}
+    \label{prop:evaluation_hom}
+    Έστω $S$ ένας μεταθετικός δακτύλιος που περιέχει τον $R$. Για κάθε $s \in S$, υπάρχει μοναδικός ομομορφισμός δακτυλίων
+    \begin{align*}
+        \ev_s : R[x] &\to S \\
+                   x &\mapsto s
+    \end{align*}
+    ο οποίος ονομάζεται \defn{ομομορφισμός εκτίμησης} (evaluation homomorphism).
+\end{proposition}
+
+Για παράδειγμα, για $R = S = \RR$ και $f = x^2 + 1 \in \RR[x]$, η εκτίμηση του $f$ στο $1$ είναι 
+\[
+\ev_1(f) = \ev_1(x^2 + 1) = \ev_1(x)^2 + \ev_1(1) = 1 + 1 = 2,
+\]
+σε συμφωνία με τον πιο οικείο συμβολισμό $f(1)$.
+
+Τι γίνεται αν θέλουμε να \textquote{εκτιμήσουμε} το $x$ σε ένα στοιχείο από κάποιον δακτύλιο που δε σχετίζεται με τον $R$; Έστω $S$ ένας μεταθετικός δακτύλιος και $\phi : R \to S$ ένας ομομορφισμός δακτυλίων. Για κάθε $s \in S$, υπάρχει μοναδικός ομομορφισμός δακτυλίων $\tilde{\phi}_s : R[x] \to S$ με $\tilde{\phi}_s(x) = s$, τέτοιος ώστε το διάγραμμα 
+\[
+\begin{tikzcd}
+& R \arrow[dl, "\iota"'] \arrow[dr, "\phi"] & \\
+R[x] \arrow[rr, "\tilde{\phi}_s"'] & & S
+\end{tikzcd}
+\]
+να μετατίθεται, δηλαδή $\phi = \tilde{\phi}_s \circ \iota$, όπου $\iota : R \to R[x]$ είναι ο \textquote{φυσικός} μονομορφισμός που απεικονίζει τα στοιχεία του $R$ στα σταθερά πολυώνυμα του $R[x]$. Στην περίπτωση αυτή, έχουμε 
+\[
+\tilde{\phi}_s(a_0 + a_1x + \cdots + a_nx^n) = 
+\phi(a_0) + \phi(a_1)s + \cdots + \phi(a_n)s^n
+\]
+για κάθε $a_0 + a_1x + \cdots + a_nx^n \in R[x]$.
+
+Για παράδειγμα, έστω $R = \RR, S = \rmM_2(\RR)$ και θεωρούμε τον ομομορφισμό δακτυλίων 
+\begin{align*}
+        \phi : \RR &\to \rmM_2(\RR) \\
+                1  &\mapsto \begin{pmatrix}
+                    1 & 0 \\ 0 & 1
+                \end{pmatrix}.
+\end{align*}
+Τότε, για $s = \left(\begin{smallmatrix}
+0 & 1 \\ 0 & 0
+\end{smallmatrix}\right)$ υπολογίζουμε 
+\begin{align*}
+\tilde{\phi}_{\left(\begin{smallmatrix}
+0 & 1 \\ 0 & 0
+\end{smallmatrix}\right)}(-1 + 2x + x^3) &= 
+- \phi(1) + \phi(2)\begin{pmatrix}
+    0 & 1 \\ 0 & 0
+\end{pmatrix} + \begin{pmatrix}
+    0 & 1 \\ 0 & 0
+\end{pmatrix}^3 \\
+&= 
+-\begin{pmatrix}
+    1 & 0 \\ 0 & 1
+\end{pmatrix}
++ 2\begin{pmatrix}
+    1 & 0 \\ 0 & 1
+\end{pmatrix}\begin{pmatrix}
+    0 & 1 \\ 0 & 0
+\end{pmatrix} \\ 
+&= 
+\begin{pmatrix}
+    -1 & 0 \\ 0 & -1
+\end{pmatrix}
++ \begin{pmatrix}
+    0 & 2 \\ 0 & 0
+\end{pmatrix} \\ 
+&= \begin{pmatrix}
+    -1 & 2 \\
+    0  & -1
+\end{pmatrix}.
+\end{align*}
+
+\begin{remark}
+    Η Πρόταση \ref{prop:evaluation_hom} είναι ειδική περίπτωση της γενικότερης κατασκευής που μόλις περιγράψαμε, όπου η $\phi$ είναι απλώς η ταυτοτική απεικόνιση. Αυτό είναι ένα παράδειγμα \emph{καθολικής ιδιότητας}, η οποία μας πληροφορεί ότι ο πολυωνυμικός δακτύλιος σε μία μεταβλητή είναι ο \textquote{μοναδικός} μεταθετικός δακτύλιος ο οποίος διαθέτει μια \textquote{μεταβλητή} την οποία μπορούμε να εκτιμήσουμε.
+\end{remark}
+
+Έχοντας ορίσει τον πολυωνυμικό δκατύλιο σε μία μεταβλητή, μπορούμε να ορίσουμε τον πολυωνυμικό δακτύλιο $R[x_1, x_2, \dots, x_n]$ πολλών μεταβλητών, επαγωγικά ως εξής 
+\[
+R[x_1, x_2, \dots, x_n] \coloneqq \left(R[x_1, \dots, x_{n-1}]\right)[x_n].
+\]
+Τα στοιχεία αυτού του δακτύλιου είναι 
+\begin{itemize}
+    \item τα στοιχεία του $R$ (\defn{σταθερά πολυώνυμα}),
+    \item γινόμενα δυνάμεων των $x_1, x_2, \dots, x_n$, δηλαδή
+    \[
+    x_1^{\alpha_1}x_2^{\alpha_2}\cdots x_n^{\alpha_n},
+    \]
+    που ονομάζονται \defn{μονώνυμα} με \defn{εκθέτες} $\alpha_1, \alpha_2, \dots, \alpha_n \in \NN$, και
+    \item πεπερασμένοι \textquote{$R$-γραμμικοί συνδυασμοί} μονωνύμων.
+\end{itemize}
+
+Πιο συγκεκριμένα, 
+\[
+R[x_1, x_2, \dots, x_n] = 
+\left\{
+    \sum_{\alpha_1, \alpha_2, \dots, \alpha_n \in \NN} c_{\alpha_1, \alpha_2, \dots, \alpha_n} x_1^{\alpha_1}x_2^{\alpha_2}\cdots x_n^{\alpha_n} : n \in \NN, c_{\alpha_1, \alpha_2, \dots, \alpha_n} \in R
+\right\}.
+\]
+Το άθροισμα των εκθετών ενός μονωνύμου ονομάζεται \defn{βαθμός} του και ο βαθμός ενός πολυω\-νύμου πολλών μεταβλητών ορίζεται ως ο μέγιστος βαθμός ενός μονωνύμου στο ανάπτυγμά του. Για παράδειγμα, το 
+\[
+4 - 3x_1x_2 + 2x_2^2 - x_1^2x_2^3 \ \in \ \RR[x_1,x_2]
+\]
+είναι ένα πολυώνυμο δύο μεταβλητών βαθμού 5, ενώ ως πολυώνυμο στην μεταβλητή $x_2$ με συντελεστές στο $\RR[x_1]$ έχει την μορφή 
+\[
+\mathcolor{gray}{4} - \mathcolor{gray}{3x_1}x_2 + \mathcolor{gray}{2}x_2^2 - \mathcolor{gray}{x_1^2}x_2^3
+\]
+και βαθμό 3.
+
+Όμοια με την περίπτωση του πολυωνυμικού δακτύλιου μίας μεταβλητής\footnote{Ο πολυωνυμικός δακτύλιος πολλών μεταβλητών ικανοποιεί και αυτός μια καθολική ιδιότητα όμοια με την περίπτωση μίας μεταβλητής (ποιά είναι η διατύπωσή της;).}, έτσι και εδώ μπορούμε να φανταστούμε τα $x_1, x_2, \dots, x_n$ ως μεταβλητές με την εξής έννοια.
+\begin{proposition}
+    \label{prop:evaluation_hom_multivariable}
+    Έστω $S$ ένας μεταθετικός δακτύλιος που περιέχει τον $R$. Για κάθε $s_1, s_2, \dots,$ $s_n \in S$, υπάρχει μοναδικός ομομορφισμός δακτυλίων 
+    \begin{align*}
+        \ev_{s_1, s_2, \dots, s_n} : R[x_1, x_2, \dots, x_n] &\to S \\
+                   x_i &\mapsto s_i
+    \end{align*}
+    για κάθε $1 \le i \le n$.
+\end{proposition}
+
+Ας στρέψουμε την προσοχή μας στην αριθμητική των πολυωνυμικών δακτυλίων.
+\begin{theorem}
+    \label{thm:polynomial_rings_are_ED}
+    Έστω $F$ σώμα. Αν $f, g \in F[x]$ με $g \neq 0$, τότε υπάρχουν (μοναδικά) $q, r \in F[x]$ τέτοια ώστε 
+    \[
+    f = qg + r
+    \]
+    όπου $r=0$ ή $\deg(r) < \deg(g)$. Ειδικότερα, ο $F[x]$ είναι Ευκλείδια περιοχή και κατά συνέπεια περιοχή κύριων ιδεωδών και περιοχή μονοσήμαντης παραγοντοποίησης.
+\end{theorem}
+
+Για μία απόδειξη παραπέμπουμε στο \cite[Θεώρημα~2.3.3]{VDEMT13}. Το Θεώρημα \ref{thm:polynomial_rings_are_ED} ισχύει και με την ασθενέστερη υπόθεση ότι το $F$ είναι ακέραια περιοχή αντί για σώμα και ότι ο μεγιστοβάθμιος συντελεστής του $g$ είναι αντιστρέψιμο στοιχείο, αντί για $g \neq 0$ (βλ. \cite[Θεώρημα~2.3.5]{VDEMT13}). 
+
+\begin{remark} 
+    Παραδόξως, ισχύει και το εξής αντίστροφο του Θεωρήματος \ref{thm:polynomial_rings_are_ED}: Αν ο $R[x]$ είναι περιοχή κύριων ιδεωδών, τότε ο $R$ πρέπει να είναι σώμα. Πράγματι, αν ο $R[x]$ είναι περιοχή κύριων ιδεωδών, τότε ο $R$ πρέπει να είναι ακέραια περιοχή (ως υποδακτύλιος ακέραιας περιοχής). Όμως, $R[x]/(x) \cong R$ και γι αυτό από την Πρόταση 1.11 έπεται ότι το $(x)$ είναι πρώτο ιδεώδες. Από το Λήμμα 2.14 αυτό σημαίνει ότι είναι και μεγιστικό και γι αυτό ο $R \cong R[x]/(x)$ είναι σώμα από την Πρόταση 1.10.
+\end{remark}
+
+Από την παρατήρηση έπεται ότι οι πολυωνυμικοί δακτύλιοι 
+\[
+\ZZ[x], \ F[x_1, x_2], \ \dots, \ F[x_1, x_2, \dots, x_n]
+\]
+δεν είναι περιοχές κύριων ιδεωδών, διότι ο δακτύλιος των ακεραίων και ο πολυωνυμικός δακτύλιος μιας μεταβλητής δεν είναι σώματα. 
+
+\begin{definition}
+    \label{def:ideals_generated_by}
+    Έστω $R$ ένας μεταθετικός δακτύλιος και $a_1, a_2, \dots, a_n \in R$. Το ιδεώδες 
+    \[
+    (a_1, a_2, \dots, a_n) \coloneqq (a_1) + (a_2) + \cdots + (a_n)
+    \]
+    ονομάζεται το \defn{ιδεώδες που παράγεται από} τα στοιχεία $a_1, a_2, \dots, a_n$. Κάθε ιδεώδες του $R$ αυτής της μορφής ονομάζεται \defn{πεπερασμένα παραγόμενο} (finitely generated).
+\end{definition}
+
+Το ιδεώδες που παράγεται από τα $a_1, a_2, \dots, a_n$ είναι το μικρότερο ιδεώδες του $R$ που περιέχει τα $a_1, a_2, \dots, a_n$, δηλαδή 
+\[
+(a_1, a_2, \dots, a_n) = \bigcap_{\substack{\text{$I$ ιδεώδες του $R$} \\ a_1, a_2, \dots a_n \ \in \ I}} I
+\]
+(βλ. \cite[Πρόταση~2.5.9]{VDEMT13}). 
+
+\begin{example}
+    \label{ex:Z[x]_is_not_a_PID}
+    Ας δούμε γιατί το $\ZZ[x]$ δεν είναι περιοχή κύριων ιδεωδών στην πράξη, δείχνοντας ότι το ιδεώδες $(2, x)$ που παράγεται από το $2$ και το $x$ δεν είναι κύριο. Έστω $f \in \ZZ[x]$ τέτοιο ώστε 
+    \[
+    (f) = (2, x) = \{2p(x) + xq(x) : p, q \in \ZZ[x]\}.
+    \]
+    Επειδή $2 \in (f)$, έπεται ότι 
+    \[
+    2 = f(x)p(x),
+    \]
+    για κάποιο $p \in \ZZ[x]$. Από την Ταυτότητα \eqref{eq:degree} έπεται ότι 
+    \[
+    \deg(f) + \deg(p) = 0,
+    \]
+    και γι αυτό $f, p \in \ZZ$ με τις εξής επιλογές
+    \[
+    \renewcommand{\arraystretch}{1.3} 
+    \begin{tabular}{c|c|c|c|c}
+    $f$ & $1$ & $2$ & $-1$ & $-2$\\ \hline
+    $p$ & $2$ & $1$ & $-2$ & $-1$
+    \end{tabular}
+    \]
+    Αν $f = \pm 1$, τότε $(f) = (2,x) = \ZZ[x]$, το οποίο είναι αδύνατο, διότι 
+    \[
+    3 \notin (2, x).
+    \]
+    Αν $f = \pm 2$, τότε επειδή $x \in (f) = (2)$ έπεται ότι 
+    \[
+    x = 2q(x)
+    \]
+    για κάποιο $q \in \ZZ[x]$, το οποίο είναι και αυτό αδύνατο. 
+\end{example}
+
+
+\begin{thebibliography}{99}
+    \bibitem{VDEMT13}
+    Δ. Α. Βάρσος, Δ. Ι. Δεριζιώτης, Ι. Π. Εμμανουήλ, Μ. Π. Μαλιάκας και Ο. Π. Ταλέλλη, 
+    \emph{Μια Εισαγωγή στην Άλγεβρα}, 
+    τρίτη έκδοση, Εκδόσεις Σοφία, 2013.
+\end{thebibliography}
+\end{document}
