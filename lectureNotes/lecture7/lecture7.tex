@@ -1,0 +1,547 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{theorem}{Θεώρημα}
+\newtheorem{proposition}[theorem]{Πρόταση}
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{corollary}[theorem]{Πόρισμα}
+\newtheorem{conjecture}[theorem]{Εικασία}
+\newtheorem{problem}[theorem]{Πρόβλημα}
+\newtheorem*{claim}{Ισχυρισμός}
+\newtheorem{observation}[theorem]{Παρατήρηση}
+\newtheorem{definition}[theorem]{Ορισμός}
+\newtheorem{question}[theorem]{Ερώτημα}
+\newtheorem*{questions}{Ερωτήματα}
+\newtheorem*{que}{Ερώτημα}
+\newtheorem{example}[theorem]{Παράδειγμα}
+\newtheorem{exercise}{Άσκηση}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Παρατήρηση}
+
+% fixes the correct numbering of environments
+\numberwithin{theorem}{section}
+\numberwithin{exercise}{section}
+\numberwithin{equation}{section}
+
+% math ops 
+% fields
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+
+% bold
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{5 Μαρτίου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{section}{4}
+% \setcounter{theorem}{5}
+% \setcounter{equation}{}
+\begin{center}
+    \textbf{4. Πρότυπα: Εισαγωγή
+} 
+\end{center}
+
+Σε ότι ακολουθεί, θεωρούμε $R$ ένα (όχι κατά ανάγκη μεταθετικό) δακτύλιο $R$.
+
+\begin{definition}
+    \label{def:module} 
+    \defn{Αριστερό $R$-πρότυπο} (left $R$-module) ονομάζεται ένα σύνολο $M$ εφοδιασμένο με 
+    \begin{itemize}
+        \item μια απεικόνιση $+ : M \times M \to M$ που ονομάζεται \defn{πρόσθεση},
+        \item ένα στοιχείο $0_M \in M$ που ονομάζεται \defn{μηδέν} και
+        \item μία απεικόνιση $\cdot : R\times{M} \to M$ που ονομάζεται \defn{δράση} (action) του $R$ στο $M$,
+    \end{itemize}
+    τέτοια ώστε\footnote{Το αξίωμα (5) έπεται από τα υπόλοιπα, αλλά συμπεριλαμβάνεται στον ορισμό για λόγους έμφασης.} 
+    \begin{itemize}
+        \item[(1)] η τριάδα $(M,+,0_M)$ είναι αβελιανή ομάδα
+        \item[(2)] η πρόσθεση και η δράση του $R$ ικανοποιούν τους επιμεριστικούς νόμους, δηλαδή
+        \begin{align*}
+            (r+s)\cdot{m} &= r\cdot{m} + s\cdot{m} \\
+            r\cdot(m+m') &= r\cdot{m} + r\cdot{m'} 
+        \end{align*}
+        \item[(3)] η δράση του $R$ είναι αριστερά προσεταιριστική, δηλαδή 
+        \[
+        r\cdot(s\cdot{m}) = (rs)\cdot{m}
+        \]
+        \item[(4)] $1_R\cdot{m} = m$
+        \item[(5)] $0_R\cdot{m} = 0_M$,
+    \end{itemize}
+    για κάθε $r, s \in R$ και $m, m' \in M$.
+\end{definition}
+
+\begin{remark}
+    Με παρόμοιο τρόπο μπορούμε να ορίσουμε την έννοια του \emph{δεξιού $R$-προτύπου}. Στην περίπτωση όπου ο $R$ είναι μεταθετικός, κάθε αριστερό $R$-πρότυπο $M$ γίνεται δεξιό $R$-πρότυπο με δράση 
+    \begin{align*}
+        M \times R &\to M \\ 
+             (m,r) &\mapsto r\cdot{m}.
+    \end{align*}
+    Ομοίως, κάθε δεξιό $R$-πρότυπο γίνεται αριστερό $R$-πρότυπο και στην περίπτωση οι δύο δομές προτύπου ταυτίζονται.
+\end{remark}
+
+Σε ότι ακολουθεί, με $R$-πρότυπο καταλαβαίνουμε ένα αριστερό $R$-πρότυπο. Αν ο $R = F$ είναι σώμα, τότε η έννοιες $F$-πρότυπο και $F$-διανυσματικός χώρος ταυτίζονται (γιατί;).
+
+\begin{definition}
+    \label{def:submodule}
+    Έστω $M$ ένα $R$-πρότυπο. Ένα υποσύνολο $N \subseteq M$ ονομάζεται \defn{$R$-υποπρότυπο} ($R$-submodule) ή απλώς υποπρότυπο του $M$ αν 
+    \begin{itemize}
+        \item περιέχει το $0_M$
+        \item είναι κλειστό ως προς την πρόσθεση, δηλαδή 
+        \[
+        a \in N \ \ \text{και} \ \ b \in N \quad \then \quad a+b \in N
+        \]
+        \item  είναι \emph{αναλλοίωτο} ως προς την δράση του $R$, δηλαδή 
+        \[
+        r \in R \ \ \text{και} \ \ a \in N \quad \then \quad r\cdot{a} \in N.
+        \]
+    \end{itemize}
+\end{definition}
+
+Αν ο $R$ είναι σώμα, τότε τα υποπρότυπα δεν είναι παρά υπόχωροι διανυσματικών χώρων (γιατί;).
+
+\begin{example}
+    \label{ex:modules}
+    \leavevmode
+    \begin{itemize}
+        \item[(α)] Ο $R$ γίνεται $R$-πρότυπο εφοδιασμένος με τη δράση με \emph{αριστερό πολλαπλασιασμό}
+        \begin{align*}
+        R \times R &\to R \\ 
+             (r,s) &\mapsto rs.
+        \end{align*}
+        Αυτό ονομάζεται \emph{κανονικό} (regular) $R$-πρότυπο. Τα υποπρότυπα του κανονικού προτύπου ταυτίζονται με τα αριστερά ιδεώδη του $R$ (γιατί;).
+        \item[(β)] Το σύνολο 
+        \[
+        R^n \coloneqq \underbrace{R\times{R}\times\cdots\times{R}}_{\text{$n$ φορές}} = \{(r_1, r_2, \dots, r_n) : r_1, r_2, \dots, r_n \in R\}
+        \]
+        εφοδιασμένο με 
+        \begin{itemize}
+            \item μηδέν $(\underbrace{0,0, \dots, 0}_{\text{$n$ φορές}})$
+            \item πρόσθεση κατά συντεταγμένες, δηλαδή 
+            \[
+            (r_1, r_2, \dots, r_n) + (s_1, s_2, \dots, s_n) = (r_1+s_1, r_2+s_2, \dots, r_n+s_n)
+            \]
+            \item τη διαγώνια δράση του $R$, δηλαδή 
+            \[
+            r\cdot(r_1, r_2,\dots, r_n) = (rr_1, rr_2, \dots, rr_n)
+            \]
+        \end{itemize}
+        είναι $R$-πρότυπο και ονομάζεται το \emph{ελεύθερο $R$-πρότυπο τάξης $n$} (free $R$-module of rank $n$). Το υποσύνολο 
+        \[
+        \{(r_1,r_2, \dots, r_n) \in R^n : r_1 = r_2 = \cdots = r_n\}
+        \]
+        είναι υποπρότυπο του $R^n$ (γιατί;).
+        \item[(γ)] Το σύνολο $\rmM_{n,m}(R)$ των $(n\times{m})$-πινάκων με στοιχεία από το $R$ εφοδιασμένο με την προφανή δράση του $R$
+        \begin{align*}
+        R \times \rmM_{n,m}(R) &\to \rmM_{n,m}(R) \\ 
+             (r,\left(a_{ij}\right)_{1\le i,j \le n}) &\mapsto \left(ra_{ij}\right)_{1\le i,j \le n}
+        \end{align*}
+        είναι $R$-πρότυπο.
+        \item[(δ)] Το $R^n$ εφοδιασμένο με τη (δεξιά) δράση του $M_n(R)$ 
+        \begin{align*}
+        R^n \times \rmM_n(R) &\to R^n \\ 
+             (v,A) &\mapsto vA
+        \end{align*}
+        όπου $vA$ είναι το στοιχείο του $R^n$ που προκύπτει όταν πολλαπλασιάσουμε τον πίνακα γραμμή με στοιχεία από το $v$ και τον πίνακα $A$, είναι δεξιό $R$-πρότυπο.
+    \end{itemize}
+\end{example}
+
+Σε αντίθεση με την περίπτωση του δακτύλιου, τον οποίο μπορούμε να φανταστούμε ως ένα αριθμητικό σύστημα, τα στοιχεία ενός $R$-προτύπου μπορούμε να τα φανταστούμε ως \emph{διανύσματα} εφοδιασμένα με έναν \textquote{βαθμωτό πολλαπλασιασμό} με στοιχεία του $R$. 
+% Οι διανυσματικοί χώροι βέβαια, έχουν μία \textquote{προβλεπόμενη} δομή, με την έννοια ότι καθορίζονται ως προς ισομορφισμό από την διάστασή τους. Αντιθέτως, η δομή ενός $R$-προτύπου μπορεί να είναι απρόβλεπτη. Πιο συγκεκριμένα, όσο πιο \textquote{πλούσια} είναι η αριθμητική του $R$, τόσο πιο \textquote{πλούσια} είναι η δομή ενός $R$-προτύπου.
+Έστω $M$ ένα $R$-πρότυπο. Ακολουθούν κάποιες παρατηρήσεις που προκύπτουν με εύκολο τρόπο από τα αξιώματα του Ορισμού \ref{def:module}.
+\begin{itemize}
+    \item Το αντίστροφο $-m$ ενός \textquote{διανύσματος} $m \in M$ ως προς την πρόσθεση μπορεί να προκύψει με πολλαπλασιασμό με $-1_R$, δηλαδή 
+    \[
+    (-1_R)\cdot{m} = -m.
+    \]
+    Γενικότερα, 
+    \begin{align*}
+    -(r\cdot{m}) &= (-r)\cdot{m} = r\cdot(-m) \\
+    (-r)\cdot(-m) &= r\cdot{m}
+    \end{align*}
+    για κάθε $r\in{R}$ και $m\in{M}$.
+    \item Ισχύουν οι εξής επιμεριστικοί νόμοι για την \textquote{αφαίρεση} στο $M$ 
+    \begin{align*}
+        (r-s)\cdot{m} &= r\cdot{m} - s\cdot{m} \\ 
+        r\cdot{m-m'} &= r\cdot{m} - r\cdot{m'} 
+    \end{align*}
+    για κάθε $r, s \in R$ και $m, m' \in M$.
+
+    \item Το άθροισμα ενός πεπερασμένου πλήθους \textquote{διανυσμάτων} είναι καλώς ορισμένο και ισχύουν οι εξής (γενικευμένοι) επιμεριστικοί νόμοι 
+    \begin{align*}
+        (r_1 + r_2 + \cdots + r_k)\cdot{m} &= r_1\cdot{m} + r_2\cdot{m} + \cdots + r_k\cdot{m} \\ 
+        r\cdot(m_1 + m_2 + \cdots + m_k) &= r\cdot{m_1} + r\cdot{m_2} + \cdots + r\cdot{m_k}, 
+    \end{align*}
+    για κάθε $r, r_1, r_2, \dots, r_k \in R$ και $m, m_1, m_2, \dots, m_k \in M$.
+\end{itemize}
+
+\begin{example}{\rm($\ZZ$-πρότυπα)}
+    \label{ex:Z-modules}
+    Έστω $A$ μια (αυθαίρετη) αβελιανή ομάδα. Η δράση του $\ZZ$ που ορίζεται θέτοντας 
+    \[ 
+        n\cdot a \coloneqq \begin{cases}
+                \underbrace{a+a+\cdots+a}_{\text{$n$ φορές}}, &\ \text{αν $n > 0$} \\ 
+                0_A, &\ \text{αν $n=0$} \\
+                -(
+                    \underbrace{a+a+\cdots+a}_{\text{$n$ φορές}}
+                ), &\ \text{αν $n < 0$}
+             \end{cases}         
+    \]
+    δίνει στο $A$ την δομή $\ZZ$-προτύπου. Αυτή είναι η \emph{μοναδική} δομή $\ZZ$-προτύπου που μπορεί να έχει.
+
+    Πράγματι, έστω $\cdot'$ μια δράση του $\ZZ$ στην $A$. Από τις παραπάνω ιδιότητες, έπεται ότι 
+    \[
+    n\cdot'{a} = (\underbrace{1_R + 1_R + \cdots + 1_R}_{\text{$n$ φορές}})\cdot'{a} = \underbrace{a+a+\cdots+a}_{\text{$n$ φορές}} = n\cdot a
+    \]
+    για κάθε $n > 0$. Ομοίως, για τις περιπτώσεις $n=0$ και $n<0$. Με άλλα λόγια, η έννοιες $\ZZ$-πρότυπο και αβελιανή ομάδα ταυτίζονται.
+\end{example}
+
+Υπό το πρίσμα του Παραδείγματος \ref{ex:Z-modules}, η θεωρία προτύπων γενικεύει ταυτόχρονα την θεωρία των διανυσματικών χώρων και τη θεωρία των αβελιανών ομάδων. 
+
+\begin{example}{\rm($F[x]$-πρότυπα)}
+    \label{ex:invariant_subspaces}
+    Έστω $F$ ένα σώμα, $V$ ένας $F$-διανυσματικός χώρος και $T : V \to V$ μια γραμμική απεικόνιση\footnote{Το σύνολο $\End_F(V)$ όλων των γραμμικών απεικονίσεων $V \to V$ αποτελεί δακτύλιο με πρόσθεση (αντ. πολλαπλασιασμό) την πρόσθεση (αντ. σύνθεση) συναρτήσεων. Τα στοιχεία του ονομάζονται \emph{ενδομορφισμοί} του $V$}. Θεωρούμε τον ομομορφισμό δακτυλίων 
+    \begin{align*}
+        \phi : F &\to \End_F(V) \\ 
+               1 &\mapsto \rmid_V,
+    \end{align*}
+    όπου $\rmid_V : V \to V$ είναι η ταυτοτική απεικόνιση\footnote{Η μονάδα του $\End_F(V)$.}. Η $\phi$ επάγει τον ομομορφισμό δακτυλίων 
+    \begin{align*}
+        \tilde{\phi}_T : F[x] &\to \End_F(V) \\ 
+                            x &\mapsto T
+    \end{align*}
+    μέσω της καθολικής ιδιότητας του $F[x]$. Αυτή με την σειρά της επάγει μια δράση του πολυωνυμικού δακτύλιου $F[x]$ στο $V$ που ορίζεται θέτοντας 
+    \[
+    f\cdot{v} \coloneqq \tl{\phi}_T(f)(v)
+    \]
+    για κάθε $f \in F[x]$ και $v \in V$. Συνεπώς, το $V$ γίνεται $F[x]$-πρότυπο με το $x$ να δρα ως τον ενδομορφισμό $T$.
+
+    Για παράδειγμα, έστω $F = \RR, V = \RR^2$ και $T$ ο ενδομορφισμός
+   \[
+\begin{tikzpicture}[>=stealth, thick, scale=1]
+    \begin{scope}[shift={(-1,0)}]
+        % Axes
+        \draw[->] (-1.5,0) -- (1.5,0);
+        \draw[->] (0,-1.5) -- (0,1.5);
+
+        % Vectors e1 and e2
+        \draw[->, burntorange, very thick] (0,0) -- (1,0) node[below] {\textcolor{black}{$\bfe_1$}};
+        \draw[->, iceberg, very thick] (0,0) -- (0,1) node[left] {\textcolor{black}{$\bfe_2$}};
+
+        % Origin dot
+        \fill (0,0) circle (1.5pt);
+    \end{scope}
+    \begin{scope}[shift={(6,0)}]
+        % Axes
+        \draw[->,burntorange!40] (-1.5,0) -- (1.5,0);
+        \draw[->,dashed,opacity=.2] (0,-1.5) -- (0,1.5);
+        \draw[->,dashed,opacity=.2] (-1.5,0) -- (1.5,0);
+
+        % Vectors
+        \draw[->, burntorange, very thick] (0,0) -- (1,0) node[above] {\textcolor{black}{$\bfe_1$}};
+        \draw[->, iceberg, very thick] (0,0) -- (1,-1) node[below] {\textcolor{black}{$\bfe_1 - \bfe_2$}};
+
+        % Origin dot
+        \fill (0,0) circle (1.5pt);
+    \end{scope}
+
+  % --- Curved arrow between them ---
+    \draw[->, thick]
+    (1.7,0.3) .. controls (2,0.7) and (3,0.7) .. (3.3,0.3)
+    node[midway, above] {$T$};
+\end{tikzpicture}
+\]
+που ορίζεται από 
+\begin{align*}
+    T(\bfe_1) &= \bfe_1 \\
+    T(\bfe_2) &= \bfe_1-\bfe_2 \\
+\end{align*}
+όπου $\{\bfe_1, \bfe_2\}$ είναι η συνήθης βάση του $\RR^2$. Τότε, για παράδειγμα,  
+\begin{align*}
+    (2x-1)\cdot\bfe_1 + (x^2+3x)\cdot\bfe_2 
+    &= \tl{\phi}_T(2x-1)(\bfe_1) + \tl{\phi}_T(x^2+3x)(\bfe_2) \\ 
+    &=\left(2T-\rmid_{\RR^2}\right)(\bfe_1) + 
+    \left(
+        T^2 + 3T
+    \right)(\bfe_2) \\
+    &= 2T(\bfe_1) - \bfe_1 + T(T(\bfe_2)) + 3T(\bfe_2) \\
+    &= 2\bfe_1 - \bfe_1 + T(\bfe_1-\bfe_2) + 3(\bfe_1-\bfe_2) \\
+    &= 4\bfe_1 - 3\bfe_2 +(\bfe_1 -\bfe_1 + \bfe_2) \\ 
+    &= 4\bfe_1 -2\bfe_2.
+\end{align*}
+
+Καθε $F[x]$-πρότυπο έχει αυτή τη δομή. Πράγματι, αν $V$ είναι ένα $F[x]$-πρότυπο, τότε η δράση των σταθερών πολυωνύμων του δίνει τη δομή $F$-προτύπου (δηλαδή, $F$-διανυσματικού χώρου). Επιπλέον, η απεικόνιση $T: V \to V$ που ορίζεται θέτοντας 
+\[
+T(v) \coloneqq x\cdot{v},
+\]
+για κάθε $v \in V$ είναι γραμμική (γιατί;). 
+
+Με άλλα λόγια, υπάρχει μία αμφιμονοσήμαντη αντιστοιχία μεταξύ των $F[x]$-προτύπων και των $F$-διανυσματικών χώρων $V$ εφοδιασμένων με έναν ενδομορφισμό $T \in \End_F(V)$, όπου το στοιχείο $x$ δρα στο $V$ ως $T$.
+
+Έστω $V$ ένα $F[x]$-πρότυπο με αντίστοιχο ενδομορφισμό $T \in \End_F(V)$. Ποιά είναι τα υποπρότυπα του $V$; Από τον Ορισμό \ref{def:submodule}, ένας υπόχωρος $W$ του $V$ είναι υποπρότυπο αν 
+\[
+T(W) \subseteq W,
+\]
+δηλαδή, $T(w) \in W$, για κάθε $w \in W$. Οι υπόχωροι αυτής της μορφής ονομάζονται \emph{$T$-αναλλοίωτοι} ($T$-invariant). Στο παραπάνω παράδειγμα, ένας $T$-αναλλοίωτος υπόχωρος του $\RR^2$ είναι ο 
+\[
+\RR\bfe_1 \coloneqq \rmspan_\RR(\bfe_1) = \{\lambda\bfe_1 : \lambda \in \RR\}
+\]
+(γιατί;) και κατά συνέπεια ένα $F[x]$-υποπρότυπο του $\RR^2$ για το συγκεκριμένο $T$.
+\end{example}
+
+Η δομή ενός $R$-προτύπου καθορίζεται σε μεγάλο βαθμό από τη δομή των ιδεωδών του δακτυλίου $R$. Για παράδειγμα, όταν ο $R$ είναι σώμα, δηλαδή ένας απλός δακτύλιος (τα μόνα ιδεώδη είναι ο εαυτός του και το $\{0\}$), τότε κάθε (πεπερασμένα παραγόμενο) $R$-πρότυπο είναι της μορφής $R^n$. Αυτό έπεται από το \emph{θεώρημα ύπαρξης βάσης} σε διανυσματικούς χώρους της Γραμμικής Άλγεβρας. Στην περίπτωση όπου το $R$ είναι μια περιοχή κύριων ιδεωδών (όπως, για παράδειγμα, ο $\ZZ$ και ο $F[x]$), τότε θα δούμε παρακάτω ότι η δομή ενός $R$-πρότυπου είναι υπό μία έννοια \textquote{προβλέψιμη}. 
+
+% \begin{thebibliography}{99}
+%     \bibitem{DF04}
+%     D. S. Dummit και R. M. Foote, 
+%     \textit{Abstract algebra},
+%     third edition, Wiley, 2004. 
+% \end{thebibliography}
+\end{document}
