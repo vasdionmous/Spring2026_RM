@@ -1,0 +1,546 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{exercise}{Άσκηση}
+\newtheorem{solution}{Λύση}
+\newtheorem*{remark}{Παρατήρηση}
+\newtheorem*{example}{Παράδειγμα}
+
+% math ops 
+% fields
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+
+% bold
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules \\ Ασκήσεις με Ενδεικτικές Λύσεις}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{25 Φεβρουαρίου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+% \setcounter{section}{1}
+% \setcounter{theorem}{5}
+% \setcounter{equation}{}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+Σε ότι ακολουθεί υποθέτουμε ότι $R$ ένας δακτύλιος και $n$ είναι ένας θετικός ακέραιος, εκτός αν αναφέρεται διαφορετικά.
+
+\begin{exercise}{\rm(\cite[Ασκήσεις~7.1.7~και~7.2.7]{DF04})}
+\label{ex:DF_7.1.7}
+Το σύνολο
+\[
+\rmZ(R) \coloneqq \{a \in R : ra=ar, \ \text{για κάθε $r \in R$}\}
+\]
+ονομάζεται \defn{κέντρο} του $R$. Να δείξετε τα εξής.
+\begin{itemize}
+  \item[(1)] Το $\rmZ(R)$ είναι υποδακτύλιος του $R$.
+  \item[(2)] Αν ο $R$ είναι δακτύλιος διαίρεσης, τότε το $\rmZ(R)$ είναι σώμα.
+  \item[(3)] Έχουμε $\rmZ(\rmM_n(R)) = \{a \, I_n : a \in \rmZ(R)\}$, όπου $I_n$ είναι ο ταυτοτικός $n\times{n}$-πίνακας.
+\end{itemize}
+\end{exercise}  
+
+\begin{proof}[Λύση]
+  \leavevmode
+  \begin{itemize}
+    \item[(1)] Θα επαληθεύσουμε τον Ορισμό 1.3. Το κέντρο περιέχει το μηδέν και την μονάδα του $R$, καθώς 
+    \begin{align*}
+    r0 &= 0r = 0 \\
+    r1 &= 1r = r 
+    \end{align*}
+    για κάθε $r \in R$. Επιπλέον, είναι κλειστό ως προς την πρόσθεση και ως προς αντίθετα στοιχεία, διότι 
+    \[
+    (a-b)r = ar - br = ra - rb = r(a-b),
+    \]
+    για κάθε $a, b \in \rmZ(R)$ και $r \in R$. Τέλος, είναι κλειστό ως προς τον πολλαπλασιασμό, διότι 
+    \[
+    abr = arb = rab
+    \]
+    για κάθε $a, b \in \rmZ(R)$ και $r \in R$.
+    \item[(2)] Το $\rmZ(R)$ είναι προφανώς μεταθετικός υποδακτύλιος του $R$. Γι αυτό, αρκεί να δείξουμε ότι κάθε μη μηδενικό στοιχείο του έχει αντίστροφο ως προς τον πολλαπλασιασμό. Έστω $a \in \rmZ(R) \subseteq R$. Επειδή ο $R$ είναι δακτύλιος διαίρεσης (βλ. Ορισμό 1.1) υπάρχει το $a^{-1} \in R$. Παρατηρούμε ότι 
+    \[
+    ra^{-1} = (a^{-1}a)ra^{-1} = a^{-1}(ar)a^{-1} = a^{-1}r(aa^{-1}) = a^{-1}r
+    \]
+    για κάθε $r \in R$ και γι αυτό $a^{-1} \in \rmZ(R)$ και το ζητούμενο έπεται.
+    \item[(γ)] Για κάθε $1 \le i, j \le n$, θεωρούμε τον πίνακα $E_{ij} \in \rmM_n(R)$ ο οποίος έχει $1$ στη θέση $(i,j)$ και $0$ παντού αλλού. Για κάθε $A \in \rmM_n(R)$, παρατηρούμε ότι 
+    \begin{itemize}
+      \item[$\bullet$] ο $AE_{ij}$ είναι ο πίνακας του οποίου η $j$-οστή στήλη ισούται με την $i$-οστή στήλη του $A$ και όλες οι υπόλοιπες είναι $0$, και 
+      \item[$\bullet$] ο $E_{ij}A$ είναι ο πίνακας του οποίου η $i$-οστή γραμμή ισούται με την $j$-οστή γραμμή του $A$ και όλες οι υπόλοιπες είναι $0$
+    \end{itemize}
+    (γιατί;). Για παράδειγμα, για $n=4$ και $(i,j) = (2,3)$ 
+    \begin{align*}
+      \begin{pmatrix}
+        a_{11} & a_{12} & a_{13} & a_{14} \\
+        a_{21} & a_{22} & a_{23} & a_{24} \\
+        a_{31} & a_{32} & a_{33} & a_{34} \\
+        a_{41} & a_{42} & a_{43} & a_{44} 
+      \end{pmatrix}
+      \begin{pmatrix}
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 
+      \end{pmatrix}
+      &=
+      \begin{pmatrix}
+        0 & 0 & a_{12} & 0 \\
+        0 & 0 & a_{22} & 0 \\
+        0 & 0 & a_{32} & 0 \\
+        0 & 0 & a_{42} & 0 
+      \end{pmatrix} \\
+      \begin{pmatrix}
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 
+      \end{pmatrix}
+      \begin{pmatrix}
+        a_{11} & a_{12} & a_{13} & a_{14} \\
+        a_{21} & a_{22} & a_{23} & a_{24} \\
+        a_{31} & a_{32} & a_{33} & a_{34} \\
+        a_{41} & a_{42} & a_{43} & a_{44} 
+      \end{pmatrix}
+      &=
+      \begin{pmatrix}
+        0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 \\
+        a_{31} & a_{32} & a_{33} & a_{34} \\
+        0 & 0 & 0 & 0
+      \end{pmatrix}.
+    \end{align*} 
+    
+    Συνεπώς, αν $A \in \rmZ(\rmM_n(R))$, τότε $AE_{ij} = E_{ij}A$, για κάθε $1 \le i,j \le n$, που σημαίνει ότι έχει την μορφή 
+    \[
+    A = a \, I_n
+    \]
+    για κάποιο $a \in R$ (γιατί;).  Επιπλέον, για κάθε $r \in R$, 
+    \[
+    (ra)I_n = (r\,I_n)A = A(r\,I_n) = (ar)I_n,
+    \]
+    όπου η δεύτερη ισότητα έπεται από το ότι $A \in \rmZ(\rmM_n(R))$ και γι αυτό $ra = ar$ ή ισοδύναμα $a \in \rmZ(R)$. Επομένως,
+    \[
+    \rmZ(\rmM_n(R)) \subseteq \{a \, I_n : a \in \rmZ(R)\}.
+    \]
+    Ο αντίστροφος εγκλεισμός είναι προφανής και το ζητούμενο έπεται.
+  \end{itemize}
+\end{proof}
+
+\begin{remark}
+  Στην περίπτωση όπου ο $R$ είναι δακτύλιος διαίρεσης και το κέντρο του είναι σώμα, έστω $F$, ο $R$ γίνεται διανυσματικός χώρος πάνω από το $F$ με βαθμωτό πολλαπλασιασμό
+  \begin{align*}
+    F\times R &\to R \\
+        (a,r) &\mapsto ar.
+  \end{align*}
+  Επιπλέον, 
+  \begin{equation}
+    \label{eq:algebra}
+    a\cdot(rs) = (a\cdot{r})s = r(a\cdot{s}) 
+  \end{equation}
+  για κάθε $a \in F$ και $r, s \in R$. Ένας δακτύλιος που έχει ταυτόχρονα δομή διανυσματικού χώρου με τους δύο πολλαπλασιασμούς να είναι συμβατοί με την έννοια της Ταυτότητας \eqref{eq:algebra} ονομάζεται \defn{$F$-άλγεβρα}. Για παράδειγμα, ο πολυωνυμικός δακτύλιος $\RR[x]$ είναι μια $\RR$-άλγεβρα. 
+\end{remark}
+
+\begin{exercise}{\rm(βλ. \cite[Άσκηση~7.2.12]{DF04})}
+  \label{ex:groupRing}
+  Έστω $F$ ένα σώμα και $G = \{g_1, g_2, \dots, g_n\}$ μία πεπερασμένη ομάδα με ταυτοτικό στοιχείο $\epsilon$. Έστω $FG$ ο διανυσματικός χώρος πάνω από το $F$ με βάση τα στοιχεία της $G$. Τα στοιχεία του $FG$ είναι της μορφής\footnote{Αυτό ονομάζεται \emph{τυπικό άθροισμα} των $g_1, g_2, \dots, g_n$.} 
+  \[
+  \lambda_1g_1 + \lambda_2g_2 + \cdots + \lambda_ng_n 
+  \]
+  για κάποια $\lambda_1, \lambda_2, \dots, \lambda_n \in F$. Το μηδέν του $FG$ είναι το στοιχείο
+  \[
+  0_{FG} \coloneqq 0_Fg_1 + 0_Fg_2 + \cdots + 0_Fg_n. 
+  \]
+  Στο $FG$ ορίζουμε έναν πολλαπλασιασμό θέτοντας 
+  \[
+  (\lambda g_i) \cdot (\mu g_j) = (\lambda\mu) g_k
+  \]
+  για κάθε $\lambda, \mu \in F$ και $1 \le i, j \le n$, όπου $g_k = g_ig_j \in G$ και επεκτείνοντας γραμμικά σε ολόκληρο το $FG$. Να δείξετε τα εξής.
+  \begin{itemize}
+    \item[(1)] Ο $FG$ είναι δακτύλιος με μονάδα $1_{FG} \coloneqq 1_F\epsilon$, ο οποίος ονομάζεται \defn{ομαδοδακτύλιος} (group ring) της $G$.
+    \item[(2)] Ο $FG$ είναι μεταθετικός δακτύλιος αν και μόνο αν η $G$ είναι αβελιανή ομάδα.
+    \item[(2)] Αν $\abs{G} > 1$, τότε ο $FG$ έχει μηδενοδιαιρέτες.
+    \item[(3)] Έχουμε $g_1 + g_2 + \cdots + g_n \in \rmZ(FG)$. 
+  \end{itemize}
+\end{exercise}
+
+\begin{example}
+Για παράδειγμα, έστω
+\[
+G = \rmS_3 = \{ \epsilon, \cycle{1,2}, \cycle{2,3}, \cycle{1,3}, \cycle{1,2,3}, \cycle{1,3,2}\}
+\]
+η συμμετρική ομάδα τάξης $6$ και $F = \RR$. Ο $\RR\rmS_3$ ως διανυσματικός χώρος πάνω από το $\RR$ έχει διάσταση $6$. θεωρούμε τα ακόλουθα στοιχεία του $\RR\rmS_3$
+\begin{align*}
+  v &= 3\cycle{1,2} - 5\cycle{2,3} + 14\cycle{1,2,3} \\
+  u &= 6\epsilon + 2\cycle{2,3} + 7\cycle{1,3,2}.
+\end{align*}
+Υπολογίζουμε (βλ. \cite[Άσκηση~7.2.10]{DF04})
+\begin{align*}
+  v + u 
+  &= 6\epsilon + 3\cycle{1,2} - 3\cycle{2,3} + 14\cycle{1,2,3} + 7\cycle{1,3,2} \\
+  2v - 3u 
+  &= 6\cycle{1,2} - 10\cycle{2,3} + 28\cycle{1,2,3} - 18\epsilon + -6\cycle{2,3} - 21\cycle{1,3,2} \\
+  &= -18\epsilon + 6\cycle{1,2} -16\cycle{2,3} + 28\cycle{1,2,3} - 21\cycle{1,3,2} \\
+  vu &= \left(
+    3\cycle{1,2} - 5\cycle{2,3} + 14\cycle{1,2,3}
+  \right)
+  \left(
+    6\epsilon + 2\cycle{2,3} + 7\cycle{1,3,2}
+  \right) \\
+  &= 18\cycle{1,2} + 63\cycle{1,2}\cycle{2,3} + 21\cycle{2,3}\cycle{1,3,2} -30\cycle{2,3} -10\cycle{2,3}^2 -35\cycle{2,3}\cycle{1,3,2} \\
+  &\quad + 84\cycle{1,2,3} + 28\cycle{1,2,3}\cycle{2,3} + 98\cycle{1,2,3}\cycle{1,3,2} \\
+  &= 18\cycle{1,2} + 63\cycle{1,2,3} + 21\cycle{1,2} -30\cycle{2,3} -10\epsilon -35\cycle{1,2} \\
+  &\quad + 84\cycle{1,2,3} + 28\cycle{1,2} + 98\epsilon \\
+  &= 88\epsilon + 32\cycle{1,2} - 30\cycle{2,3} + 147\cycle{1,2,3}.
+\end{align*}
+Ποιά είναι τα $uv$ και $v^2$;
+\end{example}
+
+\begin{proof}[Λύση της Άσκησης \ref{ex:groupRing}]
+  Τα (1) και (2) αφήνονται ως άσκηση.
+  \begin{itemize}
+    \item[(2)] Αν $\abs{G} > 1$, τότε υπάρχει κάποιο $g \in G$ με $g \neq \epsilon$. Αν $m$ είναι η τάξη του $g$, τότε 
+    \[
+    (\underbrace{\epsilon - g}_{\neq 0_{FG}})(\underbrace{\epsilon + g + \cdots + g^{m-1}}_{\neq 0_{FG}}) = \epsilon - g^m = \epsilon - \epsilon = 0_{FG}.
+    \]
+    Συνεπώς, το $\epsilon - g$ είναι μηδενοδιαιρέτης του $FG$.
+    \item[(3)] Έστω $a = g_1 + g_2 + \cdots + g_n$. Αρκεί να δείξουμε ότι $ag_i = g_ia$, για κάθε $1 \le i \le n$ (γιατί;). Πράγματι,
+    \[
+    (g_1 + g_2 + \cdots + g_n)g_i = g_1 + g_2 + \cdots + g_n,
+    \]
+    διότι η απεικόνιση 
+    \begin{align*}
+      G &\to G \\
+      g &\mapsto gg_i
+    \end{align*}
+    είναι 1-1 και επί, για κάθε $1 \le i \le n$. Ομοίως, 
+    \[
+    g_i(g_1 + g_2 + \cdots + g_n) = g_1 + g_2 + \cdots + g_n,
+    \]
+    για κάθε $1\le i \le n$ και το ζητούμενο έπεται.
+  \end{itemize}
+\end{proof}
+
+\begin{remark}
+  Ο ομαδοδακτύλιος είναι το βασικό αντικείμενο μελέτης της \emph{θεωρίας αναπαραστάσεων}.
+\end{remark}
+
+\begin{exercise}{\rm(\cite[Ασκήσεις~7.3.25]{DF04})}
+  \label{ex:7.3.25}
+  Υποθέτουμε ότι ο $R$ είναι μεταθετικός δακτύλιος. Να δείξετε ότι 
+  \[
+  (a+b)^n = \sum_{k=0}^n \binom{n}{k} a^kb^{n-k},
+  \]
+  για κάθε $a, b \in R$ και κάθε $n \ge 0$, όπου με 
+  \begin{equation} 
+    \label{eq:binomial_thm}
+    \binom{n}{k} \coloneqq \frac{n!}{k!(n-k)!}
+  \end{equation}
+  συμβολίζουμε τον \emph{διωνυμικό συντελεστή}.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Έστω $a, b \in R$. Θα κάνουμε επαγωγή ως προς $n$. Για $n=0$ και τα δύο μέλη εξ' ορισμού είναι ίσα με $1_R$. Αυτή είναι η βάση της επαγωγής. Έστω $n > 0$ και υποθέτουμε ότι η Ταυτότητα \eqref{eq:binomial_thm} ισχύει για $n$. Αυτή είναι η επαγωγική υπόθεση. Τότε 
+  \begin{align*}
+    (a+b)^{n+1} &= (a+b)^n(a+b) \\ 
+    &= \left(
+      \sum_{k=0}^n \binom{n}{k} a^kb^{n-k}
+    \right)(a+b) \\
+    &= 
+    \sum_{k=0}^n \binom{n}{k} a^{k+1}b^{n-k} + \sum_{k=0}^n \binom{n}{k} a^kb^{n-k+1} \\
+    &=
+    b^{n+1} + \sum_{k=1}^{n+1} \left(\binom{n}{k-1} + \binom{n}{k}\right) a^kb^{n+1-k} + a^{n+1} \\
+    &= \sum_{k=0}^{n+1} \binom{n+1}{k} a^kb^{n+1-k},
+  \end{align*}
+  όπου η δεύτερη ισότητα έπεται από την επαγωγική υπόθεση και η τελευταία ισότητα έπεται από την \emph{ταυτότητα του Pascal}.
+\end{proof}
+
+\begin{remark}
+  Η Άσκηση \ref{ex:7.3.25} ισχύει για μη μεταθετικούς δακτύλιους με την ασθενέστερη υπόθεση ότι $ab = ba$.
+\end{remark}
+
+\begin{exercise}{\rm(\cite[Ασκήσεις~7.1.13]{DF04})}
+  Ένα στοιχείο $x \in R$ ονομάζεται \defn{μηδενοδύναμο} (nilpotent) αν $x^m=0$ για κάποιο $m \ge 1$. Να δείξετε τα εξής.
+  \begin{itemize}
+    \item[(1)] Αν $n = a^kb$ για κάποιους θετικούς ακεραίους $a, b, k$, τότε το $ab$ είναι μηδενοδύναμο στο $\ZZ_n$.
+    \item[(2)] Έστω $x \in \ZZ$. Το $x$ είναι μηδενοδύναμο στο $\ZZ_n$ αν και μόνο αν κάθε πρώτος διαιρέτης του $n$ διαιρεί το $x$.
+    \item[(3)] Ποιά είναι τα μηδενοδύναμα στοιχεία του $\ZZ_{72}$;
+  \end{itemize}
+\end{exercise}
+
+\begin{proof}[Λύση]
+  \leavevmode
+  \begin{itemize}
+    \item[(1)] Έχουμε 
+    \[
+    (ab)^k = a^kb^k = \underbrace{a^kb}_{=n}b^{k-1} \equiv 0 \pmod{n}
+    \]
+    και γι αυτό το $ab$ είναι μηδενοδύναμο στο $\ZZ_n$.
+    \item[(2)] Έστω $x \in \ZZ_n$ ένα μηδενοδύναμο στοιχείο και $p$ ένας πρώτος διαιρέτης του $n$. Τότε $x^m \equiv 0 \pmod{n}$ για κάποιο $m \ge 1$, ή ισοδύναμα $n \mid x^m$. Συνεπώς, $p \mid x^m$ και γι αυτό $p \mid x$, από το \emph{λήμμα του Ευκλείδη}\footnote{Το λήμμα του Ευκλείδη μας πληροφορεί ότι αν $p$ είναι πρώτος που διαιρεί το γινόμενο $ab$ δύο ακεραίων, τότε $p \mid a$ ή $p \mid b$.}.
+    
+    Αντιστρόφως, υποθέτουμε ότι κάθε πρώτος διαιρέτης του $n$ διαιρεί το $x \in \ZZ$. Συνεπώς, αν $n = p_1^{k_1}p_2^{k_2}\cdots p_\ell^{k_\ell}$ είναι η παραγοντοποίηση του $n$ σε πρώτους, τότε 
+    \[
+    x = (p_1p_2\cdots p_\ell)b
+    \]
+    για κάποιο $b \ge 1$. Διαλέγοντας $m = \max\{k_1, k_2, \dots, k_\ell\}$ έχουμε 
+    \[
+    x^m = (p_1p_2\cdots p_\ell)^mb^m = n cb^m \equiv 0 \pmod{n}
+    \]
+    για κάποιο $c \ge 1$. Οπότε, το $x$ είναι μηδενοδύναμο στο $\ZZ_n$ και το ζητούμενο έπεται.
+    \item[(3)] Έχουμε $72 = 2^33^2$ και γι αυτό, από το (2), τα μηδενοδύναμα στοιχεία του $\ZZ_{72}$ είναι τα κοινά πολλαπλάσια του $2$ \emph{και} του $3$, δηλαδή
+    \[
+    0, 6,12,18,24,30,36,42,48,54,60,66.
+    \]
+  \end{itemize}
+\end{proof}
+
+\begin{thebibliography}{99}
+    \bibitem{DF04}
+    D. S. Dummit και R. M. Foote, 
+    \textit{Abstract algebra},
+    third edition, Wiley, 2004. 
+\end{thebibliography}
+\end{document}
