@@ -1,0 +1,529 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{exercise}{Άσκηση}
+\newtheorem{solution}{Λύση}
+\newtheorem*{remark}{Παρατήρηση}
+\newtheorem*{example}{Παράδειγμα}
+
+% math ops 
+% fields
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+\newcommand{\fp}{\mathfrak{p}}  
+\newcommand{\fm}{\mathfrak{m}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\nN}{\mathcal{N}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+
+% bold
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+\newcommand{\Spec}{\mathrm{Spec}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules \\ Ασκήσεις με Ενδεικτικές Λύσεις}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{4 Μαρτίου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{exercise}{4}
+% \setcounter{theorem}{5}
+\setcounter{equation}{2}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+Σε ότι ακολουθεί υποθέτουμε ότι $R$ είναι ένας \emph{μεταθετικός} δακτύλιος και $n$ είναι ένας θετικός ακέραιος, εκτός αν αναφέρεται διαφορετικά.
+
+\begin{exercise}{\rm(\cite[Άσκηση~7.2.8]{DF04})}
+  \label{ex:DF_7.2.8}
+  Για κάθε $n \ge 2$, να δείξετε ότι αν $A \in \rmM_n(R)$ είναι αυστηρά άνω τριγωνικός πίνακας (δηλαδή, άνω τριγωνικός πίνακας με $0$ στην κεντρική διαγώνιο), τότε $A^n=0$. Με άλλα λόγια, κάθε αυστηρά άνω τριγωνικός πίνακας είναι μηδενοδύναμο στοιχείο του $\rmM_n(R)$.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Αρκεί να αποδείξουμε ότι υψώνοντας τον $A$ σε κάποια δύναμη, ουσιαστικά \textquote{σπρώχνουμε} τα μη μηδενικά στοιχεία του κάποιες διαγωνίους προς τα πάνω. Κατά συνέπεια, μόλις εξαντληθούν οι διαγώνιοι του $A$ ($n$ το πλήθος) προκύπτει ο μηδενικός πίνακας.
+
+  Γι αυτό, θα δείξουμε ότι για κάθε $1 \le k \le n$, αν $A^k = (a_{ij}^{(k)})_{1\le i, j\le n}$, τότε 
+  \begin{equation}
+    \label{eq:nilpotent_matrix}
+    a_{ij}^{(k)} = 0, \quad \text{αν $j < i+k$}.
+  \end{equation}
+  Θα κάνουμε επαγωγή ως προς $k$. Για $k=1$ η συνθήκη \eqref{eq:nilpotent_matrix} είναι ισοδύναμη με το να είναι ο πίνακας $A$ αυστηρά άνω τριγωνικός (γιατί;), το οποίο ισχύει εξ' υποθέσεως. Αυτή είναι η βάση της επαγωγής. Έστω $k > 1$ και υποθέτουμε ότι η συνθήκη \eqref{eq:nilpotent_matrix} ισχύει για $k$.
+
+  Θεωρούμε τον πίνακα
+  \[
+  A^{k+1} = A^{k}A = 
+  \begin{pmatrix}
+                 &              &           & \\
+    a_{i1}^{(k)} & a_{i2}^{(k)} & \cdots    & a_{in}^{(k)} \\
+                 &              &           & \\
+                 &              &           & \\
+  \end{pmatrix}
+  \begin{pmatrix}
+     & & & a_{1j} & \\
+     & & & a_{2j} & \\
+     & & & \vdots & \\
+     & & & a_{nj} & \\
+  \end{pmatrix}.
+  \]
+  To $(i,j)$-στοιχείο του $A^{k+1}$ ισούται με 
+  \[
+  a_{ij}^{k+1} = a_{i1}^{(k)}a_{1j} + a_{i2}^{(k)}a_{2j} + \cdots + a_{in}^{(k)}a_{nj}.
+  \]
+  Από την επαγωγική υπόθεση γνωρίζουμε ότι
+  \[
+  a_{i\ell}^{(k)} = 0, \quad \text{αν $\ell < i+k$}
+  \]
+  ενώ από την υπόθεση ότι ο $A$ είναι αυστηρά άνω τριγωνικός έπεται ότι 
+  \[
+  a_{\ell{j}} = 0, \quad \text{αν $j < \ell+1$}. 
+  \]
+  Συνδυάζοντας αυτές τις δύο συνθήκες παίρνουμε
+  \[
+  a_{ij}^{k+1}=0, \quad \text{αν $j < \ell+1 < i + (k+1)$},
+  \]
+  και το ζητούμενο έπεται.
+\end{proof}
+
+\begin{exercise}{\rm(\cite[Ασκήσεις~7.1.14~και~7.4.27]{DF04})}
+\label{ex:DF_7.1.14_7.4.27}
+Έστω $x \in R$ ένα μηδενοδύναμο στοιχείο, δηλαδή $x^m=0$ για κάποιο $m \ge 1$. Να δείξετε τα εξής.
+\begin{itemize}
+  \item[(1)] $x=0$ ή το $x$ είναι μηδενοδιαιρέτης.
+  \item[(2)] Έχουμε $1-x \in R^\times$.
+  \item[(3)] Αν $u \in R^\times$, τότε $x+u \in R^\times$.
+  \item[(4)] Για κάθε $r \in R$, έχουμε $1 -rx \in R^\times$.
+\end{itemize}
+\end{exercise}  
+
+\begin{proof}[Λύση]
+  Το (4) λύνεται όμοια με το (2). Για τα υπόλοιπα:
+  \begin{itemize}
+    \item[(1)] Υποθέτουμε ότι $x \neq 0$ και θεωρούμε τον μικρότερο $m > 1$ για τον οποίο $x^m = 0$. Τότε 
+    \[
+    0 = x^m = \underbrace{x^{m-1}}_{\neq \, 0} \underbrace{x}_{\neq \, 0}
+    \]
+    και γι αυτό το $x$ είναι μηδενοδιαιρέτης. Διαφορετικά, $x=0$ και το ζητούμενο έπεται.
+    \item[(2)] Παρατηρούμε ότι 
+    \[
+    1 = 1-x^m = (1-x)(1+x+\cdots + x^m)
+    \]
+    και κατά συνέπεια $1-x \in R^\times$.
+    \item[(3)] Έστω $u \in R^\times$. Παρατηρούμε ότι 
+    \[
+    u + x = u(1 + u^{-1}x) = u(1 - (-u^{-1}x).
+    \]
+    Από το Ερώτημα (2) και το γεγονός ότι το $R^\times$ είναι κλειστό ως προς τον πολλαπλασιασμό, αρκεί να δείξουμε ότι το $-u^{-1}x$ είναι μηδενοδύναμο. Πράγματι,
+    \[
+    (-u^{-1}x)^m = (-u)^m\underbrace{x^m}_{=\,0} = 0
+    \]
+    και το ζητούμενο έπεται.
+  \end{itemize}
+\end{proof}
+
+\begin{remark}
+  Συνδυάζοντας τις Ασκήσεις \ref{ex:DF_7.2.8} και \ref{ex:DF_7.1.14_7.4.27} προκύπτει ότι οι πίνακες της μορφής 
+  \[
+  \begin{pmatrix}
+    \lambda & 1       & 0      & \cdots & 0       & 0 \\
+    0       & \lambda & 1      & \cdots & 0       & 0 \\
+    \vdots  & \vdots  & \vdots &        & \vdots  & \vdots\\
+    0       & 0       & 0      & \cdots & \lambda & 1 \\
+    0       & 0       & 0      & \cdots & 0       & \lambda
+  \end{pmatrix}
+  \]
+  είναι αντιστρέψιμοι. Αυτοί είναι γνωστοί ως \emph{στοιχειώδεις πίνακες Jordan} και αποτελούν τα βασικά συστατικά της \emph{κανονικής μορφής Jordan} ενός τετραγωγικού πίνακα.
+\end{remark}
+
+\begin{exercise}{\rm(\cite[Άσκηση~7.3.29]{DF04})}
+  \label{ex:DF_7.3.29}
+  Το σύνολο $\nN(R)$ όλων των μηδενοδύναμων στοιχείων του $R$ ονομάζεται \defn{μηδενοριζικό} (nilradical) του $R$. Να δείξετε ότι το $\nN(R)$ είναι ιδεώδες του $R$.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Θα επαληθεύσουμε τον Ορισμό 1.5. 
+  \begin{itemize}
+    \item Το $\nN(R)$ περιέχει το μηδέν.
+    \item Το $\nN(R)$ είναι κλειστό ως προς την πρόσθεση. Πράγματι, έστω $x, y \in \nN(R)$. Τότε $x^m = y^n = 0$, για κάποια $n \ge 1$. Από την Άσκηση 3 (διωνυμικό θεώρημα) έπεται ότι 
+    \begin{align*}
+    (x+y)^{m+n-1} 
+    &= \sum_{k=0}^{n+m-1}\binom{m+n-1}{k} x^ky^{m+n-1-k} \\
+    &= \sum_{k=0}^{m-1}\binom{m+n-1}{k}x^k\underbrace{y^{m+n-1-k}}_{= \, 0} \\
+    &\quad + \sum_{k=m}^{m+n-1}\binom{m+n-1}{k}\underbrace{x^k}_{=\,0}y^{m+n-1-k} \\
+    &= 0.
+    \end{align*}
+    Άρα, $x+y \in \nN(R)$.
+    \item Το $\nN(R)$ είναι κλειστό ως προς πολλαπλασιασμό με στοιχείο του $R$. Πράγματι, έστω $r\in R$ και $x \in \nN(R)$. Τότε, $x^m=0$, για κάποιο $m \ge 1$. Οπότε, 
+    \[
+    (rx)^m = r^m x^m = 0
+    \]
+    και γι αυτό $rx \in \nN(R)$.
+  \end{itemize}
+\end{proof}
+
+\begin{remark}
+  Το αποτέλεσμα της Άσκησης \ref{ex:DF_7.3.29} παύει να ισχύει αν ο $R$ δεν είναι μεταθετικός (βλ. \cite[Άσκηση~7.3.31]{DF04}). Για παράδειγμα, στον $R = \rmM_2(\ZZ)$ ισχύει ότι\footnote{Θυμηθείτε τον συμβολισμό της Άσκησης 1.} $E_{21}, E_{12} \in \nN(R)$, ενώ
+  \[
+  E_{21} + E_{12} = \begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+  \end{pmatrix} \notin \nN(R),
+  \]
+  διότι 
+  \[
+  \begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+  \end{pmatrix}^2 = I_2.
+  \]
+  Με άλλα λόγια, το μηδενοριζικό του $R$ δεν είναι κλειστό ως προς την πρόσθεση.
+\end{remark}
+
+\begin{exercise}{\rm(\cite[Άσκηση~7.3.33]{DF04})}
+  \label{ex:DF_7.3.33}
+  Έστω πολυώνυμο $f(x) = a_0 + a_1x + \cdots + a_nx^n \in R[x]$.
+  Να δείξετε ότι το $f(x)$ είναι αντιστρέψιμο στο $R[x]$ αν και μόνο αν $a_0 \in R^\times$ και τα $a_1, a_2, \dots, a_n \in \nN(R)$.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Υποθέτουμε ότι $a_0 \in R^\times$ και $a_i \in \nN(R)$ για κάθε $1 \le i \le n$. Επειδή το μηδενοριζικό είναι ιδεώδες (βλ. Άσκηση \ref{ex:DF_7.3.29}), έπεται ότι 
+  \[
+  a_1x + a_2x^2 + \cdots + a_nx^n \ \in \ \nN(R).
+  \]
+  Επειδή $a_0 \in R^\times$, από το Ερώτημα (3) της Άσκησης \ref{ex:DF_7.1.14_7.4.27} έπεται ότι 
+  \[
+  f(x) = a_0 + (a_1x + a_2x^2 + \cdots + a_nx^n) \ \in \ (R[x])^\times
+  \]
+
+  Αντιστρόφως, υποθέτουμε ότι $f(x) \in (R[x])^\times$. Τότε 
+  \begin{equation}
+    \label{eq:nilpotent_polynomial}
+    (a_0 + a_1x + \cdots + a_nx^n)(\underbrace{b_0 + b_1x + \cdots + b_mx^m}_{= \, g(x)}) = 1,
+  \end{equation}
+  για κάποιο $g(x) \in R[x]$. Από την Ταυτότητα \eqref{eq:nilpotent_polynomial} έπεται ότι $a_0b_0 = 1$ και γι αυτό $a_0, b_0 \in R^\times$. Συγκρίνοντας τους όρους $n+m$ και $n+m-1$ στο ανάπτυγμα της Ταυτότητας \eqref{eq:nilpotent_polynomial} προκύπτει ότι 
+  \[
+  0 = a_nb_m = a_nb_{m-1} + a_{n-1}b_m.
+  \]
+  Πολλαπλασιάζοντας με $a_n$ και αναδιατάσσοντας τους όρους παρατηρούμε ότι 
+  \[
+  a_n^2b_{m-1} = \underbrace{a_n^2b_m}_{=\, a_n(\underbrace{a_nb_m}_{=\,0})} - a_{n-1}\underbrace{a_nb_m}_{=\,0} = 0.
+  \]
+  Επαγωγικά, προκύπτει ότι 
+  \[
+  a^{k+1}_nb_{m-k} = 0,
+  \]
+  για κάθε $k$. Ειδικότερα, για $k=m$ έχουμε $a_n^{m+1}b_0 = 0$ και κατά συνέπεια $a_n^{m+1} = 0$ διότι το $b_0$ είναι αντιστρέψιμο. Άρα, $a_n \in \nN(R)$. Επαναλαμβάνοντας το ίδιο επιχείρημα για το πολυώνυμο 
+  \[
+  f(x) + (-a_nx^n), 
+  \]
+  το οποίο είναι αντιστρέψιμο από το Ερώτημα (3) της Άσκησης \ref{ex:DF_7.1.14_7.4.27}, προκύπτει ότι $a_{n-1} \in \nN(R)$. Συνεχίζουμε έτσι μέχρι να φτάσουμε στον συντελεστή $a_1 \in \nN(R)$ και το ζητούμενο έπεται.
+\end{proof}
+
+\begin{exercise}{\rm(βλ. \cite[Άσκηση~7.3.33]{DF04})}
+  \label{ex:nilradicals}
+  Να περιγράψετε το μηδενοριζικό καθενός από τους παρακάτω δακτυλίους:
+  \begin{itemize}
+    \item[(1)] μιας ακέραιας περιοχής (και ειδικότερα του $\ZZ$),
+    \item[(2)] του $\ZZ_n$, και 
+    \item[(3)] του πολυωνυμικού δακτυλίου μίας πεταβλητής $R[x]$.
+  \end{itemize}
+\end{exercise}
+
+\begin{proof}[Λύση]
+  \leavevmode
+  \begin{itemize}
+    \item[(1)] Από το Ερώτημα (1) της Άσκησης \ref{ex:DF_7.1.14_7.4.27} έπεται ότι κάθε μη μηδενικό μηδενοδύναμο στοι\-χείο είναι μηδενοδιαιρέτης. Κατά συνέπεια, το μηδενοριζικό μιας ακέραιας περιοχής είναι το τετριμμένο ιδεώδες. Ειδικότερα, 
+    \[
+    \nN(\ZZ) = \{0\}.
+    \]
+
+    \item[(2)] Στην Άσκηση 4 είδαμε ότι $x \in \nN(\ZZ_n)$ αν και μόνο αν κάθε πρώτος διαιρέτης του $n$ διαιρεί και το $x$. Συνεπώς, αν $p_1, p_2, \dots, p_\ell$ είναι οι πρώτοι που εμφανίζονται στην παραγοντοποίηση του $n$ σε πρώτους, τότε 
+    \[
+    \nN(\ZZ_n) = p_1\ZZ_n \cap p_2\ZZ_n \cap \cdots \cap p_\ell\ZZ_n = (p_1p_2\cdots{p_\ell})\ZZ_n.
+    \]
+
+    \item[(3)] Έστω $f(x) = a_0 + a_1x + \cdots + a_nx^n \in R[x]$. Θα δείξουμε ότι 
+    \[
+    \nN\left(
+      R[x]
+    \right) = \nN(R)[x].
+    \]
+    Υποθέτουμε ότι $a_i \in \nN(R)$, για κάθε $1 \le i \le n$. Αυτό σημαίνει ότι $a_ix^i \in \nN\left(R[x]\right)$, για κάθε $1 \le i \le n$ (γιατί;) και κατά συνέπεια $f(x) \in \nN\left(R[x]\right)$ (γιατί;). Άρα, $\nN(R)[x] \subseteq \nN\left(R[x]\right)$.
+
+    Αντιστρόφως, αν $f(x) \in \nN\left(R[x]\right)$, τότε $xf(x) \in \nN\left(R[x]\right)$ (γιατί;) και γι αυτό 
+    \[
+    1 + xf(x) \ \in \ \left(R[x]\right)^\times
+    \]
+    από το Ερώτημα (3) της Άσκησης \ref{ex:DF_7.1.14_7.4.27}. Από την Άσκηση \ref{ex:DF_7.3.33}, έπεται ότι $f(x) \in \nN(R)[x]$ (γιατί;). Συνεπώς, $\nN\left(R[x]\right) \subseteq \nN(R)[x]$ και η λύση ολοκληρώνεται.
+  \end{itemize}
+\end{proof}
+
+\begin{remark}
+  Με τον συμβολισμό που αναπτύξαμε, ο υπολογισμός της Άσκησης 4 μπορεί να γραφεί ως 
+  \[
+  \nN(\ZZ_{72}) = 2\ZZ_{72} \cap 3\ZZ_{72} = 6\ZZ_{72}.
+  \]
+\end{remark}
+
+\begin{exercise}{\rm(\cite[Άσκηση~7.4.26]{DF04})}
+  Έστω $\Spec(R)$ το σύνολο όλων των πρώτων ιδεωδών του $R$. Να δείξετε ότι 
+  \[
+  \nN(R) \subseteq \bigcap_{\fp \in \Spec(R)} \fp.
+  \]
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Αρκεί να δείξουμε ότι κάθε πρώτο ιδεώδες του $R$ περιέχει κάθε μηδενοδύναμο στοιχείο του $R$ (γιατί;). Πράγματι, έστω $\fp \in \Spec(R)$ και $x \in \nN(R)$. Τότε $x^m = 0$, για κάποιο $m \ge 1$. Συνεπώς,
+  \[
+  0 = x^m \ \in \ \fp 
+  \]
+  και γι αυτό $x \in \fp$, διότι το $\fp$ είναι πρώτο. Άρα, $\nN(R) \subseteq \fp$ και το ζητούμενο έπεται.
+\end{proof}
+
+\begin{thebibliography}{99}
+    \bibitem{DF04}
+    D. S. Dummit και R. M. Foote, 
+    \textit{Abstract algebra},
+    third edition, Wiley, 2004. 
+\end{thebibliography}
+\end{document}
