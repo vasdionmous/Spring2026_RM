@@ -1,0 +1,533 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{theorem}{Θεώρημα}
+\newtheorem{proposition}[theorem]{Πρόταση}
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{corollary}[theorem]{Πόρισμα}
+\newtheorem{conjecture}[theorem]{Εικασία}
+\newtheorem{problem}[theorem]{Πρόβλημα}
+\newtheorem*{claim}{Ισχυρισμός}
+\newtheorem{observation}[theorem]{Παρατήρηση}
+\newtheorem{definition}[theorem]{Ορισμός}
+\newtheorem{question}[theorem]{Ερώτημα}
+\newtheorem*{questions}{Ερωτήματα}
+\newtheorem*{que}{Ερώτημα}
+\newtheorem{example}[theorem]{Παράδειγμα}
+\newtheorem{exercise}{Άσκηση}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Παρατήρηση}
+
+% fixes the correct numbering of environments
+\numberwithin{theorem}{section}
+\numberwithin{exercise}{section}
+\numberwithin{equation}{section}
+
+% math ops 
+% fields
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+
+% bold
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ann}{\mathrm{Ann}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{12 Μαρτίου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{section}{4}
+\setcounter{theorem}{12}
+% \setcounter{equation}{}
+\begin{center}
+    \textbf{4. Πρότυπα: Εισαγωγή
+} (Συνέχεια)
+\end{center}
+
+Υπενθυμίζουμε πως σε ότι ακολουθεί, $R$ είναι ένας (όχι κατά ανάγκη μεταθετικός) δακτύλιος.
+
+\begin{definition}
+    \label{def:generators_sum}
+    Έστω $M$ ένα $R$-πρότυπο και $N_1, N_2, \dots, N_k$ υποπρότυπα του $M$.
+    \begin{itemize}
+        \item Το σύνολο 
+        \[
+        N_1 + N_2 + \cdots + N_k \coloneqq \{a_1 + a_2 + \cdots + a_k : a_i \in N_i, \ \text{για κάθε $i \le i \le k$}\}
+        \]
+        ονομάζεται \defn{άθροισμα} των $N_1, N_2, \dots, N_k$.
+        \item  Για κάθε $X \subseteq M$, το σύνολο\footnote{Συνήθως συμβολίζεται και ως $\rmspan_R(X)$.} 
+        \[
+        RX \coloneqq \{r_1x_1 + r_2x_2 + \cdots + r_nx_n : n \in \NN, r_i \in R, x_i \in X\}
+        \]
+        ονομάζεται το \defn{υποπρότυπο που παράγεται} από το $X$.
+        \item Ένα υποπρότυπο του $M$ της μορφής $RX$ για κάποιο πεπερασμένο σύνολο $X$ ονομάζεται \defn{πεπερασμένα παραγόμενο} (finitely generated).
+        \item Ένα υποπρότυπο του $M$ της μορφής 
+        \[
+        Ra = \{ra : r \in R\}
+        \]
+        ονομάζεται \defn{κυκλικό} (cyclic).
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    \label{ex:generators_sum}
+    \leavevmode
+    \begin{itemize}
+        \item[(α)] Αν ο $R$ είναι σώμα, τότε τα πεπερασμένα παραγόμενα $R$-πρότυπα είναι ακριβώς οι διανυσματικοί χώροι πεπερασμένης διάστασης. Τα κυκλικά υποπρότυπα σε αυτή την περίπτωση είναι οι \textquote{ευθείες}.
+        \item[(β)] Αν $R = \ZZ$, τότε τα πεπερασμένα παραγόμενα $R$-πρότυπα ταυτίζονται με τις πεπερασμένα παραγόμενες αβελιανές ομάδες. Για παράδειγμα, 
+        \[
+        \ZZ, \ \ZZ_6, \ \ZZ \oplus \ZZ, \ \ZZ \oplus \ZZ_2 \oplus \ZZ_6, \ \dots,
+        \]
+        όπου $\oplus$ είναι το ευθύ άθροισμα (αβελιανών) ομάδων. Τα κυκλικά πρότυπα στην περίπτωση αυτή είναι οι κυκλικές αβελιανές ομάδες.
+
+        \item[(γ)] Το κανονικό $R$-πρότυπο είναι κυκλικό και παράγεται από το $1_R$. Τα πεπερασμένα παραγόμενα υποπρότυπά του είναι τα πεπερασμένα παραγόμενα (αριστερά) ιδεώδη του $R$ και τα κυκλικά υποπρότυπα είναι τα κύρια (αριστερά) ιδεώδη.
+        
+        \item[(δ)] Αν ο $R$ είναι μεταθετικός δακτύλιος, τότε υπάρχει μια αμφιμονοσήμαντη αντιστοιχία μεταξύ των κυκλικών $R$-προτύπων και των δακτύλιων πηλίκο $R/I$. Πράγματι, κάθε δακτύλιος πηλίκο $R/I$ είναι κυκλικό $R$-πρότυπο και παράγεται από το $1_{R/I} = 1_R + I$. 
+        
+        Αντιστρόφως, αν $Ra$ είναι ένα κυκλικό $R$-πρότυπο, τότε η απεικόνιση 
+        \begin{align*}
+            \phi : R &\to Ra \\ 
+                   r &\mapsto ra 
+        \end{align*}
+        είναι $R$-επιμορφισμός και γι αυτό\footnote{Παρατηρήστε ότι ο πυρήνας της $\phi$ ταυτίζεται με τον μηδενιστή του $Ra$ (γιατί;).} 
+        \[
+        Ra \cong R/\ker(\phi). 
+        \]
+
+        \item[(ε)] Έστω $\bfe_i$ το στοιχείο του $R^n$ το οποίο έχει $1_R$ στην $i$-οστή θέση και παντού αλλού $0_R$. Τότε 
+        \[
+        (r_1, r_2, \dots, r_n) = r_1\bfe_1 + r_2\bfe_2 + \cdots + r_n\bfe_n
+        \]
+        για κάθε $r_1, r_2, \dots, r_n \in R$. Κατά συνέπεια,
+        \[
+        R^n = R\{\bfe_1, \bfe_2, \dots, \bfe_n\} = R\bfe_1 + R\bfe_2 + \cdots + R\bfe_n.
+        \]
+
+        \item[(στ)] Έστω $F$ σώμα και $V$ ένα $F[x]$-πρότυπο, όπου το $x$ δρα ως ο ενδομορφισμός $T \in \End_F(V)$. Το $V$ είναι κυκλικό $F[x]$-πρότυπο, αν υπάρχει $v \in V$ τέτοιο ώστε 
+        \begin{align*}
+            V 
+            &= F[x]v \\
+            &= \{\left(
+                a_0 + a_1x + \cdots + a_nx^n
+            \right)v : n \in \NN, a_0, a_1, \dots, a_n \in F\} \\
+            &= \{a_0v + a_1T(v) + \cdots + a_nT^n(v) : n \in \NN, a_0, a_1, \dots, a_n \in F\} \\
+            &= Fv \oplus F{T(v)} \oplus F{T^2(v)} \oplus \cdots,
+        \end{align*}
+        όπου $\oplus$ είναι το ευθύ άθροισμα διανυσματικών χώρων. 
+
+        Για παράδειγμα, έστω $F = \RR$, $V = \RR^n$ και τον ενδομορφισμό που ορίζεται θέτοντας $T^k(\bfe_n) = \bfe_{n-k}$, για κάθε $k \ge 1$. Το $V$ είναι κυκλικό και παράγεται από το $\bfe_n$, διότι
+        \begin{align*}
+            \RR[x]\bfe_n 
+            &= \RR\bfe_n \oplus \RR{T(\bfe_n)} \oplus \RR{T^2(\bfe_n)} \oplus \cdots \\
+            &= \RR\bfe_n \oplus \RR{\bfe_{n-1}} \oplus \RR{\bfe_{n-2}} \oplus \cdots \oplus \RR\bfe_1 \\
+            &= V.
+        \end{align*}
+    \end{itemize}
+\end{example}
+
+\begin{definition}
+    \label{def:direct_sum}
+    Έστω $M_1, M_2, \dots, M_k$ μια συλλογή $R$-προτύπων. Το σύνολο 
+    \[
+    M_1 \times M_2 \times \cdots \times M_k \coloneqq 
+    \{(m_1, m_2, \dots, m_k) : m_i \in M_i, \ \text{για κάθε $1 \le i \le k$}\}
+    \] 
+    εφοδιασμένο με την πρόσθεση κατά συντεταγμένες, δηλαδή 
+    \[
+    (a_1, a_2, \dots, a_k) + (b_1, b_2, \dots, b_k) = (a_1 + b_1, a_2+b_2, \dots, a_k + b_k)
+    \]
+    με μηδέν το $(0_{M_1}, 0_{M_2}, \dots, 0_{M_k})$ και τη διαγώνια δράση του $R$, δηλαδή 
+    \[
+    r (m_1, m_2, \dots, m_k) = (rm_1, rm_2, \dots, rm_k)
+    \]
+    είναι $R$-πρότυπο και ονομάζεται \defn{ευθύ γινόμενο} των $M_1, M_2, \dots, M_k$.
+\end{definition}
+
+Η επόμενη πρόταση, η απόδειξη της οποίας αφήνεται ως άσκηση, \textquote{αναγνωρίζει} ποιά πρότυπα είναι ευθέα γινόμενα κάποιων υποπροτύπων τους.
+\begin{proposition}
+    \label{prop:direct_sum}
+    Έστω $M$ ένα $R$-πρότυπο και $N_1, N_2, \dots, N_k$ υποπρότυπα του $M$. Τα ακό\-λουθα είναι ισοδύναμα.
+    \begin{itemize}
+        \item[(1)] Η απεικόνιση 
+        \begin{align*}
+            N_1 \times N_2 \times \cdots N_k &\to N_1 + N_2 + \cdots + N_k \\
+            (a_1, a_2, \dots, a_k) &\mapsto a_1 + a_2 + \cdots + a_k
+        \end{align*}
+        είναι $R$-ισομορφισμός.
+        \item[(2)] Κάθε $a \in N_1 + N_2 + \cdots + N_k$ μπορεί να γραφεί με μοναδικό τρόπο ως 
+        \[
+        a = a_1 + a_2 + \cdots + a_k
+        \]
+        για κάποια $a_i \in N_i$, για κάθε $1 \le i \le k$.
+    \end{itemize}
+    Αν το $M = N_1 + N_2 + \cdots + N_k$ ικανοποιεί τις συνθήκες (1) και (2), τότε ονομάζεται \defn{ευθύ άθροισμα} των $N_1, N_2, \dots, N_k$ και στην περίπτωση αυτή γράφουμε 
+    \[
+    M = N_1 \oplus N_2 \oplus \cdots \oplus N_k.
+    \]
+\end{proposition}
+
+Για παράδειγμα, το άθροισμα του Παραδείγματος \ref{ex:generators_sum} (ε) είναι ευθύ (γιατί;). Συνεπώς,
+\[
+R^n = R\bfe_1 \oplus R\bfe_2 \oplus \cdots \oplus R\bfe_n.
+\]
+'Ομως, δεν είναι όλα τα αθροίσματα ευθέα. Για παράδειγμα, έχουμε\footnote{Αν θέλουμε να είμαστε συνεπείς με τον τρόπο που γράφουμε τα κυκλικά πρότυπα, θα έπρεπε να γράφου $\ZZ{n}$ αντί για $n\ZZ$, αλλά ο $\ZZ$ είναι μεταθετικός και γι αυτό οι δύο αυτοί συμβολισμοί ταυτίζοναι. Συνεπώς, προτιμάμε να χρησιμοποιούμε τον δεύτερο που μας είναι γνώριμος.} 
+\[
+\ZZ = 2\ZZ + 3\ZZ,
+\]
+αλλά 
+\[
+12 = 6 + 6 = 12 + 1 = 1 + 12.
+\]
+
+\begin{remark}
+    \leavevmode
+    \begin{itemize} 
+        \item[(α)]
+        Έχει νόημα να ορίσουμε ευθέα γινόμενα και ευθέα αθροίσματα (πιθανώς) άπειρων το πλήθος προτύπων. Έστω $I$ μη κενό σύνολο δεικτών και $(M_i)_{i \in I}$ μια οικογένεια $R$-προτύπων. To 
+        \[
+        \prod_{i \in I} M_i \coloneqq M_1 \times M_2 \times \cdots 
+        \]
+        εφοδιασμένο με την πρόσθεση κατά συντεταγμένες, μηδέν το στοιχείο $(0_{M_1}, 0_{M_2}, \dots)$ και τη διαγώνια δράση του $R$ είναι $R$-πρότυπο και ονομάζεται \emph{ευθύ γινόμενο} των $M_i$. 
+        
+        Το υποπρότυπο 
+        \[
+        \bigoplus_{i \in I} M_i \coloneqq \{(m_1, m_2, \dots): \ \text{$m_i = 0_{M_i}$, εκτός από το πολύ ένα πεπερασμένο πλήθος}\}
+        \]
+        ονομάζεται (\emph{εξωτερικό}) ευθύ γινόμενο των $M_i$.
+
+        \item[(β)] Αν $\abs{I} = n < \infty$, τότε τα δύο αυτά πρότυπα ταυτίζονται, γενονός το οποίο μπορεί να δημιουργήσει σύγχιση. Παρόλα αυτά, μπορούμε να φανταστούμε το εξωτερικό ευθύ άθροισμα ως το (εσωτερικό) ευθύ άθροισμα 
+        \[
+        \bigoplus_{i=1}^n \{m_ie_i : m_i \in M_i\},
+        \]
+        όπου $e_i$ είναι το στοιχείο του $M_1 \times M_2 \times \cdots \times M_k$ το οποίο έχει $1_{M_i}$ στην $i$-οστή θέση και παντού αλλού $0_{M_{j}}$.
+
+        \item[(γ)] Για κάθε δύο $R$-πρότυπα $A$ και $B$, έχουμε την βραχεία ακριβή ακολουθία 
+        \[
+        \begin{tikzcd}
+        0 \arrow[r] & A \arrow[r, hook] & A \oplus B \arrow[r, two heads] & B \arrow[r] & 0.
+        \end{tikzcd}
+        \]
+        Στην περίπτωση αυτή $B \cong (A \oplus B)/ A$. Ομοίως, αν αντιστρέψουμε τους ρόλους των $A$ και $B$.
+    \end{itemize}
+\end{remark}
+
+\newpage
+\setcounter{section}{5}
+\setcounter{theorem}{0}
+% \setcounter{equation}{}
+\begin{center}
+    \textbf{5. Ελεύθερα πρότυπα
+} 
+\end{center}
+
+Σε ότι ακολουθεί, θεωρούμε $R$ ένα (όχι κατά ανάγκη μεταθετικό) δακτύλιο $R$.
+
+\begin{definition}
+    \label{def:free_modules}
+    Έστω $M$ ένα $R$-πρότυπο και $\bB \subseteq M$.
+    \begin{itemize}
+        \item Το $\bB$ ονομάζεται \defn{$R$-γραμμικώς ανεξάρτητο} αν για κάθε πεπερασμένο υποσύνολο $\{e_1, e_2, \dots, e_n\} \subseteq \bB$ ισχύει ότι 
+        \[
+        r_1e_1 + r_2e_2 + \cdots + r_ne_n = 0_M \quad \then \quad r_1 = r_2 = \cdots = r_n = 0_R.
+        \]
+        \item Το $\bB$ λέμε ότι \defn{παράγει} το $M$ πάνω από το $R$, αν για κάθε $m \in M$, υπάρχει πεπερασμένο υποσύνολο $\{e_1, e_2, \dots, e_n\} \subseteq \bB$ τέτοιο ώστε 
+        \[
+        m = r_1e_1 + r_2e_2 + \cdots + r_ne_n
+        \]
+        για κάποια $r_1, r_2, \dots, r_n \in R$.
+        \item Το $\bB$ ονομάζεται \defn{βάση} του $M$ αν είναι $R$-γραμμικώς ανεξάρτητο και παράγει το $M$ πάνω από το $R$.
+    \end{itemize}
+    Ένα πρότυπο το οποίο έχει μια βάση ονομάζεται \defn{ελεύθερο} (free).
+\end{definition}
+
+Με άλλα λόγια, ένα πρότυπο $M$ είναι ελεύθερο αν υπάρχει μια οικογένεια στοιχείων $\bB = \{e_\lambda : \lambda \in \Lambda\}$, για κάποιο σύνολο δεικτών $\Lambda$, τέτοια ώστε κάθε $m \in M$ να μπορεί να γραφεί με μοναδικό τρόπο ως 
+\[
+m = \sum_{\lambda \in \Lambda} r_\lambda e_\lambda
+\]
+για κάποια $r_\lambda$ τα οποία είναι όλα μηδέν εκτός από ένα το πολύ πεπερασμένο πλήθος.
+
+\begin{example}
+    \label{ex:free_module}
+    \leavevmode
+    \begin{itemize}
+        \item[(α)] Αν ο $R$ είναι σώμα, τότε κάθε $R$-πρότυπο είναι ελεύθερο, διότι κάθε διανυσματικός χώρος έχει βάση.
+        \item[(β)] Αν $R=\ZZ$, τότε τα ελεύθερα $\ZZ$-πρότυπα είναι οι λεγόμενες ελεύθερες αβελιανές ομάδες (βλ., για παράδειγμα, τη συζήτηση στο \cite[Ενότητα~6.3]{DF04}).
+        \item[(γ)] Το $R^n$ είναι ελεύθερο πρότυπο με βάση $\{\bfe_1, \bfe_2, \dots, \bfe_n\}$. Ειδικότερα, το $\ZZ^n$ είναι ελεύθερο.
+        \item[(δ)] Για κάθε $1 \le i, j \le n$, θεωρούμε τον πίνακα $E_{ij} \in \rmM_n(R)$ ο οποίος έχει $1_R$ στη θέση $(i,j)$ και $0_R$ παντού αλλού. Κάθε πίνακας $A = (a_{ij})_{1 \le i, j \le n} \in \rmM_n(R)$ μπορεί να γραφεί με μοναδικό τρόπο ως 
+        \[
+        A = \sum_{i=1}^n\sum_{j=1}^n a_{ij}E_{ij}.
+        \]
+        Κατά συνέπεια, το $\rmM_n(R)$ είναι\footnote{Παρατηρήστε ότι είναι και ελεύθερο $\rmM_n(R)$-πρότυπο, από το (γ).} ελεύθερο $R$-πρότυπο με βάση $\{E_{ij} : 1 \le i, j \le n\}$.
+        \item[(ε)] Για κάθε θετικό ακέραιο $d$, το $\ZZ[\sqrt{-d}]$ είναι ελεύθερο $\ZZ$-πρότυπο με βάση $\{1, \sqrt{-d}\}$.
+        \item[(στ)] Αν ο $R$ είναι μεταθετικός δακτύλιος, τότε το $R[x]$ είναι ελεύθερο $R$-πρότυπο με βάση $\{1, x, x^2, \dots\}$.
+        \item[(ζ)] Αν ο $R$ είναι ακέραια περιοχή και $f \in R[x]$ είναι ένα πολυώνυμο του οποίου ο μεγιστοβάθμιος όρος είναι αντιστρέψιμο στοιχείο του $R$, τότε η απόδειξη της Πρότασης 3.9 μας πληροφορεί ότι ο δακτύλιος πηλίκο $R[x]/(f)$ είναι ελεύθερο $R$-πρότυπο με βάση $\{1, \ol{x}, \dots, \ol{x^{\deg(f)-1}}\}$.  
+        
+        Ειδικότερα, αυτό που είχαμε ζητήσει στη συζήτηση στο τέλος της Ενότητας 3
+        \[
+        \RR[x_1,x_2]/(x_1^2 + x_2^2 - 1) \cong \RR[x_1]1 \oplus \RR[x_1]\ol{x_2} \quad \text{(ως $R[x_1]$-πρότυπα)}
+        \]
+        ισχύει και μας πληροφορεί ότι το $\RR[x_1,x_2]/(x_1^2 + x_2^2 - 1)$ είναι ελεύθερο $R[x_1]$-πρότυπο με βάση $\{1, \ol{x_2}\}$.
+        \item[(η)] Το (κυκλικό) $\ZZ$-πρότυπο $\ZZ_n$ \emph{δεν} είναι ελεύθερο, διότι 
+        \[
+        0_{\ZZ_n} = n1_{\ZZ_n}
+        \]
+        για κάθε $n \in \ZZ$. Με άλλα λόγια, το $\ZZ_n$ έχει \emph{σχέσεις} που το αποτρέπουν από το να είναι ελεύθερο.
+    \end{itemize}
+\end{example}
+
+
+\begin{thebibliography}{99}
+    \bibitem{DF04}
+    D. S. Dummit και R. M. Foote, 
+    \textit{Abstract algebra},
+    third edition, Wiley, 2004. 
+\end{thebibliography}
+\end{document}
