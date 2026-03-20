@@ -1,0 +1,467 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{exercise}{Άσκηση}
+\newtheorem{solution}{Λύση}
+\newtheorem*{remark}{Παρατήρηση}
+\newtheorem*{example}{Παράδειγμα}
+
+% math ops 
+% fields
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+\newcommand{\fp}{\mathfrak{p}}  
+\newcommand{\fm}{\mathfrak{m}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\nN}{\mathcal{N}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+
+% bold
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmJ}{\mathrm{J}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\mSpec}{\mathrm{mSpec}}
+\newcommand{\rad}{\mathrm{rad}}
+\newcommand{\Rad}{\mathrm{Rad}}
+\newcommand{\Jac}{\mathrm{Jac}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules \\ Ασκήσεις με Ενδεικτικές Λύσεις}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{11 Μαρτίου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{exercise}{10}
+% \setcounter{theorem}{5}
+\setcounter{equation}{3}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+Σε ότι ακολουθεί υποθέτουμε ότι $R$ είναι ένας \emph{μεταθετικός} δακτύλιος και $n$ είναι ένας θετικός ακέραιος, εκτός αν αναφέρεται διαφορετικά.
+
+\begin{exercise}{\rm(\cite[Άσκηση~7.4.30]{DF04})}
+  \label{ex:DF_7.4.30}
+  Έστω $I$ ένα ιδεώδες του $R$. Το σύνολο\footnote{Στο \cite{DF04} συμβολίζεται με $\rad(I)$.} 
+  \[
+  \sqrt{I} \coloneqq \{r \in R : r^n \in I, \ \text{για κάποιο $n \ge 1$}\}
+  \]
+  ονομάζεται \defn{ριζικό} (radical) του $I$. Να δείξετε τα εξής.
+  \begin{itemize}
+    \item[(α)] Έχουμε $\sqrt{0} = \nN(R)$, όπου $0$ είναι το τετριμμένο ιδεώδες.
+    \item[(β)] Το $\sqrt{I}$ είναι ιδεώδες του $R$ που περιέχει το $I$.
+    \item[(γ)] Έχουμε $\sqrt{I}/I = \nN(R/I)$.
+  \end{itemize}
+  Υπενθυμίζουμε ότι με $\nN(R)$ συμβολίζουμε το μηδενοριζικό του $R$ (βλ. Άσκηση 7).
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Το (α) έπεται άμεσα από τους ορισμούς και δικαιολογεί τον όρο μηδενοριζικό. Για το (β), αρχικά παρατηρούμε ότι $I \subseteq \sqrt{I}$. Έπειτα, θα επαληθεύσουμε τον Ορισμό 1.5.
+  \begin{itemize}
+    \item Το $\sqrt{I}$ περιέχει το μηδέν, διότι περιέχει το $I$ που το περιέχει ως ιδεώδες.
+    \item Το $\sqrt{I}$ είναι κλειστό ως προς την πρόσθεση. Πράγματι, έστω $a, b \in \sqrt{I}$. Τότε $a^n, b^m \in I$ για κάποια $n, m \ge 1$. Από την Άσκηση 3 (διωνυμικό θεώρημα) έπεται ότι 
+    \begin{align*}
+      (a+b)^{n+m-1} 
+      &= \sum_{k=0}^{n+m-1}\binom{m+n-1}{k} a^kb^{m+n-1-k} \\
+      &= \underbrace{b^m\left(
+        \sum_{k=0}^{n-1} \binom{n+m-1}{k} a^kb^{n-1-k} 
+      \right)}_{\in \ I} \\
+      &\quad + \underbrace{a^n\left(
+        \sum_{k=n}^{n+m-1} \binom{n+m-1}{k} a^{k-n}b^{n+m-1-k}
+      \right)}_{\in \ I}
+    \end{align*}
+    και γι αυτό $a + b \in \sqrt{I}$, διότι το $I$ είναι ιδεώδες.
+    \item Το $\sqrt{I}$ είναι κλειστό ως προς πολλαπλασιασμό με στοιχείο του $R$. Πράγματι, έστω $a \in \sqrt{I}$ και $r \in R$. Τότε $a^n \in I$, για κάποιο $n \ge 1$ και γι αυτό 
+    \[
+    (ra)^n = r^n a^n \in I
+    \]
+    διότι το $I$ είναι ιδεώδες.
+  \end{itemize}
+
+  Για το (γ), έστω $a + I \in \nN(R/I)$. Τότε
+  \[
+  0_R + I = (a+I)^n = a^n + I
+  \]
+  για κάποιο $n \ge 1$. Ισοδύναμα $a^n \in I$, για κάποιο $n \ge 1$ και γι αυτό $a \in \sqrt{I}$ που σημαίνει ότι $a + I \in \sqrt{I}/I$. Όλα τα βήματα αντιστρέφονται και το ζητούμενο έπεται.
+\end{proof}
+
+\begin{exercise}{\rm(\cite[Άσκηση~7.4.31]{DF04})}
+  \label{ex:DF_7.4.31}
+  Έστω $I$ ένα ιδεώδες του $R$. Το $I$ ονομάζεται \defn{ριζικό} αν $\sqrt{I} = I$.
+  \begin{itemize}
+    \item[(α)] Να δείξετε ότι κάθε πρώτο ιδεώδες του $R$ είναι ριζικό.
+    \item[(β)] Να δείξετε ότι το $n\ZZ$ είναι ριζικό στο $\ZZ$ αν και μόνο αν ο $n$ είναι \emph{ελεύθερος τετραγώνων} (square free), δηλαδή αν μπορεί να γραφεί ως γινόμενο διακεκριμένων πρώτων.  
+  \end{itemize}
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Υπενθυμίζουμε ότι με $\Spec(R)$ συμβολίζουμε το σύνολο όλων των πρώτων ιδεωδών του $R$.
+  \begin{itemize}
+    \item[(α)] Έστω $\fp \in \Spec(R)$. Από την Πρόταση 1.11 έπεται ότι ο $R/\fp$ είναι ακέραια περιοχή και γι αυτό $\nN(R/\fp) = 0$ από την Άσκηση 9. Από την Άσκηση \ref{ex:DF_7.4.30} έπεται ότι 
+    \[
+    \sqrt{\fp}/\fp = \nN(R/\fp) = 0
+    \]
+    που σημαίνει ότι $\sqrt{\fp} = \fp$ και κατά συνέπεια το $\fp$ είναι ριζικό.
+    \item[(β)] Έστω $n = p_1^{k_1}p_2^{k_2}\cdots p_m^{k_m}$ η παραγοντοποίηση του $n$ σε πρώτους. Συνδυάζοντας τις Ασκήσεις 9 και \ref{ex:DF_7.4.30} προκύπτει ότι 
+    \[
+    \sqrt{n\ZZ}/n\ZZ = \nN(\ZZ/n\ZZ) = (p_1p_2\cdots p_m)\ZZ/n\ZZ.
+    \]
+    Συνεπώς,  
+    \[
+    \sqrt{n\ZZ} = (p_1p_2\cdots p_m)\ZZ
+    \]
+    και γι αυτό $\sqrt{n\ZZ} = n\ZZ$ αν και μόνο αν $k_1 = k_2 = \cdots = k_m = 1$.
+  \end{itemize}
+\end{proof}
+
+\begin{exercise}{\rm(\cite[Άσκηση~7.4.32]{DF04})}
+  \label{ex:DF_7.4.32}
+  Έστω $\mSpec(R)$ το σύνολο όλων των μεγιστικών ιδεωδών του $R$. Το σύνολο 
+  \[
+  \Jac(I) \coloneqq \bigcap_{\substack{\fm \in \mSpec(R) \\ I \subseteq \fm}} \fm
+  \]
+  ονομάζεται \defn{ριζικό Jacobson} του $I$. Το ριζικό Jacobson του τετριμμένου ιδεώδους ονομάζεται ριζικό Jacobson του $R$\footnote{Και συχνά στη βιβλιογραφία συμβολίζεται ως $\Rad(R)$ ή $\rmJ(R)$.}.
+  \begin{itemize}
+    \item[(α)] Να δείξετε ότι το ριζικό Jacobson του $R$ περιέχει το μηδενοριζικό του.
+    \item[(γ)] Να υπολογιστεί το $\Jac(n\ZZ)$.
+  \end{itemize}
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Για το (α), θυμόμαστε ότι κάθε μεγιστικό ιδεώδες του $R$ είναι πρώτο, δηλαδή 
+  \[
+  \mSpec(R) \subseteq \Spec(R).
+  \] 
+  Αυτό έχει ως συνέπεια 
+  \[
+  \nN(R) \subseteq \bigcap_{\fp \in \Spec(R)} \fp \subseteq \bigcap_{\fm \in \mSpec(R)} \fm = \Jac(0)
+  \]
+  όπου ο πρώτος εγκλεισμός έπεται από την Άσκηση 10. 
+
+  Για το (γ), θυμόμαστε ότι 
+  \[
+  \mSpec(\ZZ) = \Spec(\ZZ) = \{ p\ZZ : \ \text{ο $p$ είναι πρώτος}\}.
+  \]
+  Άρα, 
+  \[
+  \Jac(n\ZZ) 
+  = \bigcap_{\substack{\text{$p$ πρώτος} \\ n\ZZ \subseteq p\ZZ}} p\ZZ
+  = \bigcap_{\substack{\text{$p$ πρώτος} \\ p \mid n}} p\ZZ
+  = (p_1p_2\cdots{p_k})\ZZ
+  \]
+  όπου $p_1, p_2, \dots, p_k$ είναι οι διακεκριμένοι πρώτοι που εμφανίζονται στην παραγοντοποίηση του $n$ σε πρώτους.
+\end{proof}
+
+\begin{exercise}{\rm(\cite[Άσκηση~9.2.7]{DF04})}
+  \label{ex:DF_9.2.7}
+  Να περιγράψετε τα ιδεώδη του $\ZZ[x]/(2, x^3+1)$.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Γράφουμε $J = (x^3+1)$. Θεωρούμε την απεικόνιση 
+  \begin{align*}
+    \ZZ[x] &\to \ZZ_2[x] / (x^3+1) \\
+    a_0 + a_1x + \cdots + a_nx^n &\mapsto (\ol{a_0} + \ol{a_1}x + \cdots + \ol{a_n}x^n) + J,
+  \end{align*}
+  όπου $\ol{a_i} = a_i + 2\ZZ$, για κάθε $i \ge 0$. Αυτή είναι επιμορφισμός δακτυλίων με πυρήνα το ιδεώδες $(2, x^3+1)$ (γιατί;). Συνεπώς, από το πρώτο θεώρημα ισομορφισμού, έπεται ότι\footnote{Ισοδύναμα, μπορεί κανείς να επικαλεστεί το τρίτο θεώρημα ισομορφισμού και να γράψει $\ZZ[x]/(2,x^3+1) \cong \frac{\ZZ[x]/(2)}{(2,x^3+1)/(2)} \cong \ZZ_2[x]/(x^3+1)$.} 
+  \[
+  \ZZ[x]/(2, x^3+1) \cong \ZZ_2[x] / (x^3+1).
+  \]
+
+  Κατά συνέπεια, τα ιδεώδη του $\ZZ[x]/(2, x^3+1)$ αντιστοιχούν στα ιδεώδη του $\ZZ_2[x] / (x^3+1)$, τα οποία με τη σειρά τους αντιστοιχούν στα ιδεώδη $I$ του $\ZZ_2[x]$ τα οποία περιέχουν το $(x^3+1)$, από το τέταρτο θεώρημα ισομορφισμού. Όμως, το $\ZZ_2[x]$ είναι περιοχή κύριων ιδεωδών, από το Θεώρημα 3.3, διότι το $\ZZ_2$ είναι σώμα και γι αυτό $I = (f(x))$ για κάποιο $f(x) \in \ZZ_2[x]$. Συνεπώς, η συνθήκη $(x^3 + 1) \subseteq I = (f(x))$ γίνεται $f(x) \mid x^3 + 1$.
+
+  Η παραγοντοποίηση του $x^3+1$ σε ανάγωγα πολυώνυμα του $\ZZ_2[x]$ είναι 
+  \[
+  x^3 + 1 = (x+1)(x^2 + x + 1)
+  \]
+  (γιατί;) και γι αυτό προκύπτουν τέσσερα διαφορετικά ιδεώδη $I$, ένα για κάθε διαίρετη του $x^3+1$. Πιο συγκεκριμένα, από την Πρόταση 3.9, υπολογίζουμε 
+  \begin{align*}
+  \ZZ_2[x]/(x^3+1) 
+  &= \{\ol{a_0}(1+J) + \ol{a_1}(x + J) + \ol{a_2}(x^2 + J) : \ol{a_i} \in \ZZ_2, \ \text{για κάθε $0 \le i \le 2$}\} \\
+  &= \{0 + J, 1 + J, x + J, (1 + x) + J, x^2 + J, (x + x^2) + J, (x^2 + x + 1) + J\},
+  \end{align*}
+  όπου έχουμε ταυτίσει τους συντελεστές $0$ και $1$ με τις εικόνες τους $\ol{0}$ και $\ol{1}$ στο $\ZZ_2$. Κατά συνέπεια, έχουμε 
+  \[
+    \renewcommand{\arraystretch}{1.3} 
+    \begin{tabular}{c|c|c}
+    $f(x)$                & $I/J$                                           & γεννήτορας       \\ \hline
+    $1$                   & $\ZZ_2[x]/J$                                    & $1 + J$         \\
+    $x+1$                 & $\{0+J, (1+x) + J, (x+x^2) + J, (1 + x^2) +J\}$ & $(1+x) + J$       \\
+    $x^2 + x + 1$         & $\{0+J, (1 + x + x^2) + J\}$                    & $(1 + x + x^2) + J$\\
+    $x^3+1$               & $\{0 + J\}$                                     & $0 + J$ \\
+    \end{tabular}
+  \]
+\end{proof}
+
+\begin{exercise}
+  \label{ex:prime_ideal_of_Z[x]}
+  Να δείξετε ότι το ιδεώδες $(3, x^2+1)$ του $\ZZ[x]$ είναι ριζικό.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Από την Άσκηση \ref{ex:DF_7.4.31}, αρκεί να δείξουμε ότι το $(3, x^2+1) \in \mSpec(\ZZ[x])$ (γιατί;). Όμοια με την Άσκηση \ref{ex:DF_9.2.7}, παρατηρούμε ότι 
+  \[
+  \ZZ[x]/(3,x^2+1) \cong \ZZ_3[x]/(x^2+1).
+  \]
+  Το πολυώυνμο $x^2+1$ είναι ανάγωγο στο $\ZZ_3[x]$, διότι δεν έχει ρίζα στο $\ZZ_3$ και ο βαθμός του είναι δύο\footnote{Δεν είναι δύσκολο να δείξει κανείς ότι ένα πολυώυνο βαθμού δύο ή τρία πάνω με συντελεστές πάνω από ένα σώμα είναι ανάγωγο αν και μόνο αν δεν έχει ρίζα στο σώμα αυτό (βλ., για παράδειγμα, \cite[Πρόταση 9.4.9]{DF04}).}. Επομένως, από το Λήμμα 2.14 (2) έπεται ότι $(x^2+1) \in \mSpec(\ZZ_2[x])$ και γι αυτό, από την Πρόταση 1.10, ο $\ZZ_3[x]/(x^2+1)$ είναι σώμα. Κατά συνέπεια, ο $\ZZ[x]/(3,x^2+1)$ είναι σώμα και γι αυτό $(3, x^2+1) \in \mSpec(\ZZ[x])$, πάλι από την Πρόταση 1.10, το οποίο ήταν το ζητούμενο.
+\end{proof}
+
+\begin{remark}
+  Η λύση της Άσκησης \ref{ex:prime_ideal_of_Z[x]} δουλεύει για κάθε ιδεώδες της μορφής $(p, f(x))$, όπου $p$ είναι πρώτος αριθμός και $f(x) \in \ZZ[x]$ είναι τέτοιο ώστε η αναγωγή του modulo $p$ είναι ανάγωγο στοιχείο του $\ZZ_p[x]$. 
+
+  Επίσης, από το Θεώρημα 3.6, ο $\ZZ[x]$ είναι περιοχή μονοσήμαντης παραγοντοποίησης και κατά συνέπεια $(f(x)) \in \Spec(\ZZ[x])$, για κάθε ανάγωγο πολυώνυμο $f(x) \in \ZZ[x]$, από το Λήμμα 2.14. Τέλος, $(0) \in \Spec(\ZZ[x])$, διότι ο $\ZZ[x]$ είναι ακέραια περιοχή.
+
+  Αποδεινύεται ότι αυτά είναι \emph{όλα} τα στοιχεία του $\Spec(\ZZ[x])$ (βλ., για παράδειγμα, \cite[Πρόταση 1.4.1]{Mal08}). Κάτι αντίστοιχο ισχύει και για τον πολυωνυμικό δακτύλιο $F[x,y]$, όπου $F$ είναι σώμα (βλ., για παράδειγμα, \cite[Πρόταση 1.4.2]{Mal08}).
+\end{remark}
+
+\begin{thebibliography}{99}
+    \bibitem{DF04}
+    D. S. Dummit και R. M. Foote, 
+    \textit{Abstract algebra},
+    third edition, Wiley, 2004. 
+    \bibitem{Mal08}
+    Μ. Μαλιάκας, 
+    \textit{Εισαγωγή στην Μεταθετική Άλγεβρα}, 
+    Εκδόσεις Σοφία, 2008.
+\end{thebibliography}
+\end{document}
