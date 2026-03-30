@@ -1,0 +1,804 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{theorem}{Θεώρημα}
+\newtheorem{proposition}[theorem]{Πρόταση}
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{corollary}[theorem]{Πόρισμα}
+\newtheorem{conjecture}[theorem]{Εικασία}
+\newtheorem{problem}[theorem]{Πρόβλημα}
+\newtheorem*{claim}{Ισχυρισμός}
+\newtheorem{observation}[theorem]{Παρατήρηση}
+\newtheorem{definition}[theorem]{Ορισμός}
+\newtheorem{question}[theorem]{Ερώτημα}
+\newtheorem*{questions}{Ερωτήματα}
+\newtheorem*{que}{Ερώτημα}
+\newtheorem{example}[theorem]{Παράδειγμα}
+\newtheorem{exercise}{Άσκηση}
+\newtheorem*{zorn}{Λήμμα του Zorn}
+\newtheorem*{example_6.6}{Παράδειγμα~6.6}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Παρατήρηση}
+
+% fixes the correct numbering of environments
+\numberwithin{theorem}{section}
+\numberwithin{exercise}{section}
+\numberwithin{equation}{section}
+
+% math ops 
+% fields
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\qQ}{\mathcal{Q}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+
+% bold
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmF}{\mathrm{F}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Set}{\pmb{\mathrm{Set}}}
+\newcommand{\Rmod}{\pmb{\mathrm{mod}}}
+\newcommand{\rmrank}{\mathrm{rank}}
+\newcommand{\mSpec}{\mathrm{mSpec}}
+\newcommand{\Spec}{\mathrm{Spec}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{26 κ' 30 Μαρτίου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{section}{6}
+% \setcounter{theorem}{2}
+% \setcounter{equation}{}
+\begin{center}
+    \textbf{6. Τανυστικό γινόμενο
+}
+\end{center}
+
+Σε ότι ακολουθεί, θεωρούμε έναν μεταθετικό δακτύλιο $R$.
+
+Ας υποθέσουμε προσωρινά, για λόγους απλότητας, ότι το $R = F$ είναι σώμα. Στην γραμμική άλγεβρα (και στην Ενότητα 4) συναντήσαμε το ευθύ άθροισμα $V \oplus W$ δύο διανυσματικών χώρων πάνω από το $F$, με την δράση του τελευταίου (βαθμωτό πολλαπλασιασμό) να δίνεται από 
+\[
+\lambda (v, w) = (\lambda{v}, \lambda{w}).
+\]
+Το ευθύ άθροισμα είναι μια κατασκευή με βάση το ευθύ γινόμενο, όπου τα στοιχεία του $V$ και του $W$ δεν \emph{ανακατεύονται}. Για παράδειγμα, 
+\[
+\underbrace{(a,b)}_{\in \ F^2} \oplus 
+\underbrace{(c,d,e)}_{\in \ F^3} =
+(a,b,c,d,e) \ \in F^5.
+\]
+Με άλλα λόγια, 
+\[
+\dim_F(V \oplus W) = \dim_F(V) + \dim_F(W).
+\]
+
+Θα θέλαμε να κατασκευάσουμε έναν διανυσματικό χώρο $V \otimes W$ πάνω από το $F$ με βάση το ευθύ γινόμενο, ετσι ώστε τα στοιχεία του $V$ και του $W$ να \emph{ανακατεύονται} (ή, με άλλα λόγια, να \emph{πολλαπλασιάζονται}) και να ισχύει η ταυτότητα 
+\[
+\dim_F(V\otimes{W}) = \dim_F(V)\dim_F(W).
+\]
+
+Τι σημαίνει να πολλαπλασιάσουμε δύο διανύσματα; Για παράδειγμα, ένας τέτοιος πολλαπλασιασμός θα μπορούσε να μοιάζει με 
+\[
+\underbrace{(a,b)}_{\in \ F^2} \otimes
+\underbrace{(c,d,e)}_{\in \ F^3} =
+(ac,ad,ae,bc,bd,be) \ \in F^6.
+\]
+Για να απαντήσουμε σε αυτό το ερώτημα, πρέπει να σκεφτούμε τι ιδιότητες θα θέλαμε να ικανοποιεί ένα τέτοιο γινόμενο\footnote{Μια πρώτη σκέψη θα ήταν να απαιτήσουμε να είναι προσεταιριστικός, αλλά αυτό δεν έχει νόημα στην περίπτωση του τανυστικού γινομένου, όπως δεν έχει νόημα στην περίπτωση του ευθέως γινομένου.}.  
+
+Θα θέλαμε το γινόμενο $\otimes$ μαζί με την πρόσθεση κατά συντεταγμένες να ικανοποιεί τους προσεταιριστικούς νόμους, δηλαδή
+\begin{align*}
+    (v + v') \otimes w &= v\otimes w + v' \otimes w \\
+    v \otimes (w+w') &= v\otimes w + v \otimes w'.
+\end{align*}
+Αυτό δε συμβαίνει με το ευθύ άθροισμα $\oplus$. Για παράδειγμα, για $F = \RR$ και $V = W = \RR^2$,
+\[
+\left((1,0) + (0,1)\right) \oplus (1,2) = (1,1) \oplus (1,2) = (1,1,1,2)
+\]
+ενώ 
+\[
+\left((1,0) \oplus (1,2)\right) +
+\left((0,1) \oplus (1,2)\right) = (1,0,1,2) + (0,1,1,2) = (1,1,2,4).
+\]
+
+Επιπλέον, θα θέλαμε το γινόμενο $\otimes$ να είναι συμβατό με την δράση του $F$ με την έννοια 
+\[
+\lambda (v \otimes w) = (\lambda{v}) \otimes w = v \otimes (\lambda{w}).
+\]
+Ούτε αυτό συμβαίνει με το ευθύ άθροισμα $\oplus$. Συνεχίζοντας στο ίδιο παράδειγμα, 
+\[
+\left(2(1,0)\right) \oplus (1,2) = (2,0) \oplus (1,2) = (2,0,1,2) 
+\]
+ενώ 
+\[
+(1,0) \oplus \left(2(1,2)\right) = (1,0) \oplus (2,4) = (1,0,2,4). 
+\]
+
+
+Πως θα ορίσουμε, λοιπόν, ένα τέτοιο γινόμενο σε επίπεδο $R$-προτύπων; Η ιδέα είναι να ξεκινήσουμε από το ελεύθερο $R$-πρότυπο με βάση το $V \times W$ και να του \emph{επιβάλλομυε} τις σχέσεις που θα θέλαμε να έχει.
+
+\begin{definition}
+    \label{def:tensor_product}
+    Έστω $M$ και $N$ δύο $R$-πρότυπα. Το $R$-πρότυπο 
+    \[
+    M \otimes_R N \coloneqq \frac{\rmF(M \times N)}{RX},
+    \]
+    όπου $X$ είναι το σύνολο όλων των στοιχείων της μορφής
+    \begin{align*}
+        &(a + a', b) - (a,b) - (a',b) \\
+        &(a , b + b') - (a,b) - (a,b') \\
+        &(ra,b) - (a,rb)
+    \end{align*}
+    για κάθε $a, a' \in M, b, b' \in N$ και $r \in R$, ονομάζεται \defn{τανυστικό γινόμενο} (tensor product) των $M$ και $N$ πάνω από το $R$. Τα στοιχεία του $M \otimes_R N$ ονομάζονται \defn{τανυστές}.
+\end{definition}
+
+Τα στοιχεία του $M \otimes_R N$ είναι της μορφής 
+\[
+\sum_{\substack{a \in M \\ b \in N}} r_{a,b} \, a \otimes b,
+\]
+όπου $a \otimes b \coloneqq (a,b) + RX$ και $r_{a,b} = 0_R$, εκτός από το πολύ ένα πεπερασμένο πλήθος. Με άλλα λόγια, 
+\[
+M \otimes_R N = R\{a \otimes b : a \in M, \ b \in N\}.
+\]
+Το $a \otimes b$ ονομάζεται \defn{στοιχειώδης τανυστής} (elementary ή simple tensor).
+
+Πρέπει να είμαστε προσεκτικοί όταν δουλεύουμε με στοιχειώδεις τανυστές, καθώς μπορεί να έχουν πολλές \emph{διαφορετικές} μορφές, δηλαδή 
+\[
+a \otimes b = a' \otimes b',
+\]
+ακομα και αν $a \neq a'$ και $b \neq b'$. Για παράδειγμα, για $M = N = R^n$,
+\[
+(2\bfe_1) \otimes \bfe_2 = \underbrace{\bfe_1 \otimes \bfe_2 + \bfe_1 \otimes \bfe_2}_{= \ 2\left(\bfe_1 \otimes \bfe_2\right)} = \bfe_1 \otimes (2\bfe_2) = 4\left(\bfe_1 \otimes \frac{1}{2}\bfe_2\right) = \cdots
+\]
+Γενικότερα, κάθε τανυστής μπορεί να γραφεί με πολλούς διαφορετικούς τρόπους ως $R$-γραμμικός συνδυασμός στοιχειωδών τανυστών.
+
+Το τανυστικό γινόμενο μας επιτρέπει να \emph{πολλαπλασιάσουμε} στοιχεία δύο προτύπων, όπου δεν υπήρχε εκ των προτέρων κάποιο προφανές \emph{γινόμενο}. Για παράδειγμα, για $R = \RR$ και $M = \RR[x]$ και $N = \rmM_2(\RR)$, έχουμε 
+\begin{align*}
+    (1+2x) \otimes \begin{pmatrix}
+        0 & 1 \\ 2 & 0
+    \end{pmatrix} &= 
+    1 \otimes \begin{pmatrix}
+        0 & 1 \\ 2 & 0
+    \end{pmatrix} + (2x) \otimes \begin{pmatrix}
+        0 & 1 \\ 2 & 0
+    \end{pmatrix} \\ 
+    &= 2 \otimes \begin{pmatrix}
+        0 & \frac{1}{2} \\ 1 & 0 
+    \end{pmatrix} + 
+    x \otimes \begin{pmatrix}
+        0 & 2 \\ 4 & 0
+    \end{pmatrix} \\ 
+    &= \cdots 
+\end{align*}
+Πάλι πρέπει να είμαστε προσεκτικοί, καθώς σε περίπτωση όπου υπήρχε ήδη κάποιο \textquote{γινόμενο}, μπορεί να πάρουμε διαφορετικά στοιχεία απότι περιμένουμε. Για παράδειγμα, για $M = N = R[x]$, έχουμε 
+\[
+1 \otimes x^2 \neq x \otimes x \neq 1 \otimes x^2.
+\] 
+
+Οι σχέσεις του Ορισμού \ref{def:tensor_product} μας πληροφορούν ότι οι στοιχειώδεις τανυστές ικανοποιούν τις σχέσεις
+\begin{align*}
+    (a + a') \otimes b &= a \otimes b + a' \otimes b \\
+    a \otimes (b + b') &= a \otimes b + a \otimes b' \\
+    (ra) \otimes b &= a \otimes (rb) = r (a \otimes b)
+\end{align*}
+για κάθε $a, a' \in M, b, b' \in N$ και $r \in R$. Με άλλα λόγια, η απεικόνιση 
+\begin{align*}
+    \otimes : M \times N &\to M \otimes_R N \\ 
+              (a,b) &\mapsto a \otimes b
+\end{align*}
+είναι $R$-γραμμική ως προς την πρώτη και ως προς την δεύτερη συντεταγμένη \emph{ξεχωριστά}.
+
+\begin{definition}
+    \label{def:bilinear}
+    Έστω $M, N$ και $P$ κάποια $R$-πρότυπα. Μια απεικόνιση $\phi : M \times N \to P$ ονομάζεται \defn{$R$-διγραμμική} ($R$-bilinear) αν 
+    \begin{align*}
+        \phi(a + a', b) &= \phi(a,b) + \phi(a',b) \\
+        \phi(a, b+b') &= \phi(a,b) + \phi(a,b') \\
+        \phi(ra,b) &= \phi(a,rb) = r \phi(a,b),
+    \end{align*}
+    για κάθε $a, a' \in M, b, b' \in N$ και $r \in R$.
+\end{definition}
+
+Με άλλα λόγια, η $\otimes$ είναι $R$-διγραμμική. Το τανυστικό γινόμενο μπορεί να χαρακτιριστεί μέσω των διγραμμικών απεικονίσεων. 
+\begin{theorem}{\rm(Καθολική ιδιότητα τανυστικού γινομένου)}
+    \label{thm:UP_tensorProduct}
+    Για κάθε $R$-πρότυπο $P$ και κάθε $R$-διγραμμική απεικόνιση $\phi : M\times N \to P$, υπάρχει μοναδική $R$-γραμμική απεικόνιση $\tilde{\phi} : M \otimes_R N \to P$ τέτοια ώστε το ακόλουθο διάγραμμα  
+    \[
+    \begin{tikzcd}
+    M \times N \arrow[r, "\otimes"] \arrow[dr, "\phi"'] & M \otimes_R N \arrow[d, "\tilde{\phi}"] \\
+                                           & P
+    \end{tikzcd}
+    \]
+    να είναι μεταθετικό, ή ισοδύναμα, 
+    \[
+    \tilde{\phi}(a \otimes b) = \phi(a,b),
+    \] 
+    για κάθε $a \in M$ και $b \in N$.
+\end{theorem}
+
+\begin{proof}[Απόδειξη]
+    Από το Θεώρημα 5.3, η $\phi$ επάγει μια μοναδική $R$-γραμμική απεικόνιση $\phi_0 : \rmF(M\times N) \to P$, τέτοια ώστε $\phi_0(a,b) = \phi(a,b)$, για κάθε $a \in M$ και $b \in N$. Επειδή η $\phi$ είναι $R$-διγραμμική, έπεται ότι 
+    \begin{align*}
+    \phi_0(a+a',b) = \phi_0(a,b) + \phi_0(a',b) \ &\then \ \phi_0((a+a',b)-(a,b)-(a',b)) = 0_R \\
+    \phi_0(a,b+b') = \phi_0(a,b) + \phi_0(a,b') \ &\then \ \phi_0((a,b+b')-(a,b)-(a,b')) = 0_R \\
+    \phi_0(ra,b) = r\phi_0(a,b) = \phi_0(a,rb) \ &\then \ \phi_0((ra,b)-(a,rb)) = 0_R, 
+    \end{align*}
+    για κάθε $a, a' \in M, b, b' \in N$ και $r \in R$. Επομένως, $RX \subseteq \ker(\phi_0)$ και γι αυτό η $\phi_0$ επάγει μία (μοναδική, καλώς ορισμένη) $R$-γραμμική απεικόνιση $\tilde{\phi} : M \otimes_R N \to P$, τέτοια ώστε 
+    \[
+    \tilde{\phi}(a \otimes b) = \tilde{\phi}\left((a,b) + RX\right) = \phi_0(a,b) = \phi(a,b).
+    \]
+\end{proof}
+
+Από το Θεώρημα \ref{thm:UP_tensorProduct} έπεται άμεσα ότι το τανυστικό γινόμενο είναι μοναδικό ως προς ισομορφισμό.
+
+\begin{corollary}
+    \label{cor:tensorProduct}
+    Έστω $M$ και $N$ δύο $R$-πρότυπα. Αν το ζεύγος $(T, \tau)$, όπου $T$ είναι $R$-πρότυπο και $\tau : M \times N \to T$ είναι μία $R$-διγραμμική απεικόνιση, ικανοποιεί την καθολική ιδιότητα, τότε υπάρχει μοναδικός $R$-ισομορφισμός $\Phi : M \otimes_R N \to T$ τέτοιος ώστε το διάγραμμα
+    \[
+    \begin{tikzcd}[column sep=small, row sep=large]
+    M \times N 
+    \arrow[rr, "\tau"] 
+    \arrow[dr, "\otimes"'] 
+    & 
+    & T \\
+    & M \otimes_R N 
+    \arrow[ur, "\Phi"'] 
+    &
+    \end{tikzcd}
+    \]
+    να είναι μεταθετικό, ή ισοδύναμα, 
+    \[
+    \Phi(a\otimes b) = \tau(a,b),
+    \]
+    για κάθε $a \in M$ και $b \in N$.
+\end{corollary}
+
+\begin{proof}[Απόδειξη]
+    Εφαρμόζοντας το Θεώρημα \ref{thm:UP_tensorProduct} δύο φορές βρίσκουμε (μοναδικές) $R$-γραμμικές απεικονίσεις $\Phi : M \otimes_R N \to T$ και $\Psi : T \to M \otimes_R N$ τέτοιες ώστε 
+    \[
+    \Phi \circ \otimes = \tau \quad \text{και} \quad 
+    \Psi\circ\tau = \otimes.
+    \]
+    Κατά συνέπεια, 
+    \begin{align*}
+        \Psi\circ\Phi\circ\otimes &= \Psi\circ\tau = \otimes \\
+        \Phi\circ\Psi\circ\tau &= \Phi\circ\otimes = \tau.
+    \end{align*}
+    Με άλλα λόγια, οι $R$-γραμμικές απεικονίσεις $\Psi\circ\Phi$ και $\rmid_{M\otimes_RN}$ (αντ. $\Phi\circ\Psi$ και $\rmid_T$) κάνουνε το ίδιο διάγραμμα μεταθετικό, δηλαδή 
+    \[
+    \begin{array}{ccccc}
+        \begin{tikzcd}[column sep=small, row sep=large]
+        M \times N 
+        \arrow[r, "\otimes"] 
+        \arrow[dr, "\otimes"'] 
+        & M \otimes_R N 
+        \arrow[d, bend left=20, "\Psi\circ\Phi"] 
+        \arrow[d, bend right=20, "\rmid"'] \\
+        & M \otimes_R N  
+        \end{tikzcd}
+        & & & &
+        \begin{tikzcd}[column sep=small, row sep=large]
+        M \times N 
+        \arrow[r, "\otimes"] 
+        \arrow[dr, "\otimes"'] 
+        & T
+        \arrow[d, bend left=20, "\Phi\circ\Psi"] 
+        \arrow[d, bend right=20, "\rmid"'] \\
+        & T  
+        \end{tikzcd}    
+    \end{array}
+    \]
+    Aπό την μοναδικότητα στο Θεώρημα $\ref{thm:UP_tensorProduct}$ έχουμε 
+    \[
+    \Psi\circ\Phi = \rmid_{M\otimes_RN} \quad \text{και} \quad 
+    \Phi\circ\Psi = \rmid_T
+    \]
+    και το ζητούμενο έπεται.
+\end{proof}
+
+Το Θεώρημα \ref{thm:UP_tensorProduct} μας πληροφορεί ότι υπάρχει μία αμφιμονοσήμαντη αντιστοιχία 
+\begin{align*}
+\left\{
+\begin{aligned}
+&\text{$R$-διγραμμικές απεικονίσεις} \\
+&\qquad M \times N \to P
+\end{aligned}
+\right\}
+&\to
+\left\{
+\begin{aligned}
+&\text{$R$-γραμμικές απεικονίσεις} \\
+&\qquad M \otimes_R N \to P
+\end{aligned}
+\right\} \\
+\phi &\mapsto \tilde{\phi}
+\end{align*}
+για κάθε $R$-πρότυπο $P$. Η παρατήρηση αυτή είναι ιδιαίτερα χρήσιμη όταν θέλουμε να αναγνωρίσουμε τανυστικά γινόμενα. Δηλαδή, για να ορίσουμε μια $R$-γραμμική απεικόνιση $M \otimes_R N \to P$, αρκεί να βρούμε μία $R$-διγραμμική απεικόνιση $M \times N \to P$.
+
+\begin{proposition}
+    \label{prop:tensor_product}
+    Αν $M, N, P$ είναι $R$-πρότυπα, τότε 
+    \begin{align}
+        R \otimes_R M &\cong M \label{eq:RtensorM_M} \\
+        M \otimes_R N &\cong N \otimes_R M \label{eq:tensor_commutativity} \\
+        \left(
+            M \otimes_R N
+        \right) \otimes_R P &\cong M \otimes_R \left(N \otimes_R P\right) \label{eq:tensor_associativity} \\
+        \left(
+            M \oplus N
+        \right) \otimes_R P &\cong 
+        \left(
+            M \otimes_R P
+        \right) \oplus 
+        \left(
+            N \otimes_R P.
+        \right) \label{eq:tensor_distributivity}
+    \end{align}
+\end{proposition}
+
+\begin{proof}[Απόδειξη]
+    \leavevmode
+    \begin{itemize} 
+    \item[(1)] Παρατηρούμε ότι η απεικόνιση 
+    \begin{align*}
+        \phi : R\times M &\to M \\
+               (r,m) &\mapsto M 
+    \end{align*}
+    είναι $R$-διγραμμική και γι αυτό επάγει μία $R$-γραμμική απεικόνιση $\phi : R \otimes_R M \to M$. Θεωρούμε την απεικόνιση 
+    \begin{align*}
+        \psi : M &\to R \otimes_R M \\
+        m &\mapsto 1 \otimes m. 
+    \end{align*}
+    Αυτή είναι $R$-γραμμική και ικανοποιεί 
+    \begin{align*}
+        \psi\left(
+            \phi\left(
+                r \otimes m
+            \right)
+        \right) &= \psi(rm) = 1 \otimes (rm) = r \otimes m \\
+        \phi\left(
+            \psi\left(
+                m
+            \right)
+        \right) &= \phi(1\otimes m) = m.
+    \end{align*}
+    Άρα, $\psi\circ\phi = \rmid_{R\otimes_R{M}}$ και $\phi\circ\psi = \rmid_M$ και το ζητούμενο έπεται.
+
+    \item[(2)] Ομοίως, για την Ταυτότητα \eqref{eq:tensor_commutativity}, με $\phi(a\otimes b) = b \otimes a$ και $\psi(b \otimes a) = a \otimes b$.
+    
+    \item[(3)] Για κάθε $a \in M$, η απεικόνιση 
+    \begin{align*}
+        \phi_a : N \times P &\to \left(
+            M \otimes_R N
+        \right) \otimes_R P \\
+        (b,c) &\mapsto (a \otimes b) \otimes c
+    \end{align*}
+    είναι $R$-διγραμμική και γι αυτό επάγει μία $R$-γραμμική απεικόνιση $\phi_a : N \otimes P \to \left(
+            M \otimes_R N
+        \right) \otimes P$. Παρατηρούμε ότι η απεικόνιση 
+    \begin{align*}
+        \phi : M \times \left(
+            N \otimes_R P
+        \right) &\to \left(
+            M \otimes_R N
+        \right) \otimes_R P \\
+        (a, b\otimes c) &\mapsto \phi_a(b\otimes c) 
+    \end{align*}
+    είναι $R$-διγραμμική και γι αυτό επάγει μία $R$-γραμμική απεικόνιση $\phi : M \otimes_R \left(
+            N \otimes_R P
+        \right) \to \left(
+            M \otimes N
+        \right) \otimes_R P$. Αυτή έχει αντίστροφη την 
+    \begin{align*}
+        \psi : \left(
+            M \otimes N
+        \right) \otimes_R P &\to M \otimes_R \left(
+            N \otimes_R P
+        \right) \\ 
+        \left(
+            a \otimes b
+        \right) \otimes c &\mapsto a \otimes \left(
+            b \otimes c
+        \right)
+    \end{align*}
+    (γιατί;) και το ζητούμενο έπεται.
+
+    \item[(4)] Η απεικόνιση 
+    \begin{align*}
+        \phi : \left(
+            M \oplus N
+        \right) \times P &\to     
+        \left(
+            M \otimes_R P
+        \right) \oplus 
+        \left(
+            N \otimes_R P
+        \right) \\ 
+        \left(
+            (a,b), c
+        \right) &\mapsto \left(a \otimes c, b \otimes c \right)
+    \end{align*}
+    είναι $R$-διγραμμική και γι αυτό επάγει μία $R$-γραμμική απεικόνιση $\phi : \left(
+            M \oplus N
+        \right) \otimes_R P \to     
+        \left(
+            M \otimes_R P
+        \right) \oplus 
+        \left(
+            N \otimes_R P
+        \right)$.
+    Για την αντίστροφή της, παρατηρούμε ότι οι απεικονίσεις 
+    \begin{align*}
+        \psi_M : M \times P &\to \left(M\oplus N\right) \otimes P \\
+        (a,c) &\mapsto (a,0_N) \otimes c
+    \end{align*}
+    και 
+    \begin{align*}
+        \psi_N : N \times P &\to \left(M\oplus N\right) \otimes P \\
+        (b,c) &\mapsto (0_M,b) \otimes c
+    \end{align*}
+    είναι $R$-διγραμμικές και επάγουν αντίστοιχες $R$-γραμμικές απεικονίσεις $\psi_M : M \otimes_R P \to \left(M\oplus N\right) \otimes P$ και $\psi_N : N \otimes_R P \to \left(M\oplus N\right) \otimes P$. Θεωρούμε την απεικόνιση 
+    \begin{align*}
+        \psi : \left(
+            M \otimes_R P
+        \right) \oplus 
+        \left(
+            N \otimes_R P
+        \right) &\to \left(
+            M \oplus N
+        \right) \otimes_R P \\ 
+        \left(a \otimes c, b \otimes c\right) &\mapsto \psi_M(a,c) + \psi_N(b,c).
+    \end{align*}
+    Αυτή είναι $R$-γραμμική και αντίστροψη της $\phi$ (γιατί;).
+\end{itemize}
+\end{proof}
+
+\begin{example}
+    \label{ex:tensorProduct}
+    \leavevmode
+    \begin{itemize}
+        \item[(α)] Από Ταυτότητα \eqref{eq:RtensorM_M} έπεται ότι 
+        \[
+        \ZZ \otimes_{\ZZ} \ZZ_n \cong \ZZ_n
+        \]
+        και 
+        \[
+        \QQ \otimes_\ZZ \ZZ \cong \QQ \cong \QQ \otimes_\QQ \QQ.
+        \]
+        \item[(β)] Έχουμε $\ZZ_2 \otimes_{\ZZ} \ZZ_3 = 0$. Πράγματι, 
+        \[
+        a \otimes b = (3a) \otimes b = a \otimes (3b) = a \otimes 0 = 0
+        \]
+        για κάθε $a \in \ZZ_2$ και $b \in \ZZ_3$. Από την άλλη μεριά, $\ZZ_2 \otimes_\ZZ \ZZ_2 \cong \ZZ_2$ (γιατί;).
+
+        \item[(γ)] Γενικότερα, αν $I$ και $J$ είναι ιδεώδη του $R$, τότε 
+        \[
+        R/I \otimes_R R/J \cong R/(I+J).
+        \]
+        Πράγματι, η απεικόνιση 
+        \begin{align*}
+            \phi : R/I \times R/J &\to R/(I+J) \\
+            (r +I, s + J) &\mapsto rs + \left(I + J\right)
+        \end{align*}
+        είναι $R$-διγραμμική και γι αυτό επάγει $R$-γραμμική απεικόνιση $\phi : R/I \otimes_R R/J \to R/(I+J)$. Για την αντίστροφη, θεωρούμε την απεικόνιση 
+        \begin{align*}
+            \psi : R &\to R/I \otimes_R R/J \\
+                r &\mapsto \left(r+I, r+J\right).
+        \end{align*}
+        Αυτή είναι $R$-γραμμική και $I+J \subseteq \ker(\phi)$. Κατά συνέπεια, επάγει (καλώς ορισμένη) $R$-γραμμική απεικόνιση $\psi : R/(I+J) \to R/I \otimes_R R/J$, η οποία είναι αντίστορφη της $\phi$ (γιατί;).
+
+        Ειδικότερα, αν\footnote{Τέτοια ιδεώδη ονομάζονται \emph{συν-μεγιστικά} (comaximal).} $I + J = R$, τότε 
+        \[
+        R/I \otimes_R R/J \cong 0.
+        \]
+        Για παράγειμα, για $R = \ZZ, I = (p)$ και $J = (q)$, για δύο διακεκριμένους πρώτους $p, q$, τότε 
+        \[
+        \ZZ_p \otimes_\ZZ \ZZ_q \cong 0.
+        \]
+        \item[(δ)] Από το προηγούμενο παράδειγμα, έπεται ότι 
+        \[
+        \ZZ_n \otimes_\ZZ \ZZ_m \cong \ZZ_{\gcd(n,m)}
+        \]
+        (γιατί;).
+        \item[(ε)] Για κάθε πεπερασμένο $\ZZ$-πρότυπο $A$, έχουμε 
+        \[
+        \QQ \otimes_\ZZ A = 0.
+        \]
+        Πράγματι, αν $\abs{A} = n$, τότε 
+        \[
+        \frac{p}{q} \otimes a = \frac{np}{nq} \otimes a = \frac{p}{nq} \otimes (na) = \frac{p}{nq} \otimes 0 = 0,
+        \]
+        όπου η προτελευταία ισότητα έπεται από το Θεώρημα Lagrange στη θεωρία ομάδων, το οποίο μας πληροφορεί ότι η τάξη του στοιχείου $a$ διαιρεί το $n$.
+
+        \item[(στ)] Έστω $f : R \to S$ ένας ομομορφισμός (μεταθετικών) δακτυλίων. Το $S$ γίνεται $R$-πρότυπο με δράση 
+        \[
+        r \cdot s = f(r)s.
+        \]
+        Κατά συνέπεια, μπορούμε να σχηματίσουμε το τανυστικό γινόμενο $S \otimes_R M$, για κάθε $R$-πρότυπο $M$. Παρατηρούμε ότι το $S \otimes_R M$ έχει δομή $S$-προτύπου με δράση 
+        \[
+        s \cdot (a \otimes m) = (sa) \otimes m
+        \]
+        (γιατί;). Η κατασκευή αυτή ονομάζεται \emph{επέκταση δράσης} (extension of scalars) του $M$ από το $R$ στο $S$.
+
+        Για παράδειγμα, αν $R = \RR \hookrightarrow \CC = S$, τότε σε κάθε πραγματικό διανυσματικό χώρο $V$, μπορούμε να επεκτείνουμε τον βαθμωτό πολλαπλασιασμό για να προκύψει ένας μιγαδικός διανυσματικός χώρος $\CC \otimes_\RR V$. Στην ειδική περίπτωση όπου $V = \RR$, οι Ταυτότητες \eqref{eq:RtensorM_M} και \eqref{eq:tensor_commutativity} μας πληροφορούν ότι 
+        \[
+        \CC \otimes_\RR \RR \cong \RR \otimes_\RR \CC \cong \CC
+        \]
+        ως πραγματικοί διανυσματικοί χώροι. Αυτός ο ισομορφισμός συνεχίζει να ισχύει σε επίπεδο μιγαδικών διανυσματικών χώρων. Πιο συγκεκριμένα, έχουμε 
+        \[
+        z \otimes \lambda \mapsto \lambda{z}.
+        \]
+
+        \item[(ζ)] Έχουμε 
+        \begin{align*}
+            R^m \otimes_R R^n &\cong  
+            \left(
+                \underbrace{R \oplus R \oplus \cdots \oplus R}_{\text{$m$ φορές}}
+            \right) \otimes_R R^n \\
+            &\cong \underbrace{\left(R\otimes_R R^n\right) \oplus \left(R\otimes_R R^n\right) \oplus \cdots \oplus \left(R\otimes_R R^n\right)}_{\text{$m$ φορές}} \\ 
+            &\cong \underbrace{R^n \oplus R^n \oplus \cdots \oplus R^n}_{\text{$m$ φορές}} \\ 
+            &\cong R^{nm},
+        \end{align*}
+        όπου ο δεύτερος (αντ. τρίτος) ισομορφισμός έπεται από την Ταυτότητα \eqref{eq:tensor_distributivity} (αντ. \eqref{eq:RtensorM_M}).
+    \end{itemize}
+\end{example}
+
+
+
+% \begin{thebibliography}{99}
+%     \bibitem{Alu09}
+%     P.~Aluffi,
+%     \textit{Algebra, Chapter 0},
+%     Grad. Stud. in Math. {\bf104},
+%     Amer. Math. Soc., Providence, RI, 2009.
+%     \bibitem{DF04}
+%     D. S. Dummit και R. M. Foote, 
+%     \textit{Abstract algebra},
+%     third edition, Wiley, 2004. 
+% \end{thebibliography}
+\end{document}
