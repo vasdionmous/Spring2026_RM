@@ -1,0 +1,576 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{exercise}{Άσκηση}
+\newtheorem{solution}{Λύση}
+\newtheorem*{remark}{Παρατήρηση}
+\newtheorem*{example}{Παράδειγμα}
+
+% math ops 
+% fields
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+\newcommand{\fp}{\mathfrak{p}}  
+\newcommand{\fm}{\mathfrak{m}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\nN}{\mathcal{N}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+
+% bold
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmJ}{\mathrm{J}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\mSpec}{\mathrm{mSpec}}
+\newcommand{\rad}{\mathrm{rad}}
+\newcommand{\Rad}{\mathrm{Rad}}
+\newcommand{\Jac}{\mathrm{Jac}}
+\newcommand{\tor}{\mathrm{tor}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Hom}{\mathrm{Hom}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules \\ Ασκήσεις με Ενδεικτικές Λύσεις}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{1 Απριλίου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{exercise}{25}
+% \setcounter{theorem}{5}
+\setcounter{equation}{4}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+Σε ότι ακολουθεί υποθέτουμε ότι $R$ είναι ένας μεταθετικός δακτύλιος και $n$ είναι ένας θετικός ακέραιος, εκτός αν αναφέρεται διαφορετικά.
+
+\begin{exercise}{\rm(\cite[Άσκηση~10.3.12]{DF04})}
+  \label{ex:DF_10.3.12}
+  Αν $A, B$ και $M$ είναι $R$-πρότυπα, τότε να δείξετε ότι 
+  \begin{align}
+    \label{eq:10.3.12_a}
+    \Hom_R(A\times{B},M) &\cong \Hom_R(A,M) \times \Hom_R(B,M)  \\
+    \label{eq:10.3.12_b}
+    \Hom_R(M,A\times{B}) &\cong \Hom_R(M,A) \times \Hom_R(M,B).
+  \end{align}
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Για την Ταυτότητα \eqref{eq:10.3.12_a}, έστω $\iota_A : A \to A\times{B}$ και $\iota_B : B \to A\times{B}$, οι \textquote{φυσικοί} $R$-μονομορφισμοί, που ορίζονται θέτοντας 
+  \[
+  \iota_A(a) = (a,0_B) \quad \text{και} \quad \iota_B(b) = (0_A,b),
+  \]
+  για κάθε $a \in A$ και $b \in B$. Θεωρούμε την απεικόνιση 
+  \begin{align*}
+    \Phi : \Hom_R(A\times{B},M) &\to \Hom_R(A,M) \times \Hom_R(B,M) \\
+    f &\mapsto (f \circ \iota_A, f \circ \iota_B). 
+  \end{align*}
+  Αυτή είναι $R$-γραμμική (γιατί;).
+  
+  Από την άλλη, θεωρούμε την απεικόνιση 
+  \begin{align*}
+    \Psi : \Hom_R(A,M) \times \Hom_R(B,M) &\to \Hom_R(A\times{B},M)  \\
+    (f,g) &\mapsto \lambda_{f,g}, 
+  \end{align*}
+  όπου $\lambda_{f,g}(a,b) = f(a) + g(b)$, για κάθε $a \in A$ και $b \in B$. Η $\Psi$ είναι και αυτή $R$-γραμμική (γιατί;) και 
+  \begin{equation}
+    \label{eq:eq:10.3.12_a_help}
+    \Phi\circ\Psi = \rmid_{\Hom_R(A,M) \times \Hom_R(B,M)}, \quad \text{και} \quad \Psi\circ\Phi = \rmid_{\Hom_R(A\times{B},M)}.
+  \end{equation}
+  Πράγματι, για κάθε $f \in \Hom_R(A,M)$ και $g \in \Hom_R(B,M)$, έχουμε 
+  \[
+    \Phi(\Psi(f,g)) = \Phi(\lambda_{f,g}) = (\lambda_{f,g}\circ\iota_A, \lambda_{f,g}\circ\iota_B).
+  \]
+  Όμως, 
+  \[
+  \lambda_{f,g}\left(
+    \iota_A(a)
+  \right) = \lambda_{f,g}(a,0_B) = f(a) + g(0_B) = f(a)
+  \]
+  για κάθε $a \in A$. Ομοίως, $\lambda_{f,g}\left(
+    \iota_B(b)
+  \right) = g(b)$, για κάθε $b \in B$. Επομένως, 
+  \[
+  \Phi(\Psi(f,g)) = (\lambda_{f,g}\circ\iota_A, \lambda_{f,g}\circ\iota_B) = (f,g)
+  \]
+  και έτσι έπεται η πρώτη από τις Ταυτότητες \eqref{eq:eq:10.3.12_a_help}. Όμοια έπεται και η δεύτερη και κατά συνέπεια, το ζητούμενο (γιατί;).
+
+  Η απόδειξη της Ταυτότητας \eqref{eq:10.3.12_b} είναι ανάλογη και γι αυτό τον λόγο αφήνουμε τις λεπτομέρειες ως άσκηση. Έστω $\pi_A : A\times{B} \to A $ και $\pi_B : A\times{B} \to B$, οι \textquote{φυσικοί} $R$-επιμορφισμοί, που ορίζονται θέτοντας 
+  \[
+  \pi_A(a,b) = a \quad \text{και} \quad \pi_B(a,b) = b,
+  \]
+  για κάθε $(a,b) \in A\times B$. Θεωρούμε τις απεικονίσεις
+  \begin{align*}
+    \Phi : \Hom_R(M,A\times{B}) &\cong \Hom_R(M,A) \times \Hom_R(M,B) \\
+    f &\mapsto (\pi_A\circ f, \pi_B\circ f) 
+  \end{align*}
+  και
+  \begin{align*}
+    \Psi : \Hom_R(M,A) \times \Hom_R(M,B) &\cong \Hom_R(M,A\times{B})  \\
+    (f,g) &\mapsto \mu_{f,g}, 
+  \end{align*}
+  όπου $\mu_{f,g}(m) = \left(f(m), g(m)\right)$, για κάθε $m \in M$. Αυτές είναι $R$-ομομορφισμοί και αντίστροφοι η μία της άλλης.
+\end{proof}
+
+\begin{remark}
+  Η Άσκηση \ref{ex:DF_10.3.12} μας πληροφορεί ότι αν ξεκινήσουμε με την βραχεία ακριβή ακολουθία 
+  \[
+    \begin{tikzcd}
+        0 \arrow[r] & A \arrow[r, hook, "\iota_A"] & A \times B \arrow[r, two heads, "\pi_B"] & B \arrow[r] & 0
+    \end{tikzcd}
+  \]
+  και \textquote{εφαρμόσουμε} τα $\Hom_R(-,M)$ και $\Hom(M,-)$, αντίστοιχα, προκύπτουν οι βραχείες ακριβείς ακολουθίες
+  \[
+    \begin{tikzcd}
+        0 \arrow[r] & \Hom_R(B,M) \arrow[r, "\pi_B^\ast"] & \Hom_R(A \times B,M) \arrow[r, "\iota_A^\ast"] & \Hom_R(A,M) \arrow[r] & 0,
+    \end{tikzcd}
+  \]
+  και
+  \[
+    \begin{tikzcd}
+        0 \arrow[r] & \Hom_R(M,B) \arrow[r, "\prescript{\ast}{}{\pi_B}"] & \Hom_R(M, A \times B) \arrow[r, "\prescript{\ast}{}{\iota_A}"] & \Hom_R(M,A) \arrow[r] & 0,
+    \end{tikzcd}
+  \]
+  όπου 
+  \[
+  \iota_A^\ast(f) = f \circ \iota_A \quad \text{και} \quad \pi_B^\ast(f) = f \circ \pi_B 
+  \]
+  για κάθε $f \in \Hom_R(A \times B,M)$ και 
+  και 
+  \[
+  \prescript{\ast}{}{\iota_A}(f) = \iota_A \circ f \quad \text{και} \quad \prescript{\ast}{}{\pi_B}(f) = \pi_B \circ f,
+  \]
+  για κάθε $f \in \Hom_R(M, A \times B)$, αντίστοιχα.
+\end{remark}
+
+\begin{exercise}{\rm(\cite[Άσκηση~10.3.13]{DF04})}
+  \label{ex:DF_10.3.13}
+  Αν $F$ ένα πεπερασμένα παραγόμενο ελεύθερο $R$-πρότυπο, τότε να δείξετε ότι 
+  \[
+  \Hom_R(F,R) \cong F.
+  \] 
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Έστω $\{e_1, e_2, \dots, e_n\}$ μια βάση του $F$. Για κάθε $1 \le i \le n$, θεωρούμε τα στοιχεία
+  \begin{align*}
+    e_i^\ast : F &\to R \\
+    e_j &\mapsto \delta_{ij} = 
+  \begin{cases}
+    1, &\ \text{αν $i=j$} \\
+    0, &\ \text{διαφορετικά}.
+  \end{cases}
+  \end{align*}
+ του $\Hom_R(F,R)$. Από το Πόρισμα 5.4, αρκεί να δείξουμε ότι το σύνολο $\{e_1^\ast, e_2^\ast, \dots, e_n^\ast\}$ αποτελεί βάση του $\Hom_R(R,F)$.
+  \begin{itemize}
+    \item Έστω $\phi \in \Hom_R(F,R)$. Τότε 
+    \[
+    \phi = s_1e_1^\ast + s_2e_2^\ast + \cdots + s_ne_n^\ast
+    \] 
+    $s_i = \phi(e_i)$, για κάθε $1 \le i \le n$. Πράγματι, αν $a \in F$, τότε 
+    \[
+    a = r_1e_1 + r_2e_2 + \cdots + r_ne_n
+    \]
+    για κάποια $r_1, r_2, \dots, r_n \in R$. Συνεπώς,  
+    \[
+    e_i^\ast(a) = r_i
+    \]
+    για κάθε $1 \le i \le n$ και γι αυτό 
+    \begin{align*}
+    \phi(a) 
+    &= r_1\phi(e_1) + r_2\phi(e_2) + \cdots + r_n\phi(e_n) \\ 
+    &= s_1e_1^\ast(a) + s_2e_2^\ast(a) + \cdots + s_ne_n^\ast(a).
+    \end{align*}
+    Άρα, το σύνολο $\{e_1^\ast, e_2^\ast, \dots, e_n^\ast\}$ παράγει το $\Hom_R(F,R)$.
+
+    \item Υποθέτουμε ότι 
+    \[
+    s_1e_1^\ast + s_2e_2^\ast + \cdots + s_ne_n^\ast = 0_{\Hom_R(F,R)}
+    \]
+    για κάποια $s_1, s_2, \dots, s_n \in R$. Για κάθε $1 \le i \le n$ 
+    \begin{align*}
+      0_R &= \left(
+        s_1e_1^\ast + s_2e_2^\ast + \cdots + s_ne_n^\ast
+      \right)(e_i) \\
+      &= s_1e_1^\ast(e_i) + s_2e_2^\ast(e_i) + \cdots + s_ne_n^\ast(e_i) \\
+      &= s_i.
+    \end{align*}
+    Επομένως,  $s_i = 0_R$, για κάθε $1 \le i \le n$ και γι αυτό το σύνολο $\{e_1^\ast, e_2^\ast, \dots, e_n^\ast\}$ είναι $R$-γραμμικά ανεξάρτητο.
+  \end{itemize}
+\end{proof}
+
+\begin{exercise}{\rm(Κινέζικο θέωρημα υπολοίπων)}
+  \label{ex:chinese_remainder_thm}
+  Έστω $I, J$ δύο ιδεώδη του $R$. Να δείξετε τα εξής.
+  \begin{itemize}
+    \item[(α)] Υπάρχει ακριβής ακολουθία 
+    \[
+    \begin{tikzcd}
+        0 \arrow[r] & I \cap J \arrow[r] & R \arrow[r] & R/I \times R/J \arrow[r] & R/(I+J) \arrow[r] & 0.
+    \end{tikzcd}
+    \]
+    \item[(β)] Αν $I + J = R$, τότε 
+    \[
+    R/(I\cap J) \cong R/I \times R/J.
+    \]
+    \item[(γ)] Αν $n$ και $m$ είναι σχετικά πρώτοι θετικοί ακέραιοι, τότε 
+    \[
+    \ZZ_{nm} \cong \ZZ_n \times \ZZ_m.
+    \]
+  \end{itemize}
+\end{exercise}
+
+\begin{proof}[Λύση]
+    Θα δείξουμε μόνο το (α). Το (β) έπεται από το (α) και το (γ) από το (β). Οι λεπτομέρειες αφήνονται ως άσκηση. Έστω $\iota : I \cap J \to R$ ο \textquote{φυσικός} $R$-μονομορφισμός. Θεωρούμε την απεικόνιση 
+    \begin{align*}
+      \phi : R &\to R/I \times R/J \\
+            r &\mapsto (r + I, r + J).
+    \end{align*}
+    Αυτή είναι $R$-γραμμική (γιατί;) και $\ker(\phi) = \rmIm(\iota)=I\cap{J}$. Πράγματι,
+    \begin{align*}
+      r \in \ker(\phi) 
+      \ \Leftrightarrow \ \phi(r) = (I, J) 
+      \ \Leftrightarrow \ (r+I, r+J) = (I, J) 
+      \ \Leftrightarrow \ r \in I\cap J. 
+    \end{align*}
+    Έχουμε λοιπόν, μία ακριβή ακολουθία 
+    \[
+    \begin{tikzcd}
+        0 \arrow[r] & I \cap J \arrow[r, hook, "\iota"] & R \arrow[r, "\phi"] & R/I \times R/J.
+    \end{tikzcd}
+    \]
+
+    Έπειτα, θεωρούμε την απεικόνιση 
+    \begin{align*}
+      \psi: R/I \times R/J &\to R/(I+J) \\
+      (r+I, s+J) &\mapsto (r-s) + (I+J).
+    \end{align*}
+    Η $\psi$ είναι 
+    \begin{itemize}
+      \item καλώς ορισμένη, δηλαδή 
+      \[
+      r + I = r' + I, \ s + J = s' + J \quad \then \quad 
+      \phi(r+I,s+J) = \phi(r'+I,s'+J).
+      \]
+      Πράγματι, αν $r + I = r' + I$ και $s + J = s' + J$, τότε $r-r' \in I$ και $s-s' \in J$ και γι αυτό 
+      \[
+      (r-s) - (r'-s') = (r-r') - (s-s') \ \in \ I+J
+      \]
+      που σημαίνει ότι 
+      \[
+      (r-s) + (I+J) = (r'-s') + (I+J) 
+      \]
+      και γι αυτό $\psi(r+I, s+J) = \psi(r'+I, s'+J)$, όπως θέλαμε.
+      \item $R$-ομομορφισμός (αφήνεται ως άσκηση) και 
+      \item επί, διότι αν $r \in R$, τότε 
+      \[
+      \psi(r+I, 0_R + J) = r + (I+J).
+      \]
+    \end{itemize}
+
+    Τέλος, παρατηρούμε ότι $\ker(\psi) = \rmIm(\phi)$. Πράγματι, αν $(r+I, s+J) \in \ker(\psi)$, τότε $r-s \in I+J$ και γι αυτό 
+    \[
+    r-s = i + j,
+    \]
+    για κάποια $i \in I$ και $j \in J$. Συνεπώς, για το στοιχείο 
+    \[
+    a = r-i = s+j
+    \]
+    έχουμε  
+    \begin{align*}
+    \phi(a) &= 
+    \left(
+      a + I, a + J
+    \right) \\
+    &= \left(
+      r-i + I, s-j + J 
+    \right) \\
+    &= \left(
+      r+I, s+J
+    \right)
+    \end{align*}
+    και γι' αυτό $(r+I, s+J) \in \rmIm(\phi)$. Επομένως, 
+    $
+    \ker(\psi) \subseteq \rmIm(\phi)
+    $. 
+    Αντιστρόφως, αν $a \in \rmIm(\phi)$, τότε $a = (r+I, r+J)$ για κάποιο $r \in R$ και γι αυτό 
+    \begin{align*}
+    \psi(a) 
+    &= \psi(r+I,r+J) \\
+    &= (r-r) + (I+J) \\ 
+    &= I+J, 
+    \end{align*}
+    που σημαίνει ότι $a \in \ker(\psi)$. Συνεπώς, $\rmIm(\phi) \subseteq \ker(\psi)$.
+
+    Άρα, κατασκευάσαμε μία ακριβή ακολουθία 
+    \[
+    \begin{tikzcd}
+        0 \arrow[r] & I \cap J \arrow[r, hook, "\iota"] & R \arrow[r, "\phi"] & R/I \times R/J \arrow[r, "\psi"] & R/(I+J) \arrow[r] & 0
+    \end{tikzcd}
+    \]
+    (γιατί;).
+\end{proof}
+
+\begin{remark}
+  Ο ισομορφισμός $R/(I\cap{J}) \cong R/I \times R/J$ ισχύει και στο επίπεδο των δακτυλίων, διότι η απεικόνιση $\phi$ είναι ομομορφισμός δακτυλίων. Πράγματι, αν $r, s \in R$, τότε 
+  \[
+  \phi(rs) = \left(
+    rs + I, rs + J
+  \right) = \left(
+    r + I, r + J
+  \right)\left(
+    s + I, s + J
+  \right) = \phi(r)\phi(s).
+  \]
+\end{remark}
+
+\begin{thebibliography}{99}
+    \bibitem{DF04}
+    D. S. Dummit και R. M. Foote, 
+    \textit{Abstract algebra},
+    third edition, Wiley, 2004. 
+    % \bibitem{Mal08}
+    % Μ. Μαλιάκας, 
+    % \textit{Εισαγωγή στην Μεταθετική Άλγεβρα}, 
+    % Εκδόσεις Σοφία, 2008.
+\end{thebibliography}
+\end{document}
