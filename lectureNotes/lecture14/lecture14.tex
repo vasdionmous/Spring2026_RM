@@ -1,0 +1,539 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{theorem}{Θεώρημα}
+\newtheorem{proposition}[theorem]{Πρόταση}
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{corollary}[theorem]{Πόρισμα}
+\newtheorem{conjecture}[theorem]{Εικασία}
+\newtheorem{problem}[theorem]{Πρόβλημα}
+\newtheorem*{claim}{Ισχυρισμός}
+\newtheorem{observation}[theorem]{Παρατήρηση}
+\newtheorem{definition}[theorem]{Ορισμός}
+\newtheorem{question}[theorem]{Ερώτημα}
+\newtheorem*{questions}{Ερωτήματα}
+\newtheorem*{que}{Ερώτημα}
+\newtheorem{example}[theorem]{Παράδειγμα}
+\newtheorem{exercise}{Άσκηση}
+\newtheorem*{zorn}{Λήμμα του Zorn}
+\newtheorem*{example_6.6}{Παράδειγμα~6.6}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Παρατήρηση}
+
+% fixes the correct numbering of environments
+\numberwithin{theorem}{section}
+\numberwithin{exercise}{section}
+\numberwithin{equation}{section}
+
+% math ops 
+% fields
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\qQ}{\mathcal{Q}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+
+% bold
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmF}{\mathrm{F}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Set}{\pmb{\mathrm{Set}}}
+\newcommand{\Rmod}{\pmb{\mathrm{mod}}}
+\newcommand{\rmrank}{\mathrm{rank}}
+\newcommand{\mSpec}{\mathrm{mSpec}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\tor}{\mathrm{tor}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% restriction
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \littletaller % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+\newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{21 Απριλίου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{section}{7}
+% \setcounter{theorem}{6}
+% \setcounter{equation}{4}
+\begin{center}
+    \textbf{7. Πρότυπα πάνω από περιοχές κύριων ιδεωδών
+} 
+\end{center}
+
+\begin{que}
+Αληθεύει ότι κάθε υποπρότυπο ενός ελεύθερου προτύπου είναι ελεύθερο;
+\end{que}
+
+Εν γένει, η απάντηση στο παραπάνω ερώτημα είναι αρνητική. Για παράδειγμα, στον πολυωνυμικό δακτύλιο $\ZZ[x,y]$, το ιδεώδες $(x,y)$ που παράγεται από το $x$ και το $y$ δεν είναι ελεύθερο, διότι ικανοποιείται η (μη τετριμμένη) σχέση
+\[
+\mathcolor{gray}{y}x - \mathcolor{gray}{x}y = \mathcolor{gray}{0}.
+\]
+Όμως, το παρακάτω θεώρημα μας πληροφορεί ότι η απάντηση είναι θετική για μια σημαντική κλάση (μεταθετικών) δακτυλίων.
+\begin{theorem}
+    \label{thm:submodules_of_free_modules_are_free_over_PID}
+    Αν $R$ είναι μία περιοχή κύριων ιδεωδών, τότε κάθε υποπρότυπο ενός ελεύθερου $R$-προτύπου τάξης $n$ είναι ελεύθερο τάξης το πολύ $n$.
+\end{theorem}
+
+\begin{proof}[Απόδειξη]
+    Θα κάνουμε επαγωγή ως προς $n$. Για $n=1$, αρκεί να δείξουμε ότι κάθε ιδεώδες του $R$ είναι ελεύθερο $R$-πρότυπο (γιατί;). Επειδή ο $R$ είναι περιοχή κύριων ιδεωδών, κάθε ιδεώδες του έχει την μορφή $(a)$ για κάποιο $a \in R$. Αν $a = 0_R$, τότε $(a) = 0$, το οποίο είναι (τετριμμένα) ελεύθερο $R$-πρότυπο τάξης $0$. Διαφορετικά, όπως στο Παράδειγμα 4.14 (δ), θεωρούμε τον $R$-επιμορφισμό 
+    \begin{align*}
+        \phi : R &\to (a) \\
+                r &\mapsto ra.
+    \end{align*}
+    Επειδή ο $R$ είναι ακέραια περιοχή, έπεται ότι $\ker(\phi) = 0$. Συνεπώς, από το πρώτο θεώρημα ισομορφισμού, έχουμε $(a) \cong R$, δηλαδή ελεύθερο $R$-πρότυπο τάξης $1$. Αυτή είναι η βάση της επαγωγής.
+
+    Υποθέτουμε ότι $n > 1$ και ότι κάθε υποπρότυπο του $R^n$ είναι ελεύθερο τάξης το πολύ $n$. Έστω $M$ ένα υποπρότυπο του $R^{n+1}$. Θεωρούμε τον $R$-επιμορφισμό 
+    \begin{align*}
+        \pi : R^n \oplus R &\to R^n \\
+        (\bfa, r) &\mapsto \bfa
+    \end{align*}
+    ο οποίος \textquote{ξεχνάει} την τελευταία συντεταγμένη. Από την επαγωγική υπόθεση, το $\pi(M)$ είναι ελεύθερο με $\rmrank_R\left(
+        \pi(M)
+    \right) \le n$. Διακρίνουμε περιπτώσεις.
+    \begin{itemize}
+        \item Αν $\pi(M) = 0$, τότε
+        \[
+        0_{R^n} = \pi(\bfa,r) = \bfa,
+        \]
+        για κάθε $(\bfa,r)\in M$, και γι αυτό τα στοιχεία του $M$ είναι της μορφής 
+        \[
+        (\underbrace{0, 0, \dots, 0}_{\text{$n$ φορές}}, r)
+        \]
+        για κάποιο $r \in R$. Συνεπώς,
+        \[
+        M \subseteq \ker(\pi) = \{(\underbrace{0, 0, \dots, 0}_{\text{$n$ φορές}}, r) \in R^{n+1}\} \cong R
+        \]
+        και γι αυτό είναι ελεύθερο τάξης το πολύ $1$ από την επαγωγική υπόθεση.
+
+        \item Διαφορετικά, $0 < d = \rmrank_R(\pi(M)) \le n$ και θεωρούμε μια βάση
+        \[
+        \{\pi(e_1), \pi(e_2), \dots, \pi(e_d)\}
+        \]
+        του $\pi(M)$, για κάποια $e_1, e_2, \dots, e_d \in M$. 
+        
+        Το σύνολο $\{e_1, e_2, \dots, e_d\}$ είναι $R$-γραμμικά ανεξάρτητο. Πράγματι, αν 
+        \[
+        r_1e_1 + r_2e_2 + \cdots + r_de_d = 0_{R^{n+1}},
+        \]
+        για κάποια $r_1, r_2, \dots, r_d \in R$, τότε 
+        \[
+        r_1\pi(e_1) + r_2\pi(e_2) + \cdots + r_d\pi(e_d) = 0_{R^n}
+        \]
+        και γι αυτό 
+        \[
+        r_1 = r_2 = \cdots = r_d = 0_R,
+        \]
+        διότι το σύνολο $\{\pi(e_1), \pi(e_2), \dots, \pi(e_d)\}$ είναι $R$-γραμμικά ανεξάρτητο (ως βάση του $\pi(M)$).
+        
+        Συνεπώς, μπορούμε να θεωρήσουμε το ελεύθερο $R$-πρότυπο τάξης $d$ με βάση $\{e_1, e_2,$ $\dots, e_d\}$. Ισχυριζόμαστε ότι 
+        \[
+        M = Re_1 \oplus Re_2 \oplus \cdots \oplus Re_d \oplus \ker\left(\restr{\pi}{M}\right),
+        \]
+        όπου $\restr{\pi}{M} = \ker(\pi) \cap M$ είναι ο περιορισμός της $\pi$ στο $M$. Πράγματι, αν $m \in M$, τότε υπάρχουν μοναδικά $r_1, r_2, \dots, r_d \in R$ τέτοια ώστε 
+        \[
+        \pi(m) = r_1\pi(e_1) + r_2\pi(e_2) + \cdots + r_d\pi(e_d),
+        \]
+        διότι το $\{\pi(e_i) : 1 \le i \le d\}$ είναι βάση του $\pi(M)$ και γι αυτό μπορούμε να γράψουμε 
+        \[
+        m = \left(
+            r_1e_1 + r_2e_2 + \cdots + r_de_d
+        \right) + \left(\underbrace{
+            m - \left(
+                r_1e_1 + r_2e_2 + \cdots + r_de_d
+            \right)}_{\in \ \ker(\restr{\pi}{M})}
+        \right)
+        \]
+        με μοναδικό τρόπο. Το ζητούμενο έπεται από την Πρόταση 4.16. 
+        
+        Όμοια, με την προηγούμενη περίπτωση, από την επαγωγική υπόθεση το $\ker(\restr{\pi}{M})$ είναι ελεύθερο τάξης το πολύ $1$. Συνεπώς, το $M$ είναι ελεύθερο πρότυπο τάξης 
+        \[
+        \begin{cases}
+            d, &\ \text{$\ker(\restr{\pi}{M}) = 0$} \\ 
+            d+1, &\ \text{διαφορετικά}.
+        \end{cases} 
+        \]
+        Σε κάθε περίπτωση, $\rmrank_R(M) \leq n+1$ και το ζητούμενο έπεται.
+    \end{itemize}
+\end{proof}
+
+Το Θεώρημα \ref{thm:submodules_of_free_modules_are_free_over_PID} έχει ως άμεση συνέπεια το εξής.
+\begin{corollary}
+    \label{cor:submodules_of_fg_modules_are_fg_over_PID}
+    Αν $R$ είναι μια περιοχή κύριων ιδεωδών, τότε κάθε υποπρότυπο ενός πεπερασμένα παραγόμενου $R$-προτύπου είναι πεπερασμένα παραγόμενο.
+\end{corollary}
+
+\begin{proof}[Απόδειξη]
+    Έστω $M$ ένα $R$-πρότυπο με $n$ γεννήτορες. Από το Πόρισμα 5.4, υπάρχει ένας $R$-επιμορφισμός $\phi : R^n \to M$. Από το Θεώρημα \ref{thm:submodules_of_free_modules_are_free_over_PID}, το υποπρότυπο $\phi^{-1}(M)$ είναι ελεύθερο τάξης το πολύ $n$. Κατά συνέπεια, η εικόνα μέσω της $\phi$ οποιασδήποτε βάσης του $\phi^{-1}(M)$ παράγει το $M$ και το ζητούμενο έπεται.
+\end{proof}
+
+Το Πόρισμα \ref{cor:submodules_of_fg_modules_are_fg_over_PID} ειδικότερα μας πληροφορεί ότι κάθε υποομάδα μιας πεπερασμένα παραγόμενης αβελιανής ομάδας είναι πεπερασμένα παραγόμενη, γεγονός που παύει να ισχύει για μη αβελιανές ομάδες. Η κρίσιμη ιδιότητα είναι ότι το $\ZZ$ είναι περιοχή κύριων ιδεωδών. Το επόμενο θεώρημα ταξινομεί πλήρως τα πεπερασμένα παραγόμενα πρότυπα σε αυτή την περίπτωση.
+
+\begin{theorem}{\rm(Θεώρημα Δομής)}
+    \label{thm:structure}
+    Αν $R$ είναι μια περιοχή κύριων ιδεωδών, τότε κάθε πεπερα\-σμένα παραγόμενο $R$-πρότυπο $M$ μπορεί να γραφεί ως ευθύ άρθοισμα πεπερασμένου πλή\-θους κυκλικών υποπροτύπων. Πιο συγκεκριμένα, έχουμε 
+    \begin{itemize}
+        \item την διάσπαση σε \defn{αναλλοίωτους παράγοντες} (invariant factors)
+        \begin{equation}
+            \label{eq:invariant_factors}
+            M \cong R^n \oplus R/(a_1) \oplus R/(a_2) \oplus \cdots \oplus R/(a_\ell),
+        \end{equation}
+        για κάποια $n, \ell \in \NN$ και κάποια μη μηδενικά, μη αντιστρέψιμα $a_1, a_2, \dots, a_\ell \in R$ τέτοια ώστε $a_i \mid a_{i+1}$, για κάθε $1 \le i \le \ell-1$.
+        \item την διάσπαση σε \defn{στοιχειώδεις διαιρέτες} (elementary divisors)
+        \begin{equation}
+            \label{eq:elementary_divisors}
+            M \cong R^n \oplus \bigoplus_{\substack{p \in R \\ \text{το p είναι πρώτο στοιχείο του $R$}}} R/(p^{\lambda_1^{(p)}}) \oplus R/(p^{\lambda_2^{(p)}}) \oplus \cdots \oplus R/(p^{\lambda_k^{(p)}}),
+        \end{equation}
+        για κάποιο $n \in \NN$, όπου $\lambda^{(p)} = (\lambda_1^{(p)}, \lambda_2^{(p)}, \dots, \lambda_k^{(p)})$ είναι μια φθίνουσα ακολουθία θετικών ακεραίων, για κάθε πρώτο $p \in R$.
+    \end{itemize}
+    Οι δύο αυτές διασπάσεις είναι μοναδικές. Επίσης, το $n$ είναι μοναδικό και ονομάζεται \defn{τάξη} του $M$ ως $R$-πρότυπο.
+\end{theorem}
+
+Το πρώτο μέρος του Θεωρήματος \ref{thm:structure} μας πληροφορεί ότι 
+\[
+M \cong M_1 \oplus M_2 \oplus \cdots \oplus M_s,
+\]
+για κάποια κυκλικά υποπρότυπα $M_1, M_2, \dots, M_s$ του $M$. Όπως είδαμε στο Παράδειγμα 4.14 (δ), $M_i \cong R/\Ann_R(M_i)$, όπου 
+\[
+\Ann_R(M_i) \coloneqq \{r \in R : rm=0_M, \ \text{για κάθε $m \in M_i$}\}
+\]
+για κάθε $1 \le i \le s$. Το ιδεώδες αυτό ονομάζεται \defn{μηδενιστής} (annihilator) του $M_i$ στο $R$ (βλ. Άσκηση 17). Όμως, επειδή ο $R$ είναι περιοχή κύριων ιδεωδών, έπεται ότι  
+\[
+\Ann_R(M_i) = (a_i),
+\] 
+για κάποιο $a_i \in R$. Aν $a_i = 0_R$, τότε 
+\[
+M_i \cong R/\Ann_R(M_i) = R/(a_i) = R/0 = R.
+\] 
+Από την άλλη, αν $a_i \neq 0_R$ και $a_i \in R^\times$, τότε $(a_i) = R$ (βλ. παρατήρηση πριν τον Ορισμό 2.7) και γι αυτό 
+\[
+M_i \cong R/\Ann_R(M_i) = R/R = 0.
+\]
+Συνεπώς, ομαδοποιώντας τα $M_i$ ανάλογα με το αν το αντίστοιχο $a_i$ είναι μηδενικό ή μη μηδενικό και μη αντιστρέψιμο, προκύπτει ότι
+\begin{equation}  
+    \label{eq:structure}
+    M \cong R^{s-t} \oplus R/(a_{i_1}) \oplus \cdots \oplus R/(a_{i_t}).
+\end{equation}
+
+Στην περίπτωση που $a_i \neq 0_R$, και κατά συνέπεια $\Ann_R(M_i) \neq 0$, έπεται ότι για κάθε στοιχείο $m \in M_i$ υπάρχει μη μηδενικό $r \in R$ τέτοιο ώστε $rm = 0_M$. Τα στοιχεία του $M$ με αυτή την ιδιότητα ονομάζονται \defn{στοιχεία στρέψης} (βλ. Άσκηση 16). Με άλλα λόγια, αν $M_\tor$ είναι το σύνολο όλων των στοιχείων στρέψης του $M$ (βλ. Άσκηση 18), τότε $M_i \subseteq M_\tor$.
+
+Επιπλέον, από την Άσκηση 18 (γ) έπεται ότι το $R^{s-t}$ δεν περιέχει στοιχεία στρέψης (ως ελεύθερο $R$-πρότυπο). Κατά συνέπεια, 
+\[
+M_{\tor} = M_{i_1} \oplus M_{i_2} \oplus \cdots \oplus M_{i_t}.
+\]
+Άρα, η διάσπαση \eqref{eq:structure} παίρνει την μορφή 
+\begin{equation}
+    \label{eq:structure_2}
+    M \cong F\ \oplus \ M_\tor,
+\end{equation}
+για κάποιο ελεύθερο $R$-πρότυπο (και κατά συνέπεια ελεύθερο στρέψης) $F$.
+
+\begin{example}
+    \label{ex:structure}
+    Ας δούμε τις δύο διασπάσεις του Θεωρήματος \ref{thm:structure} στην περίπτωση των αβελιανών ομάδων. Έστω $R = \ZZ$ και θεωρούμε το πεπερασμένα παραγόμενο $\ZZ$-πρότυπο\footnote{Ο χρωματισμός των αριθμών έχει τον ρόλο οπτικού βοηθήματος.}
+    \begin{equation}
+        \label{eq:structure_example}
+        M = \ZZ^4 \oplus \ZZ_{\underbrace{\mathcolor{burntorange}{100}}_{= \ \mathcolor{burntorange}{2^25^2}}} \oplus \ZZ_{\underbrace{\mathcolor{applegreen}{3000}}_{= \ \mathcolor{applegreen}{2^33^15^3}}} \oplus \ZZ_{\underbrace{\mathcolor{iceberg}{280}}_{= \ \mathcolor{iceberg}{2^35^17^1}}}.
+    \end{equation}
+    Το $M$ δεν έχει την μορφή των διασπάσεων \eqref{eq:invariant_factors} και \eqref{eq:elementary_divisors}. 
+
+    Το κινέζικο θεώρημα υπολοίπων μας πληροφορεί ότι αν $n = p_1^{a_1}p_2^{a_2}\cdots p_k^{a_k}$ είναι η παρα\-γοντοποίηση του $n$ σε γινόμενο πρώτων αριθμών, τότε 
+    \[
+    \ZZ_n \cong \ZZ_{p_1^{a_1}} \oplus \ZZ_{p_2^{a_2}} \oplus \cdots \oplus \ZZ_{p_k^{a_k}}
+    \]
+    (βλ. Άσκηση 28, για την περίπτωση δύο παραγόντων).
+
+    Εφαρμόζοντας το κινέζικο θεώρημα υπολοίπων στο δεξί μέλος της \eqref{eq:structure_example} προκύπτει ότι 
+    \begin{alignat*}{5}
+       M &\cong \ZZ^4 \ &\oplus \ \ZZ_{\mathcolor{applegreen}{2^3}} &\oplus \ZZ_{\mathcolor{iceberg}{2^3}} \ &\oplus \ \ZZ_{\mathcolor{burntorange}{2^2}} \\
+        & &\oplus \ \ZZ_{\mathcolor{applegreen}{3^1}} & & \\
+        & &\oplus \ \ZZ_{\mathcolor{applegreen}{5^3}} &\oplus \ZZ_{\mathcolor{burntorange}{5^2}} \ &\oplus \ \ZZ_{\mathcolor{iceberg}{5^1}} \\
+        & &\oplus \ \ZZ_{\mathcolor{iceberg}{7^1}} & &.
+    \end{alignat*}
+    Αυτή είναι η ανάλυση σε στοιχειώδεις διαιρέτες. Πιο συγκεκριμένα, 
+    \[
+    \lambda^{(p)} = 
+    \begin{cases}
+        (3,3,2), &\ \text{αν $p = 2$} \\
+        (1), &\ \text{αν $p = 3$} \\
+        (3,2,1), &\ \text{αν $p = 5$} \\
+        (1), &\ \text{αν $p = 7$} \\
+        \emptyset, &\ \text{διαφορετικά}.
+    \end{cases}
+    \]
+
+    Εφαρμόζοντας πάλι το κινέζικο θεώρημα υπολοίπων, προκύτπει ότι 
+    \[
+    M \cong \ZZ^4 
+    \oplus \ZZ_{\underbrace{20}_{= \ \mathcolor{burntorange}{2^2}\mathcolor{iceberg}{5^1}}} 
+    \oplus \ZZ_{\underbrace{200}_{= \ \mathcolor{applegreen}{2^3}\mathcolor{burntorange}{5^2}}}
+    \oplus \ZZ_{\underbrace{21000}_{= \ \mathcolor{iceberg}{2^3}\mathcolor{applegreen}{3^1}\mathcolor{applegreen}{5^3}\mathcolor{iceberg}{7^1}}},
+    \]
+    με $20 \mid 200$ και $200 \mid 21000$. Αυτή είναι η ανάλυση σε αναλλοίωτους παράγοντες.
+\end{example}
+
+Στις σημειώσεις αυτές, δεν θα εστιάσουμε τόσο σε μεθόδους υπολογισμού των διασπάσεων \eqref{eq:invariant_factors} και \eqref{eq:elementary_divisors}, αλλά περισσότερο στην ύπαρξή τους. 
+
+
+% \begin{thebibliography}{99}
+%     \bibitem{Alu09}
+%     P.~Aluffi,
+%     \textit{Algebra, Chapter 0},
+%     Grad. Stud. in Math. {\bf104},
+%     Amer. Math. Soc., Providence, RI, 2009.
+%     \bibitem{DF04}
+%     D. S. Dummit και R. M. Foote, 
+%     \textit{Abstract algebra},
+%     third edition, Wiley, 2004. 
+% \end{thebibliography}
+\end{document}
