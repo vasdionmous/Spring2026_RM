@@ -583,7 +583,7 @@
     \]
     όπου $\Ann_R(M_i) = (a_i), \Ann_R(N_j) = (b_j)$ για κάθε $1 \le i \le \ell$ και $1 \le j \le k$ με $a_i \mid a_{i+1}$ και $b_j \mid b_{j+1}$ για κάθε $1 \le i \le \ell-1$ και $1 \le j \le k-1$, αντίστοιχα.
 
-    Αρχικά, θα δείξουμε ότι $\ell = k$. Επειδή ο $R$ είναι περιοχή κύριων ιδεωδών, από το Θεώρημα 2.12, έπεται ότι είναι και περιοχή μοναδικής παραγοντοποίησης. Συνεπώς, υπάρχει ανάγωγο $p \in R$ τέτοιο ώστε $p \mid a_1$ και κατά συνέπεια $p \mid a_i$, για κάθε $1 \le i \le \ell$. Από το Λήμμα \ref{lem:uniqueness_of_invariant_factors} έπεται ότι 
+    Θα δείξουμε ότι $\ell = k$. Επειδή ο $R$ είναι περιοχή κύριων ιδεωδών, από το Θεώρημα 2.12, έπεται ότι είναι και περιοχή μοναδικής παραγοντοποίησης. Συνεπώς, υπάρχει ανάγωγο $p \in R$ τέτοιο ώστε $p \mid a_1$ και κατά συνέπεια $p \mid a_i$, για κάθε $1 \le i \le \ell$. Από το Λήμμα \ref{lem:uniqueness_of_invariant_factors} έπεται ότι 
     \[
     \dim_{R/(p)}\left(
             M_i/pM_i
@@ -622,132 +622,28 @@
         \right) \le k.
     \]
     Ομοίως, $k \le \ell$ και η ισότητα έπεται.
-
-    Στη συνέχεια, θα δείξουμε ότι $(a_i) = (b_i)$ για κάθε $1 \le i \le \ell$. Σταθεροποιούμε ένα υποδείκτη $1 \le i \le \ell$ και παρατηρούμε ότι 
-    \[
-    a_iM_1 = a_iM_2 = \cdots = a_iM_i = 0
-    \]
-    Πράγματι, εξ υποθέσεως 
-    \[
-    (a_i) \subseteq (a_{i-1}) \subseteq \cdots \subseteq (a_1).
-    \]
-    Όμως, για κάθε $1 \le j \le i$, $a_jM_j = 0$, διότι το $a_j$ είναι γεννήτορας του $\Ann_R(M_j)$ και το ζητούμενο έπεται. Επομένως, 
-    \[
-    a_iM \cong a_iM_{i+1} \oplus \cdots \oplus a_iM_\ell
-    \]
-    και εξ' υποθέσεως
-    \begin{equation}  
-        \label{eq:structure_help}
-        a_iM \cong a_iN_1 \oplus a_iN_2 \oplus \cdots \oplus a_iN_\ell.
-    \end{equation}
-    Επειδή τα $a_iM_j$ και $a_iN_j$ είναι κυκλικά πρότυπα, απαριθμώντας γεννήτορες και στα δύο μέλη της Ταυτότητας \eqref{eq:structure_help}, έπεται ότι τουλάχιστον $i$ προσθεταίοι του δεξιού μέλους είναι μηδενικά πρότυπα. 
-    
-    Ισχυριζόμαστε ότι $a_iN_i = 0$. Πράγματι, αν $a_iN_i \neq 0$, τότε $a_i \notin \Ann_R(N_i) = (b_i)$. Όμως, εξ υποθέσεως  
-    \[
-    (b_\ell) \subseteq (b_{\ell-1}) \subseteq \cdots \subseteq (b_{i+1}) \subseteq (b_i)
-    \]
-    και γι αυτό $a_i \notin (b_j) = \Ann_R(N_j)$ για κάθε $j \ge i$. Επομένως, $a_iN_j \neq 0$, για κάθε $j \ge i$. Με άλλα λόγια, βρήκαμε τουλάχιστον $\ell -i +1$ μη μηδενικούς προσθεταίους. Ισοδύναμα, αυτό σημαίνει ότι υπάρχουν το πολύ $i-1$ μηδενικοί προσθεταίοι, το οποίο είναι αδύνατο. 
-    
-    Επειδή $a_iN_i = 0$ έπεται ότι $(a_i) \subseteq (b_i)$. Ομοίως, $(b_i) \subseteq (a_i)$. Άρα $(a_i) = (b_i)$ και το ζητούμενο έπεται.
 \end{proof}
-
-Μένει να αποδείξουμε την ύπαρξη και την μοναδικότητα της διάσπασης σε στοιχειώδεις διαιρέτες. Τώρα που γνωρίζουμε την διάσπαση σε αναλλοίωτους παράγοντες, το πρώτο είναι ουσιαστικά εφαρμογή του κινεζικού θεωρήματος υπολοίπων.
-\begin{proof}[Απόδειξη του Θεωρήματος 7.3 (Ύπαρξη στοιχειωδών διαιρετών)]
-    Υποθέτουμε ότι 
-    \[
-    M \cong R^n \oplus R/(a_1) \oplus R/(a_2) \oplus \cdots \oplus R/(a_\ell),
-    \]
-για κάποια $n, \ell \ge 0$ και κάποια μη μηδενικά, μη αντιστρέψιμα $a_1, a_2, \dots, a_\ell \in R$ τέτοια ώστε $a_i \mid a_{i+1}$, για κάθε $1 \le i \le \ell-1$. Επειδή ο $R$ είναι περιοχή κύριων ιδεωδών, από το Θεώρημα 2.12 έπεται ότι είναι και περιοχή μονοσήμαντης παραγοντοποίησης και γι αυτό 
-\[
-a_i = \prod_{\substack{p \in R \\ \text{το p είναι πρώτο στοιχείο του $R$}}} p^{\lambda_i^{(p)}}.
-\]
-Το (πεπερασμένο) πλήθος των διαφορετικών πρώτων στοιχείων που εμφανίζονται είναι τουλά\-χιστον $i$, διότι $a_1 \mid a_2 \mid \cdots \mid a_\ell$. Από το κινέζικο θεώρημα υπολοίπων, έπεται ότι 
-\begin{equation}
-    \label{eq:elementary_divisors_help}
-    R/(a_i) \cong \bigoplus_{\substack{p \in R \\ \text{το p είναι πρώτο στοιχείο του $R$}}} R/(p^{\lambda_i^{(p)}})
-\end{equation}
-για κάθε $1 \le i \le \ell$. Η διάσπαση (7.2) έπεται ομαδοποιώντας τους προσθεταίους στην διάσπαση (7.1) ως προς πρώτα στοιχεία, χρησιμοποιώντας την Ταυτότητα \eqref{eq:elementary_divisors_help}.
-\end{proof}
-
-Η διαδικασία αυτή μπορεί να \textquote{αντιστραφεί} για να κατασκευάσει κανείς τους αναλλοίωτους παράγοντες δοθέντων των στοιχειωδών διαιρετών, όπως έγινε στο Παράδειγμα 7.4. Έτσι έπεται η μοναδικότητα της διάσπασης σε στοιχειώδεις διαιρέτες. Οι λεπτομέρειες αφήνονται ως άσκηση.
-
-\begin{remark}
-    Η ακολουθία θετικών ακεραίων $\lambda = (\lambda_1,\lambda_2, \dots, \lambda_k)$ που εμφανίζεται στη διάσπαση σε στοιχειώδεις διαιρέτες και ικανοποιεί τη συνθήκη 
-    \[
-    \lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_k
-    \]
-    ονομάζεται \defn{διαμέριση ακεραίου} (integer partition). Αν $\lambda_1 + \lambda_2 + \cdots + \lambda_k = n$, τότε λέμε ότι το $\lambda$ είναι διαμέριση του $n$. Για παράδειγμα, οι διαμερίσεις του 4 είναι 
-    \[
-    (1,1,1,1), \ (2,1,1), \ (2,2), \ (3,1), \ (4).
-    \]
-    Οι διαμερίσεις ακεραίων παίζουν κεντρικό ρόλο στη θεωρία αριθμών, την αλγεβρική συνδυαστική και τη θεωρία αναπαραστάσεων των συμμετρικών ομάδων (βλ., για παράδειγμα, \cite[Ενότητα~6]{StaAC}).
-\end{remark}
-
-Το Θεώρημα 7.3 έχει δύο πολύ σημαντικές εφαρμογές. Στην περίπτωση όπου $R=\ZZ$, ταξινομεί όλες τις πεπερασμένα παραγόμενες αβελιανές ομάδες. 
-\begin{example}
-\label{ex:abelian_groups}
-Ας ταξινομήσουμε όλες τις αβελιανές ομάδες τάξης $1800 = 2^33^25^2$ χρησιμοποιώντας τους στοιχειώδεις διαιρέτες. Έχουμε 
-\[
-\renewcommand{\arraystretch}{1.2}
-\begin{array}{c|c|c}
-    p^n & \text{διαμερίσεις του $n$} & \text{αβελιανές ομάδες τάξης $p^n$} \\ \hline
-    2^3 & (1,1,1)                    & \ZZ_2\oplus\ZZ_2\oplus\ZZ_2 \\ 
-        & (2,1)                      & \ZZ_4 \oplus \ZZ_2 \\
-        & (3)                        & \ZZ_8 \\\hline
-    3^2 & (1,1)                      & \ZZ_3 \oplus \ZZ_3 \\
-        & (2)                        & \ZZ_9 \\ \hline 
-    5^2 & (1,1)                      & \ZZ_5 \oplus \ZZ_5 \\ 
-        & (2)                        & \ZZ_{25}
-\end{array} \ .
-\]
-Παίρνοντας όλους τους πιθανούς συνδυασμούς των αβελιανών ομάδων από τη δεξιά στήλη προκύπτουν όλες οι αβελιανές ομάδες τάξης $1800$
-\[
-\renewcommand{\arraystretch}{1.2}
-\begin{array}{c|c|c|c}
-    \text{αβελιανή ομάδα} & \lambda^{(2)} & \lambda^{(3)} & \lambda^{(5)} \\ \hline
-    \ZZ_2 \oplus \ZZ_2 \oplus \ZZ_2 \oplus \ZZ_3 \oplus \ZZ_3 \oplus \ZZ_5 \oplus \ZZ_5 & (1,1,1) & (1,1) & (1,1) \\ \hline
-    \ZZ_2 \oplus \ZZ_2 \oplus \ZZ_2 \oplus \ZZ_3 \oplus \ZZ_3 \oplus \ZZ_{25} & (1,1,1) & (1,1) & (2) \\ \hline
-    \ZZ_2 \oplus \ZZ_2 \oplus \ZZ_2 \oplus \ZZ_9 \oplus \ZZ_5 \oplus \ZZ_5 & (1,1,1) & (2) & (1,1) \\ \hline
-    \ZZ_2 \oplus \ZZ_2 \oplus \ZZ_2 \oplus \ZZ_9 \oplus \ZZ_{25} & (1,1,1) & (2) & (2) \\ \hline
-    \ZZ_4 \oplus \ZZ_2 \oplus \ZZ_3 \oplus \ZZ_3 \oplus \ZZ_5 \oplus \ZZ_5 & (2,1) & (1,1) & (1,1) \\ \hline
-    \ZZ_4 \oplus \ZZ_2 \oplus \ZZ_3 \oplus \ZZ_3 \oplus \ZZ_{25} & (2,1) & (1,1) & (2) \\ \hline
-    \ZZ_4 \oplus \ZZ_2 \oplus \ZZ_9 \oplus \ZZ_5 \oplus \ZZ_5 & (2,1) & (2) & (1,1) \\ \hline
-    \ZZ_4 \oplus \ZZ_2 \oplus \ZZ_9 \oplus \ZZ_{25} & (2,1) & (2) & (2) \\ \hline
-    \ZZ_8 \oplus \ZZ_3 \oplus \ZZ_3 \oplus \ZZ_5 \oplus \ZZ_5 & (3) & (1,1) & (1,1) \\ \hline
-    \ZZ_8 \oplus \ZZ_3 \oplus \ZZ_3 \oplus \ZZ_{25} & (3) & (1,1) & (2) \\ \hline
-    \ZZ_8 \oplus \ZZ_9 \oplus \ZZ_5 \oplus \ZZ_5 & (3) & (2) & (1,1) \\ \hline
-    \ZZ_8 \oplus \ZZ_9 \oplus \ZZ_{25} & (3) & (2) & (2)
-\end{array} \ .
-\]
-\end{example}
-
-Στην περίπτωση όπου $R = F[x]$, όπου $F$ είναι ένα σώμα, το Θεώρημα 7.3 ταξινομεί όλα τα πεπερασμένα παραγόμενα $F[x]$-πρότυπα, δηλαδή διανυσματικούς χώρους πάνω από το $F$ εφοδιασμένους με κάποιο $T \in \End_F(V)$. Στην περίπτωση αυτή, η διάσπαση σε
-\begin{itemize}
-    \item αναλλοίωτους παράγοντες ονομάζεται \emph{ρητή κανονική μορφή} (rational canonical form)
-    \item στοιχειώδεις διαιρέτες ονομάζεται \emph{κανονική μορφή Jordan} (Jordan canonical form).
-\end{itemize} 
-Οι δύο αυτές διασπάσεις είναι πολύ σημαντικές στην γραμμική άλγεβρα. Στις σημειώσεις αυτές δε θα τις μελετήσουμε και γι αυτό παραπέμπουμε στα \cite[Ενότητα 3, Μέρος II]{EKPA_LA}, \cite[Κεφάλαιο 7]{EKPA_PID} και \cite[Κεφάλαιο 12]{DF04}.
 
 
 \begin{thebibliography}{99}
-    \bibitem{EKPA_LA}
-    Δ. Α. Βάρσος, Δ. Ι. Δεριζιώτης, Ι. Π. Εμμανουήλ, Μ. Π. Μαλιάκας, Α. Δ. Μελάς και Ο. Π. Ταλέλλη, 
-    \emph{Μια Εισαγωγή στην Γραμμική Άλγεβρα}, 
-    Εκδόσεις Σοφία, 2012.
-    %
-    \bibitem{DF04}
-    D. S. Dummit και R. M. Foote, 
-    \textit{Abstract algebra},
-    third edition, Wiley, 2004. 
-    %
+%     \bibitem{EKPA_LA}
+%     Δ. Α. Βάρσος, Δ. Ι. Δεριζιώτης, Ι. Π. Εμμανουήλ, Μ. Π. Μαλιάκας, Α. Δ. Μελάς και Ο. Π. Ταλέλλη, 
+%     \emph{Μια Εισαγωγή στην Γραμμική Άλγεβρα}, 
+%     Εκδόσεις Σοφία, 2012.
+%     %
+%     \bibitem{DF04}
+%     D. S. Dummit και R. M. Foote, 
+%     \textit{Abstract algebra},
+%     third edition, Wiley, 2004. 
+%     %
     \bibitem{EKPA_PID}
     Μ. Π. Μαλιάκας, και Ο. Π. Ταλέλλη, 
     \emph{Πρότυπα πάνω από Περιοχές Κυρίων Ιδεωδών και Εφαρμογές}, 
     Εκδόσεις Σοφία, 2009.
     %
-    \bibitem{StaAC}
-    R. P. Stanley,
-    \emph{Algebraic Combinatorics; Walks, Trees, Tableaux and More},
-    second edition, Undergraduate Texts in Mathematics, Springer, 2018.
+%     \bibitem{StaAC}
+%     R. P. Stanley,
+%     \emph{Algebraic Combinatorics; Walks, Trees, Tableaux and More},
+%     second edition, Undergraduate Texts in Mathematics, Springer, 2018.
 \end{thebibliography}
 \end{document}
