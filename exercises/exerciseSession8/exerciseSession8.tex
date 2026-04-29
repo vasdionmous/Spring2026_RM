@@ -1,0 +1,538 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{exercise}{Άσκηση}
+\newtheorem{solution}{Λύση}
+\newtheorem*{remark}{Παρατήρηση}
+\newtheorem*{example}{Παράδειγμα}
+
+% math ops 
+% fields
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+\newcommand{\fp}{\mathfrak{p}}  
+\newcommand{\fm}{\mathfrak{m}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\nN}{\mathcal{N}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+
+% bold
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmJ}{\mathrm{J}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\mSpec}{\mathrm{mSpec}}
+\newcommand{\rad}{\mathrm{rad}}
+\newcommand{\Rad}{\mathrm{Rad}}
+\newcommand{\Jac}{\mathrm{Jac}}
+\newcommand{\tor}{\mathrm{tor}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Hilb}{\mathrm{Hilb}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules \\ Ασκήσεις με Ενδεικτικές Λύσεις}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{29 Απριλίου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{exercise}{31}
+% \setcounter{theorem}{5}
+\setcounter{equation}{9}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+Σε ότι ακολουθεί υποθέτουμε ότι $F$ είναι ένα σώμα.
+
+\begin{exercise}
+  \label{ex:ses_vectorSpaces}
+  Για κάθε $n \ge 2$, αν 
+  \begin{equation} 
+    \label{eq:vectorSpaces_ses}
+    \begin{tikzcd}
+      0 \arrow[r] & V_n \arrow[r, "\phi_n"] & \cdots \arrow[r] & V_1 \arrow[r, "\phi_1"] & V_0 \arrow[r] & 0
+    \end{tikzcd}
+  \end{equation}
+  είναι μια ακριβή ακολουθία διανυσματικών χώρων πεπερασμένης διάστασης πάνω από το $F$, τότε 
+  \[
+  \sum_{i=0}^n (-1)^i\dim_F(V_i) = 0.
+  \]
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Θα κάνουμε επαγωγή ως προς $n$. Για $n=2$, η ακολουθία \eqref{eq:vectorSpaces_ses} παίρνει την μορφή 
+  \[
+  \begin{tikzcd}
+      0 \arrow[r] & V_2 \arrow[r, "\phi_2"] & V_1 \arrow[r, "\phi_1
+    "] & V_0 \arrow[r] & 0.
+  \end{tikzcd}
+  \]
+  Από την παρατήρηση μετά το Θεώρημα 4.12 έπεται ότι 
+  \[
+  \dim_F\left(
+    V_0
+  \right) = \dim_F\left(
+    V_1
+  \right) - \dim_F\left(
+    \rmIm(\phi_2)
+  \right).
+  \]
+  Όμως, επειδή η ακολουθία είναι ακριβή στο $V_2$ έπεται ότι η $\phi_2$ είναι μονομορφισμός και γι αυτό $\dim_F(V_2) = \dim_F\left(
+    \rmIm(\phi_2)
+  \right)$. Επομένως, η παραπάνω σχέση γίνεται 
+  \[
+  \dim_F\left(
+    V_0
+  \right) = \dim_F\left(
+    V_1
+  \right) - \dim_F\left(
+    V_2
+  \right)
+  \] 
+  η οποία είναι ισοδύναμη με την ζητούμενη. Αυτή είναι η βάση της επαγωγής.
+
+  Έστω $n > 2$ και υποθέτουμε ότι το ζητούμενο ισχύει για κάθε ακριβή ακολουθία όπως της εκφώνησης με $n$ όρους. Επειδή η ακολουθία \eqref{eq:vectorSpaces_ses} είναι ακριβή στα $V_0$ και $V_1$, έπεται ότι η $\phi_1$ είναι επιμορφισμός και ότι $\rmIm(\phi_2) = \ker(\phi_1)$, αντίστοιχα. Συνεπώς, μπορούμε να την \textquote{χωρίσουμε} σε δύο ακριβής ακολουθίες 
+  \[
+  \begin{tikzcd}
+      0 \arrow[r] & V_n \arrow[r, "\phi_n"] & \cdots \arrow[r, "\phi_3"] & V_2 \arrow[r, two heads] & \ker(\phi_1) \arrow[r] & 0
+    \end{tikzcd}
+  \]
+  και 
+  \[
+  \begin{tikzcd}
+      0 \arrow[r] & \ker(\phi_1) \arrow[r, hook] & V_1 \arrow[r, "\phi_1
+    "] & V_0 \arrow[r] & 0
+  \end{tikzcd}
+  \]
+  (γιατί;). Από την επαγωγική υπόθεση έπεται ότι 
+  \begin{align*}
+    \dim_F\left(
+      \ker(\phi_1)
+    \right) - \sum_{i=2}^n (-1)^i \dim_F\left(
+      V_i
+    \right) &= 0 \\ 
+    \dim_F\left(
+      V_0
+    \right) - \dim_F\left(
+      V_1
+    \right) + \dim_F\left(
+      \ker(\phi_1)
+    \right) &= 0.
+  \end{align*}
+  Η ζητούμενη ισότητα προκύπτει αφαιρώντας τις δυο ισότητες κατά μέλη.
+\end{proof}
+
+\begin{remark}
+  Η λύση της Άσκησης \ref{ex:ses_vectorSpaces} συνεχίζει να ισχύει και με την (γενίκοτερη) υπόθεση κάθε $V_i$ να είναι ελεύθερο πρότυπο πεπερασμένης τάξης πάνω από μια περιοχή κύριων ιδεωδών (γιατί;).
+\end{remark}
+
+Σε ότι ακολουθεί, υποθέτουμε ότι κάθε διαβαθμισμένη $F$-άλγεβρα έχει πεπερασμένης διάστασης ομογενείς συνιστώσες. Δηλαδή, αν $A$ είναι μια $F$-άλγεβρα με διαβάθμιση
+\[
+A = A_0 \oplus A_1 \oplus \cdots, 
+\]
+τότε $\dim_F(A_d) < \infty$, για κάθε $d \ge 0$.
+
+\begin{exercise}
+  \label{ex:graded_ideal}
+  Έστω $A$ μια διαβαθμισμένη $F$-άλγεβρα και $I$ ένα ιδεώδες. Το $I$ ονομάζεται \defn{ομογενές} (ή \defn{διαβαθμισμένο}) αν 
+  \[
+  I = \left(
+    I \cap A_0
+  \right) \oplus \left(
+    I \cap A_1
+  \right) \oplus \cdots.
+  \]
+  Να δείξετε ότι αν το $I$ είναι ομογενές, τότε το $A/I$ είναι διαβαθμισμένη $F$-άλγεβρα με διάβάθμιση
+  \[
+  A/I \cong A_0/I_0 \oplus A_1/I_1 \oplus \cdots.
+  \]
+\end{exercise}
+
+\begin{proof}[Yπόδειξη]
+  Η απεικόνιση 
+  \begin{align*}
+    A_0 \oplus A_1 \oplus \cdots &\to A_0/I_0 \oplus A_1/I_1 \oplus \cdots \\ 
+  (a_0, a_1, \dots) &\mapsto (a_0 + I_0, a_1 + I_1, \dots)
+  \end{align*}
+  είναι επιμορφισμός $A$-αλγεβρών με πυρήνα το $I$.
+\end{proof}
+
+\begin{exercise}
+  \label{ex:graded_ideal_example}
+  Έστω $A = F[x,y,z]$ και $I = (xy)$. Να δείξετε ότι το $I$ είναι ομογενές και να υπολογίσετε την αντίστοιχη σειρά Hilbert.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Από την Άσκηση 31 γνωρίζουμε ότι 
+  \[
+  A = F\{1\} \oplus F\{x,y,z\} \oplus F\{x^2,y^2,z^2,xy,xz,yz\} \oplus \cdots.
+  \]
+  Συνεπώς, 
+  \[
+  I = 0 \oplus 0 \oplus F\{\mathcolor{burntorange}{xy}\} \oplus F\{\underbrace{x\mathcolor{burntorange}{xy}}_{= \ x^2y}, \underbrace{\mathcolor{burntorange}{xy}y}_{= \ xy^2}, \mathcolor{burntorange}{xy}z\} \oplus \cdots
+  \]
+  και γι αυτό 
+  \begin{align*}
+  \Hilb(I;t) &= \sum_{d \ge 0} \dim_F(A) t^{d+2} \\
+  &= t^2 \sum_{d \ge 0} \dim_F(A) t^{d} \\
+  &= \frac{t^2}{(1-t)^2},
+  \end{align*}
+  όπου η τελευταία ισότητα έπεται από την Άσκηση 31.
+\end{proof}
+
+\begin{remark}
+  Το ιδεώδες $I$ της Άσκησης \ref{ex:graded_ideal_example} είναι ελεύθερο πάνω από το $A$ (γιατί;). Ουσιαστικά, πρόκειται για ένα αντίγραφο της $A$ \textquote{μετακινημένο} κατά δύο θέσεις προς τα δεξιά.
+\end{remark}
+
+\begin{exercise}
+  \label{ex:free_module_generated_in_degree}
+  Έστω $A$ μια διαβαθμισμένη $F$-άλγεβρα με διάσπαση 
+  \[
+  A = A_0 \oplus A_1 \oplus \cdots.
+  \] 
+  Αν $f \in A_k$ ένα \emph{ομογενές στοιχείο} βαθμού $k$, τότε να δείξετε ότι
+  \[
+  \Hilb((f);t) = t^k \, \Hilb(A;t).
+  \]
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Έστω $I = (f)$. Επειδή το $I$ είναι ιδεώδες και η $A$ είναι διαβαθμισμένη έπεται ότι αν $a \in A_d$, τότε $af \in I \cap A_{d+k}$, για κάθε $d \ge 0$. Συνεπώς, 
+  \[
+  I \cap A_d = 
+  \begin{cases}
+    0, &\ \text{αν $d < k$} \\
+    A_{d-k}\{f\}, &\ \text{αν $d \ge k$}
+  \end{cases}
+  \]
+  και γι αυτό 
+  \[
+  \dim_F\left(
+    I \cap A_d
+  \right) = \dim_F\left(
+    A_{d-k}
+  \right)
+  \]
+  για κάθε $d \ge k$. Άρα, 
+  \begin{align*}
+  \Hilb(I;t) &= \sum_{d \ge k} \dim_F\left(
+    A_{d-k}
+  \right) t^d \\ 
+  &= \sum_{d\ge0} \dim_F\left(
+    A_{d}
+  \right) t^{d+k} \\ 
+  &= t^k \, \Hilb(A;t).
+  \end{align*}
+\end{proof}
+
+\begin{remark}
+  Το ιδεώδες $(f)$ είναι ένα ελεύθερο $A$-πρότυπο τάξης $1$, δηλαδή ένα (ισομορφικό) αντίγραφο του $A$. Επειδή ο γεννήτοράς του έχει βαθμό $k$, η Άσκηση \ref{ex:free_module_generated_in_degree} μας πληροφορεί ότι η διαβάθμιση είναι ουσιαστικά 
+  \[
+  \underbrace{0 \oplus 0 \oplus \cdots \oplus 0}_{\text{$k$ φορές}} \oplus A_0 \oplus A_1 \oplus \cdots.
+  \] 
+  Αυτό συνήθως συμβολίζεται ως $A(-k)$.
+\end{remark}
+
+\begin{exercise}
+  \label{ex:hilbertSeries_xy}
+  Έστω $A = F[x,y,z]$ και $I = (xy)$. Να υπολογιστεί η σειρά Hilbert του $A/I$.
+\end{exercise}
+
+\begin{proof}[Πρώτη Λύση]
+  Από την Άσκηση \ref{ex:free_module_generated_in_degree} γνωρίζουμε ότι 
+  \[
+  I \cong 0 \oplus 0 \oplus A_0 \oplus A_1 \oplus \cdots
+  \]
+  και γι αυτό, από την Άσκηση \ref{ex:graded_ideal}, έπεται ότι 
+  \[
+  A/I = \bigoplus_{d \ge 0} \left(
+    A_d/I_d
+  \right) 
+  \cong A_0 \oplus A_1 \oplus \frac{A_2}{A_0} \oplus \frac{A_3}{A_1} \oplus \cdots.
+  \]
+  Άρα,
+  \begin{align*}
+  \Hilb(A/I;t) &= \sum_{d \ge 0} \dim_F(A_d) t^d - \sum_{d\ge2}\dim_F(A_{d-2}) t^d \\
+  &= \sum_{d \ge 0} \dim_F(A_d) t^d - t^2\sum_{d\ge0}\dim_F(A_{d}) t^d \\
+  &= \frac{1-t^2}{(1-t)^2} \\
+  &= \frac{1+1}{1-t}.
+  \end{align*}
+  (Πώς δικαιολογείται η τελευταία ισότητα στον δακτύλιο των τυπικών δυναμοσειρών $\ZZ[\![t]\!]$;)
+\end{proof}
+
+\begin{proof}[Δεύτερη Λύση]
+  Θεωρούμε την βραχεία ακριβή ακολουθία 
+  \[
+  \begin{tikzcd}
+      0 \arrow[r] & I \arrow[r, hook] & A \arrow[r, two heads] & A/I \arrow[r] & 0
+    \end{tikzcd}.
+  \]
+  Επειδή το $I$ είναι ομογενές ιδεώδες και κατά συνέπεια το ίδιο ισχύει και για το $A/I$ (από την Άσκηση \ref{ex:graded_ideal}), αυτή επάγει ακριβείς ακολουθίες 
+  \[
+  \begin{tikzcd}
+      0 \arrow[r] & I_d \arrow[r, hook] & A_d \arrow[r, two heads] & A_d/I_d\arrow[r] & 0
+    \end{tikzcd}
+  \]
+  για κάθε $d \ge 0$. Από την Άσκηση \ref{ex:ses_vectorSpaces}, έπεται ότι 
+  \[
+  \Hilb(A/I;t) = \Hilb(A;t) - \Hilb(I;t) = \frac{1-t^2}{(1-t)^2} =  \frac{1+1}{1-t}.
+  \]
+\end{proof}
+
+\begin{exercise}
+  \label{ex:hilbertSeries_of_quotient_rings}
+  Έστω $A$ μια $F$-άλγεβρα και $I$ ένα ομογενές ιδεώδες. Να δείξετε ότι 
+  \[
+  \Hilb(A/I;t) = \Hilb(A;t) - \Hilb(I;t).
+  \]
+\end{exercise}
+
+\begin{proof}[Υπόδειξη]
+  Μιμηθείτε την δεύτερη λύση της Άσκησης \ref{ex:hilbertSeries_xy}.
+\end{proof}
+
+\begin{remark}
+  Η Άσκηση \ref{ex:hilbertSeries_of_quotient_rings} ανάγει τον υπολογισμό της σειράς Hilbert μιας $F$-άλγεβρας $A$ στον υπολογισμό των αντίστοιχων σειρών Hilbert για τα $I$ και $A/I$, για \emph{οποιοδήποτε} ιδεώδες $I$.
+\end{remark}
+
+\end{document}
