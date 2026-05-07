@@ -1,0 +1,571 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd,stmaryrd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{theorem}{Θεώρημα}
+\newtheorem{proposition}[theorem]{Πρόταση}
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{corollary}[theorem]{Πόρισμα}
+\newtheorem{conjecture}[theorem]{Εικασία}
+\newtheorem{problem}[theorem]{Πρόβλημα}
+\newtheorem*{claim}{Ισχυρισμός}
+\newtheorem{observation}[theorem]{Παρατήρηση}
+\newtheorem{definition}[theorem]{Ορισμός}
+\newtheorem{question}[theorem]{Ερώτημα}
+\newtheorem*{questions}{Ερωτήματα}
+\newtheorem*{que}{Ερώτημα}
+\newtheorem{example}[theorem]{Παράδειγμα}
+\newtheorem{exercise}{Άσκηση}
+\newtheorem*{zorn}{Λήμμα του Zorn}
+\newtheorem*{example_6.6}{Παράδειγμα~6.6}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Παρατήρηση}
+
+% fixes the correct numbering of environments
+\numberwithin{theorem}{section}
+\numberwithin{exercise}{section}
+\numberwithin{equation}{section}
+
+% math ops 
+% fields
+\renewcommand{\AA}{\mathbbmss{A}}
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+\newcommand{\VV}{\mathbbmss{V}} 
+\newcommand{\II}{\mathbbmss{I}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+\newcommand{\fm}{\mathfrak{m}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\qQ}{\mathcal{Q}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+\newcommand{\zZ}{\mathcal{Z}}
+\newcommand{\vV}{\mathcal{V}}
+
+% bold
+\newcommand{\bfa}{\pmb{a}}
+\newcommand{\bfb}{\pmb{b}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmF}{\mathrm{F}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Set}{\pmb{\mathrm{Set}}}
+\newcommand{\Rmod}{\pmb{\mathrm{mod}}}
+\newcommand{\rmrank}{\mathrm{rank}}
+\newcommand{\mSpec}{\mathrm{mSpec}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\tor}{\mathrm{tor}}
+\newcommand{\Pol}[1]{F[x_1, x_2, \dots, x_{#1}]}
+\newcommand{\rad}{\mathrm{rad}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% restriction
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \littletaller % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+\newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{7 Μαΐου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{section}{9}
+\setcounter{theorem}{6}
+\setcounter{equation}{2}
+\begin{center}
+    \textbf{9. Αλγεβρική Γεωμετρία: Εισαγωγή
+} (Συνέχεια)
+\end{center}
+
+
+\begin{example}
+    \label{ex:vanishing_ideal_of_whole_variety}
+    Υπενθυμίζουμε ότι το $F$ είναι ένα άπειρο σώμα. Θα δείξουμε ότι 
+    \[
+    \iI(\AA_F^n) = 0.
+    \]
+    Με άλλα λόγια\footnote{Ταυτίζοντας τα πολυώνυμα στις $n$ μεταβλητές με τις πολυωνυμικές συναρτήσεις $\AA^n \to \AA^1$, όπως κάναμε στο τέλος της Ενότητας 3, η παρατήρηση αυτή μας πληροφορεί κάτι γεωμετρικό χρησιμοποιώντας άλγεβρα.}, κάθε μη μηδενικό πολυώνυμο σε $n$ μεταβλητές είναι μη μηδενικό σε κάποιο σημείο του $\AA^n$ ή ισοδύναμα αν ένα πολυώνυμο μηδενίζεται σε ολόκληρο το $\AA^n$, τότε πρέπει αναγκαστικά να είναι το μηδενικό πολυώνυμο. Θα κάνουμε επαγωγή ως προς $n$. 
+
+    Για $n=1$, επειδή το πλήθος των ριζών ενός μη μηδενικού πολυωνύμου $f \in F[x_1]$ είναι το πολύ $\deg(f)$ (βλ. συζήτηση μετά την Πρόταση 3.7), έπεται ότι $f \notin \iI(\AA^1)$, διότι το $F$ έχει άπειρα στοιχεία. Άρα, $\iI(\AA^1) = 0$. Αυτή είναι η βάση της επαγωγής. 
+    
+    Υποθέτουμε ότι $n > 1$, $\iI(\AA^{n-1}) = 0$ και θεωρούμε ένα μη μηδενικό $f \in \Pol{n}$. Αρκεί να δείξουμε ότι $f \notin \iI(\AA^n)$. Γράφουμε 
+    \begin{equation}
+        \label{eq:f}
+        f = p_0(x_1,x_2,\dots, x_{n-1}) + p_1(x_1,x_2,\dots, x_{n-1}) x_n + \cdots + p_d(x_1,x_2,\dots, x_{n-1}) x_n^d,
+    \end{equation}
+    για κάποια $p_1, p_2, \dots, p_d \in \Pol{n-1}$ και κάποιο $d \in \NN$ με $p_d \neq 0$. Από την επαγωγική υπόθεση, υπάρχει ένα $(a_1, a_2, \dots, a_{n-1}) \in \AA^{n-1}$, τέτοιο ώστε $p_d(a_1, a_2, \dots, a_{n-1}) \neq 0$. Αντικαθιστώντας στην \eqref{eq:f}, έπεται ότι το πολυώνυμο
+    \[
+    f(a_1, a_2, \dots, a_{n-1}, x_n) \ \in F[x_n]
+    \] 
+    είναι μη μηδενικό. Από την βάση της επαγωγής (η περίπτωση της μιας μεταβλτητής), υπάρχει $a_n \in \AA^1$ τέτοιο ώστε 
+    \[     
+    f(a_1, a_2, \dots, a_n) \neq 0. 
+    \]   
+    Επομένως, $f \notin \iI(\AA^n)$ και η επαγωγή ολοκληρώνεται.
+\end{example}
+
+\begin{example}
+    \label{ex:vanishing_ideal_of_a_point}
+    Έστω $\bfa = (a_1, a_2, \dots, a_n) \in \AA^n$. Στο τέλος της Ενότητας 3 αναφέραμε ότι 
+    \[
+    \fm_{\bfa} \coloneqq \left(
+        x_1-a_1, x_2-a_2, \dots, x_n-a_n
+    \right) = \ker\left(\ev_{\bfa}\right).
+    \]
+    Συνεπώς, $f \in \fm_{\bfa}$ αν και μόνο αν $f(\bfa) = 0$ ή ισοδύναμα, αν και μόνο αν $f \in \iI(\{\bfa\})$. Άρα, 
+    \[
+    \iI(\{\bfa\}) = \fm_{\bfa},
+    \]
+    τ' οποίο είναι μεγιστικό ιδεώδες του $\Pol{n}$ (γιατί;).
+
+    % Πράγματι, αν $f \in \iI(\{\bfa\})$, τότε $f(\bfa) = f(a_1, a_2, \dots, a_n) = 0$. Αυτό σημαίνει ότι $f \in (x_i-a_i)$, για κάθε $1 \le i \le n$ και γι αυτό $f \in \left(
+    %     x_1-a_1, x_2-a_2, \dots, x_n-a_n
+    % \right)$. Επομένως, $\iI(\{\bfa\}) \subseteq \fm_\bfa$. Από την άλλη μεριά, αν $f \in \left(
+    %     x_1-a_1, x_2-a_2, \dots, x_n-a_n
+    % \right)$, τότε 
+    % \[
+    % f(x_1, x_2, \dots, x_n) = \sum_{i=1}^n g_i(x_1,x_2, \dots, x_n)(x_i-a_i)
+    % \]
+    % για κάποια $g_1, g_2, \dots, g_n \in \Pol{n}$. Συνεπώς, $f(\bfa) = 0$ και γι αυτό $\fm_\bfa \subseteq \iI(\{\bfa\})$.
+
+    Η ισότητα $\fm_{\bfa} = \ker(\ev_{\bfa})$ δεν είναι απολύτως προφανής. Μια αυστηρή απόδειξη μπορεί να γίνει με τρόπο όμοιο με αυτό του Παραδείγματος \ref{ex:vanishing_ideal_of_whole_variety}. Για την κατεύθυνση \textquote{$\subseteq$}, αν 
+    \[
+    f = f_1(x_1-a_1) + f_2(x_2-a_2) + \cdots + f_n(x_n-a_n),
+    \]
+    για κάποια $f_1, f_2, \dots, f_n \in \Pol{n}$, τότε $\ev_{\bfa}(f) = 0$. Θα δείξουμε την άλλη κατεύθυνση, δηλαδή ότι $\ker(\ev_{\bfa}) \subseteq \fm_{\bfa}$ με επαγωγή στο $n$. Για $n=1$, το ζητούμενο έπεται από την Πρόταση 3.7 (γιατί;). Αυτή είναι η βάση της επαγωγής. 
+    
+    Έστω $n > 1$, υποθέτουμε ότι 
+    \[
+    \ker(\ev_{\bfb}) \subseteq \fm_{\bfb}
+    \] 
+    για κάθε $\bfb \in \AA^{n-1}$ και θεωρούμε ένα $f \in \ker(\ev_{\bfa})$. Γράφουμε το $f$ όπως στην Εξίσωση \eqref{eq:f}. Διακρίνουμε περιπτώσεις. Αν $d=0$, τότε 
+    \[
+    f = p_0(x_1,x_2,\dots, x_{n-1}) \ \in \ \Pol{n-1}
+    \]
+    και γι αυτό $\ev_{\hat{\bfa}}(f) = 0$, όπου $\hat{\bfa} = (a_1, a_2, \dots, a_{n-1})$. Από την επαγωγική υπόθεση έπεται ότι 
+    \[
+    f \in \fm_{\hat{\bfa}} \subseteq \fm_{\bfa}.
+    \]
+
+    Τώρα, υποθέτουμε ότι $d > 1$. Εφαρμόζοντας την γενικευμένη εκδοχή του Θεωρήματος 3.3 (βλ. συζήτηση αμέσως μετά την διατύπωση του θεωρήματος) για την ακέραια περιοχή $R = \Pol{n-1}$ και $g(x_n) = x_n-a_n$, έπεται ότι 
+    \[
+    f = q(x_n-a_n) + r,
+    \]
+    για κάποια $q, r \in R[x_n]$ με το $r$ να έχει βαθμό μικρότερο από $1$ ως πολυώνυμο στο $x_n$. Αυτό σημαίνει ότι
+    \[  
+    r \in R = \Pol{n-1}
+    \] 
+    και επειδή $f \in \ker(\ev_{\bfa})$, έπεται ότι $\ev_{\hat{\bfa}}(r) = 0$ (γιατί;), δηλαδή $r \in \ker(\ev_{\hat{\bfa}})$. Από την επαγωγική υπόθεση, αυτό έχει ως συνέπεια $r \in \fm_{\hat{\bfa}}$, δηλαδή 
+    \[
+    r = f_1(x_1-a_1) + f_2(x_2-a_2) + \cdots + f_{n-1}(x_{n-1}-a_{n-1})
+    \] 
+    για κάποια $f_1, f_2, \dots, f_{n-1} \in \Pol{n-1}$ και γι αυτό 
+    \[
+    f = f_1(x_1-a_1) + f_2(x_2-a_2) + \cdots + f_{n-1}(x_{n-1}-a_{n-1}) + q(x_n-a_n).
+    \]
+    Άρα, $f \in \fm_{\bfa}$ και το ζητούμενο έπεται.
+\end{example}
+
+\begin{proposition}
+    \label{prop:vanishing_ideal}
+    Έστω $I$ ένα ιδεώδες του $\Pol{n}$ και $A \subseteq \AA^n$. Τότε 
+    \begin{equation} 
+        \label{eq:one_way}
+        A \subseteq \vV\left(
+        \iI(A)
+        \right)
+    \end{equation}
+    με ισότητα να ισχύει αν και μόνο αν το $A$ είναι πολλαπλότητα, και 
+    \begin{equation} 
+        \label{eq:other_way}
+        I \subseteq \iI(\vV(I)).
+    \end{equation}
+\end{proposition}
+
+\begin{proof}[Απόδειξη]
+    Για την \eqref{eq:one_way}, αν $\bfa \in A$, τότε $f(\bfa) = 0$, για κάθε $f \in \iI(A)$, εξ' ορισμού και κατά συνέπεια $\bfa \in \vV\left(
+        \iI(A)
+    \right)$. Επομένως, $A \subseteq \vV\left(
+        \iI(A)
+    \right)$. Ο δεύτερος εγκλεισμός αποδεικνύεται με παρόμοιο τρόπο.
+
+    Για την ισότητα στην \eqref{eq:one_way}, αν το $A$ είναι της μορφής $\vV(S)$ για κάποιο $S \subseteq \Pol{n}$, τότε $S \subseteq \iI(\vV(S)) = \iI(A)$. Συνεπώς, 
+    \[
+    \vV\left(
+        \iI(A)
+    \right) \subseteq \vV(S) = A,
+    \]
+    από την παρατήρηση μετά τον Ορισμό 9.1 και το ζητούμενο έπεται.
+\end{proof}
+
+\begin{example}
+\label{ex:whatever}
+Οι ανισότητες της Πρότασης \ref{prop:vanishing_ideal} κάποιες φορές είναι αυστηρές. Για παράδειγμα, αν $A = \{(t, t^2) : t \in \NN\} \subseteq \AA_\RR^2$
+\[
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        axis line style={-latex, gray!50},
+        xlabel = {$x$},
+        ylabel = {$y$},
+        label style = {gray!50},
+        xmin=-2, xmax=2,
+        ymin=-2, ymax=4,
+        xticklabels=\empty,
+        yticklabels=\empty,
+        ticks=none
+        ]
+        \addplot[black!30] {x^2}; 
+
+        \addplot[
+            only marks, 
+            mark=*, 
+            mark size=1.5pt, 
+            domain=0:2, 
+            samples=20
+        ] {x^2};
+
+    \end{axis}
+\end{tikzpicture}
+\]
+τότε $\iI(A) = (y-x^2)$ και γι αυτό 
+\[
+A \subsetneqq  \{(t,t^2) : t \in \RR\} = \vV(y-x^2) = \vV\left(
+        \iI(A)
+    \right).
+\] 
+Πράγματι, αν $f \in (y-x^2)$, τότε $f(x,y) = g(x,y)(y-x^2)$ για κάποιο $g \in \RR[x,y]$. Συνεπώς, 
+\[
+f(t, t^2) = g(t,t^2) (t^2-t^2) = 0
+\]
+για κάθε $t \in \NN$. Επομένως, $f \in \iI(A)$ και γι αυτό $(y-x^2) \subseteq \iI(A)$. Αντιστρόφως, αν $f \in \iI(A)$, όμοια με το Παραδείγματα \ref{ex:vanishing_ideal_of_whole_variety} και \ref{ex:vanishing_ideal_of_a_point}, βλέπουμε το $f$ ως στοιχείο του $\mathcolor{gray}{\RR[x]}[y]$ και γι αυτό 
+\[
+f = q(y-\mathcolor{gray}{x^2}) + r
+\]
+για κάποια $q \in \mathcolor{gray}{\RR[x]}[y]$ και $r \in \mathcolor{gray}{\RR[x]}$. Επειδή $f \in \iI(A)$, έπεται ότι 
+\[
+r(t) = f(t,t^2) - q(\underbrace{t^2-t^2}_{= \ 0}) = 0
+\]
+για κάθε $t \in \NN$. Συνεπώς, όμοια με το Παράδειγμα 9.2 (θ), έχουμε $r = 0$ και γι αυτό $f \in (y-x^2)$. Επομένως $\iI(A) \subseteq (y-x^2)$.
+
+Για τη δεύτερη ανισότητα, αν $I = \left( (y-x^2)^2 \right)$, τότε 
+\[
+\vV(I) = \{(t, t^2) : t \in \RR\}
+\]
+(γιατί;). Όμοια με προηγουμένως, παρατηρεί κανείς ότι 
+$
+\iI\left(
+    \vV(I)
+\right) = (y-x^2)$ και γι αυτό
+\[
+I = \left( (y-x^2)^2 \right) \subsetneqq (y-x^2) = \iI(\vV(I)).
+\]
+\end{example}
+
+Η ισότητα \eqref{eq:one_way} στην περίπτωση όπου το $A$ είναι πολλαπλότητα μας πληροφορεί ότι οι απεικονίσεις 
+\begin{align*}
+\left\{
+\begin{aligned}
+&\qquad \quad \text{ιδεώδη} \\
+& I \subseteq \Pol{n}
+\end{aligned}
+\right\}
+&\to
+\left\{
+\begin{aligned}
+&\text{πολλαπλότητες} \\
+&\quad \ \ V \subseteq \AA_F^n
+\end{aligned}
+\right\} \\
+I &\mapsto \vV(I) \\
+\iI(A) &\mapsfrom A,
+\end{align*}
+είναι επί και ένα-προς-ένα, αντίστοιχα (γιατί;). Πότε ισχύει η ισότητα στην \eqref{eq:other_way}; Με άλλα λόγια, πότε είναι οι απεικονίσεις $\vV(\cdot)$ και $\iI(\cdot)$ ένα-προς-ένα και επί, αντίστοιχα;
+
+Ας θυμηθούμε την έννοια του ριζικού ιδεώδους από την Άσκηση 12.
+
+\begin{definition}
+    \label{def:radical_ideal}
+    Αν $I$ είναι ιδεώδες του $\Pol{n}$, τότε το σύνολο\footnote{Σε κάποια συγγράματα συμβολίζεται και ως $\rad(I)$.} 
+    \[
+    \sqrt{I} \coloneqq \{f \in \Pol{n} : f^k \in I, \ \text{για κάποιο $k \ge 1$}\}
+    \]
+     ονομάζεται \defn{ριζικό} (radical) του $I$. Το $I$ ονομάζεται \defn{ριζικό ιδεώδες} (radical ideal) αν $\sqrt{I} = I$.
+\end{definition}
+
+Στην Άσκηση 11 είδαμε ότι το ριζικό ενός ιδεώδους είναι ιδεώδες το οποίο το περιέχει.
+
+\begin{proposition}
+    \label{prop:vanishing_ideal_is_radical}
+    Το ιδεώδες μηδενισμού ενός υποσυνόλου του αφφινικού χώρου είναι ριζικό ιδεώδες.
+\end{proposition}
+
+\begin{proof}[Απόδειξη]
+    Έστω $A \subseteq \AA^n$. Αρκεί να δείξουμε ότι $\sqrt{\iI(A)} \subseteq \iI(A)$. Πράγματι, αν $f \in \sqrt{\iI(A)}$, τότε 
+    \[
+    0 = f^k(\bfa) = \left(f(\bfa)\right)^k,
+    \] 
+    για κάθε $\bfa \in A$. Συνεπώς, $f(\bfa) = 0$, για κάθε $\bfa \in A$ και γι αυτό $f \in \iI(A)$.
+\end{proof}
+
+Η Πρόταση \ref{prop:vanishing_ideal_is_radical} μας πληροφορεί ότι αυτό που \textquote{εμποδίζει} την ισότητα στην \eqref{eq:other_way} είναι το κατά πόσο το $I$ είναι ριζικό ιδεώδες. Στο παράδειγμα, το $I = \left( (y-x^2)^2 \right)$ δεν είναι ριζικό, καθώς $\sqrt{I} = (y-x^2)$ (γιατί;). Με άλλα λόγια, στο παράδειγμα αυτό ισχύει ότι
+\[
+\iI(\vV(I)) = \sqrt{I}.
+\]
+Αν ίσχυε πάντα αυτή η ταυτότητα, τότε θα είχαμε ισότητα στην \eqref{eq:other_way} αν και μόνο αν το $I$ ήταν ριζικό ιδεώδες. Ισχύει όμως αυτό σε κάθε περίπτωση; 
+
+
+% \begin{thebibliography}{99}
+%     % \bibitem{DF04}
+%     % D. S. Dummit και R. M. Foote, 
+%     % \textit{Abstract algebra},
+%     % third edition, Wiley, 2004. 
+%     % \bibitem{Mun14}
+%     % J.~Munkres, 
+%     % \textit{Topology},
+%     % second edition, Prentice Hall, 2000.
+% \end{thebibliography}
+\end{document}
