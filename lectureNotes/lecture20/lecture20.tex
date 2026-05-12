@@ -1,0 +1,556 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd,stmaryrd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{theorem}{Θεώρημα}
+\newtheorem{proposition}[theorem]{Πρόταση}
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{corollary}[theorem]{Πόρισμα}
+\newtheorem{conjecture}[theorem]{Εικασία}
+\newtheorem{problem}[theorem]{Πρόβλημα}
+\newtheorem*{claim}{Ισχυρισμός}
+\newtheorem{observation}[theorem]{Παρατήρηση}
+\newtheorem{definition}[theorem]{Ορισμός}
+\newtheorem{question}[theorem]{Ερώτημα}
+\newtheorem*{questions}{Ερωτήματα}
+\newtheorem*{que}{Ερώτημα}
+\newtheorem{example}[theorem]{Παράδειγμα}
+\newtheorem{exercise}{Άσκηση}
+\newtheorem*{zorn}{Λήμμα του Zorn}
+\newtheorem*{example_6.6}{Παράδειγμα~6.6}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Παρατήρηση}
+
+% fixes the correct numbering of environments
+\numberwithin{theorem}{section}
+\numberwithin{exercise}{section}
+\numberwithin{equation}{section}
+
+% math ops 
+% fields
+\renewcommand{\AA}{\mathbbmss{A}}
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+\newcommand{\VV}{\mathbbmss{V}} 
+\newcommand{\II}{\mathbbmss{I}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+\newcommand{\fm}{\mathfrak{m}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\qQ}{\mathcal{Q}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+\newcommand{\zZ}{\mathcal{Z}}
+\newcommand{\vV}{\mathcal{V}}
+
+% bold
+\newcommand{\bfa}{\pmb{a}}
+\newcommand{\bfb}{\pmb{b}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmF}{\mathrm{F}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Set}{\pmb{\mathrm{Set}}}
+\newcommand{\Rmod}{\pmb{\mathrm{mod}}}
+\newcommand{\rmrank}{\mathrm{rank}}
+\newcommand{\mSpec}{\mathrm{mSpec}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\tor}{\mathrm{tor}}
+\newcommand{\Pol}[1]{F[x_1, x_2, \dots, x_{#1}]}
+\newcommand{\rad}{\mathrm{rad}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% restriction
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \littletaller % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+\newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{12 Μαΐου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{section}{10}
+% \setcounter{theorem}{0}
+% \setcounter{equation}{0}
+\begin{center}
+    \textbf{10. Το Θεώρημα βάσης του Hilbert
+} 
+\end{center}
+
+
+Σε ότι ακολουθεί, υποθέτουμε ότι $F$ είναι ένα (άπειρο) σώμα και $n$ είναι ένας θετικός ακέ\-ραιος.
+
+Στην Ενότητα 9 είδαμε ότι μια πολλαπλότητα είναι το σύνολο λύσεων του συστήματος πολυωνυμικών εξισώσεων 
+\[
+f(x_1, x_2, \dots, x_n) = 0, \qquad \text{για κάθε $f \in S$}
+\]
+στο $\AA^n$, για κάποιο $S \subseteq F[x_1, \dots, x_n]$. Αν το $S$ είναι άπειρο, τότε καλούμαστε να λύσουμε ένα σύστημα με άπειρες εξισώσεις. Τι γίνεται σε αυτή την περίπτωση;
+
+Το επόμενο αποτέλεσμα μας πληροφορεί ότι ακόμη και αν το $S$ είναι \emph{άπειρο}, το ιδεώδες\footnote{Στην παρατήρηση μετά τον Ορισμό 9.1 είδαμε ότι τα δύο αυτά σύνολα ορίζουν την ίδια πολλαπλότητα.} που παράγει είναι \emph{πεπερασμένα παραγόμενο}. Κατά συνέπεια, σε κάθε περίπτωση, το πλήθος των εξισώσεων που καλούμαστε να λύσουμε είναι πεπερασμένο. Για περισσότερες πληροφορίες παραπέμπουμε στο \cite[Ενότητα~9.6]{DF04}.
+
+\begin{theorem}{\rm(Hilbert basis theorem)}
+    \label{thm:hilbert_basis}
+    Αν $R$ είναι δακτύλιος της Noether, τότε ο $R[x_1, x_2,$ $\dots, x_n]$ είναι δακτύλιος της Noether.
+\end{theorem}
+
+Πριν την απόδειξη, ας δούμε μία σημαντική συνέπεια του Θεωρήματος \ref{thm:hilbert_basis}. Από την Πρόταση 8.1, κάθε ιδεώδες $I$ του $\Pol{n}$ είναι πεπερασμένα παραγόμενο, δηλαδή 
+\[
+I = (f_1, f_2, \dots, f_m)
+\]
+για κάποια $f_1, f_2, \dots, f_m \in \Pol{n}$. Από την Ταυτότητα (9.2), προκύπτει ότι 
+\[
+\vV(I) = \vV(f_1) \cap \vV(f_2) \cap \cdots \cap \vV(f_m).
+\]
+Με άλλα λόγια, έχουμε το εξής.
+\begin{corollary}
+    \label{cor:variety_is_the_intersection_of_hypersurfaces}
+    Κάθε πολλαπλότητα είναι τομή πεπερασμένου πλήθους υπερεπιφανειών.
+\end{corollary}
+
+Το Πόρισμα \ref{cor:variety_is_the_intersection_of_hypersurfaces} μας δίνει μια \emph{γεωμετρική} πληροφορία, η οποία είναι απόρροια ενός αμιγώς αλγεβρικού γεγονότος, δηλαδή ότι ένας δακτύλιος είναι της Noether. Αυτή είναι η ουσία της αλγεβρικής γεωμετρίας.
+
+\begin{remark}
+    Ένα εύλογο ερώτημα που γεννιέται είναι, πόσοι γεννήτορες χρειάζονται για να περιγράψει κανείς μια πολλαπλότητα και ποιοί γεννήτορες είναι \textquote{καλοί}. Σε τέτοιου είδους ερωτήματα απαντάει η θεωρία των βάσεων Gr\"obner. 
+\end{remark}
+
+Για την απόδειξη του Θεωρήματος \ref{thm:hilbert_basis}, αρχικά παρατηρούμε ότι αρκεί να το αποδείξουμε για $n=1$, διότι ο πολυωνυμικός δακτύλιος σε πολλές μεταβλητές ορίστηκε επαγωγικά ως 
+\[
+R[x_1, x_2, \dots, x_n] = \left(R[x_1, x_2, \dots, x_{n-1}]\right)[x_n].
+\]
+Οι λεπτομέρειες αφήνονται ως άσκηση.
+
+Για την προετοιμασία της απόδειξης, θεωρούμε το σύνολο όλων των πολυωνύμων βαθμού το πολύ $d$, δηλαδή
+\[
+R[x]^{\le d} \coloneqq \{f(x) \in R[x] : \deg(f) \le d\}.
+\]
+Αυτό είναι ελεύθερο $R$-υποπρότυπο του $R[x]$ και
+\[
+R[x]^{\le d} = R\{1\} \oplus R\{x\} \oplus \cdots \oplus R\{x^d\}
+\]
+(γιατί;). Από το Πόρισμα 8.7 (1) έπεται ότι το $R[x]^{\le d}$ είναι πρότυπο της Noether.
+
+Για κάθε $f(x) \in R[x]$, συμβολίζουμε με $[x^k]f(x)$ τον συντελεστή του $x^k$ στο $f(x)$. Για παράδειγμα, αν $f(x) = 1 + 4x + x^2$, τότε $[x]f(x) = 4$. Παρατηρούμε ότι 
+\begin{equation}
+    \label{eq:coefficient}
+    [x^k]\left(
+        x^if(x)
+    \right) = [x^{k-i}]f(x)
+\end{equation}
+για κάθε $0 \le k \le \deg(f)$ και κάθε $i \in \NN$ (γιατί;).
+
+\begin{proof}[Απόδειξη του Θεωρήματος \ref{thm:hilbert_basis}]
+    Θα δείξουμε ότι αν ο $R$ είναι δακτύλιος της Noether, τότε ο $R[x]$ είναι και αυτός δακτύλιος της Noether. Έστω $I$ ένα ιδεώδες του $R[x]$. Αρκεί να δείξουμε ότι το $I$ είναι πεπερασμένα παραγόμενο. Για τον λόγο αυτό, θεωρούμε το σύνολο $J$ όλων των μεγιστοβάθμιων όρων των πολυωνύμων του $I$, δηλαδή 
+    \[
+    J = \{a \in R : a_0 + a_1x + \cdots + a_{n-1}x^{n-1} + ax^n \in I, \ \text{για κάποιο $n \in \NN$}\}.
+    \]
+
+    Το $J$ είναι ιδεώδες του $R$. Πράγματι, το $J$
+    \begin{itemize}
+        \item περιέχει το $0$, ως μεγιστοβάθμιο συντελεστή του μηδενικού πολυωνύμου, το οποίο περιέχεται στο $I$, διότι το τελευταίο είναι ιδεώδες 
+        \item είναι κλειστό ως προς την πρόσθεση: Έστω $a, b \in J$. Τότε 
+        \begin{align*}
+            a_0 + a_1x + \cdots + a_{n-1}x^{n-1} + ax^n \ &\in \ I \\
+            b_0 + b_1x + \cdots + b_{m-1}x^{m-1} + bx^m \ &\in \ I 
+        \end{align*}
+        για κάποια $n, m \in \NN$, για το οποία χωρίς βλάβη της γενικότητας υποθέτουμε ότι $n \ge m$. Επειδή το $I$ είναι ιδεώδες, 
+        \[
+        x^{n-m}\left(
+            \sum_{j=0}^{m-1}b_jx^j + bx^m
+        \right) = \sum_{j=0}^{m-1}b_jx^{n-m+j} + bx^n \ \in \ I
+        \]
+        και γι αυτό 
+        \[
+        \sum_{i=0}^{n-1}a_ix^i + \sum_{j=0}^{m-1}b_jx^{n-m+j} + (a+b)x^n \ \in \ I.
+        \]
+        Επομένως, $a+b \in J$.
+        \item έχει την ιδιότητα $ra \in J$, για κάθε $r \in R$ και $a \in J$: Aν $a \in J$, τότε 
+        \[
+        a_0 + a_1x + \cdots + a_{n-1}x^{n-1} + ax^n \ \in \ I
+        \]
+        για κάποιο $n \in \NN$. Επειδή το $I$ είναι ιδεώδες, 
+        \[
+        r(a_0 + a_1x + \cdots + a_{n-1}x^{n-1} + ax^n) = \sum_{i=0}^{n-1}ra_i x^i + (ra)x^n \ \in \ I.
+        \]
+        Επομένως, $ra \in I$.
+    \end{itemize}
+
+    Τώρα, επειδή ο $R$ είναι δακτύλιος της Noether, έπεται ότι υπάρχει $k \in \NN$ και πολυώνυμα $f_i(x) \in I$ βαθμού $d_i \in \NN$ των οποίων οι μεγιστοβάθμιοι συντελεστές 
+    \[
+    a_i = [x^{d_i}]f_i(x)
+    \]
+    για κάθε $1 \le i \le k$ παράγουν το $J$. Θέτουμε $d = \max\{d_1, d_2, \dots, d_k\}$ και θεωρούμε το σύνολο όλων των πολυωνύμων του $I$ βαθμού το πολύ $d$, δηλαδή 
+    \[
+    I^{\le d} = \{f(x) \in I : \deg(f) \le d\}.
+    \]
+
+    To $I^{\le d}$ είναι $R$-υποπρότυπο του $R[x]^{\le d}$ (γιατί;). Επειδή το τελευταίο είναι πρότυπο της Noether (βλ. συζήτηση πριν την απόδειξη), έπεται ότι το $I^{\le d}$ είναι πεπερασμένα παραγόμενο. Γι αυτό
+    \[
+    I^{\le d} = (g_1, g_2, \dots, g_\ell)
+    \]
+    για κάποιο $\ell \in \NN$ και κάποια $g_1, g_2, \dots, g_\ell \in I^{\le d}$. Ισχυριζόμαστε ότι 
+    \[
+    I = (f_1, f_2, \dots, f_k, g_1, g_2, \dots, g_\ell).
+    \]
+
+    Η κατεύθυνση \textquote{$\supseteq$} είναι προφανής (γιατί;). Αρκεί να αποδείξουμε την αντίστροφη, δηλαδή ότι αν $h \in I$, τότε 
+    \[
+    h \in (f_1, f_2, \dots, f_k, g_1, g_2, \dots, g_\ell).
+    \]
+    Θα το κάνουμε με επαγωγή ως προς τον βαθμό του $h$. Αν το $\deg(h) = 0$, τότε $h = 0$ και το ζητούμενο έπεται τετριμμένα. Αυτή είναι η βάση της επαγωγής. Υποθέτουμε ότι $\deg(h) > 0$ και ότι κάθε πολυώνυμο βαθμού μικρότερου από $\deg(h)$ μπορεί να γραφεί ως $R[x]$-γραμμικός συνδυασμός των $f_i$ και $g_j$, για κάθε $1 \le i \le k$ και $1 \le j \le \ell$. Αν $\deg(h) \le d$, τότε $h \in I^{\le d} \subseteq I$ και το ζητούμενο έπεται.
+
+    Μπορούμε, λοιπόν, να υποθέσουμε ότι $\deg(h) > d$. Αν $a = [x^{\deg(h)}]h(x)$ είναι ο μεγιστοβάθμιος συντελεστής του $h(x)$, τότε $a \in J$ και γι αυτό 
+    \begin{equation}
+        \label{eq:HBT_help}
+        a = c_1a_1 + c_2a_2 + \cdots + c_ka_k,
+    \end{equation}
+    για κάποια $c_1, c_2, \dots, c_k \in R$. Θεωρούμε το πολυώνυμο 
+    \[
+    p(x) = h(x) - \sum_{i=0}^k c_i x^{\deg(h) - d_i}f_i(x).
+    \]
+    Επειδή το $I$ είναι ιδεώδες, έπεται ότι $p(x) \in I$. Επίσης, παρατηρούμε ότι 
+    \begin{align*}
+    [x^{\deg(h)}]p(x) &= [x^{\deg(h)}]h(x) - \sum_{i=0}^{k} c_i [x^{\deg(h)}]\left(
+        x^{\deg(h) - d_i}f_i(x)
+    \right) \\
+    &= a - \sum_{i=0}^{k} c_i [x^{d_i}]f_i(x) \\
+    &= a - \sum_{i=0}^kc_ia_i \\
+    &= 0,
+    \end{align*}
+    όπου η δεύτερη ισότητα έπεται από την Ταυτότητα \eqref{eq:coefficient} και η τελευταία ισότητα έπεται από την Ταυτότητα \eqref{eq:HBT_help}. Αυτό σημαίνει ότι $p(x) \in I$ και\footnote{Το πολυώνυμο $p(x)$ δεν μπορεί να έχει όρους βαθμού μεγαλύτερου του $\deg(h)$ (γιατί;).} $\deg(p) < \deg(h)$ και γι αυτό, από την επαγωγική υπόθεση, έπεται ότι 
+    \[
+    p \in (f_1, f_2, \dots, f_k, g_1, g_2, \dots, g_\ell)
+    \]
+    και κατά συνέπεια 
+    \[
+    h \in (f_1, f_2, \dots, f_k, g_1, g_2, \dots, g_\ell)
+    \]
+    ολοκληρώνοντας έτσι την απόδειξη.
+\end{proof}
+
+\begin{remark}
+    Ας κάνουμε κάποια ιστορικά σχόλια για το θεώρημα βάσης του Hilbert, για ορισμένα από τα οποία παραπέμπουμε στο \cite{Kle07}. 
+    \begin{itemize}
+        \item Η απόδειξη του θεωρήματος από τον Hilbert δημοσιεύτηκε το 1890 και αφορούσε την περίπτωση όπου το $R$ είναι σώμα.
+        \item Ο όρος \emph{βάση} της εποχή του Hilbert χρησιμοποιούνταν για να περιγράψει ένα σύνολο γεννητόρων ενός ιδεώδους (και γενικότερα ενός προτύπου).
+        \item Η (αφηρημένη) έννοια του ιδεώδους θεωρούνταν \textquote{προχωρημένα μαθηματικά} την εποχή εκείνη\footnote{Για παράδειγμα, ο Dieudonn\'e αναφέρει \textquote{I had graduated from the École Normale [in 1931] and I did not know what an ideal was, and only just knew what a group was! This gives you an idea of what a young French mathematician knew in 1930}.}. 
+        % Για παράδειγμα, ο αφηρημένος ορισμός του δακτύλιου δόθηκε για πρώτη φορά το 1914 από τον Fraenkel!
+        \item Η απόδειξη του θεωρήματος είναι \emph{υπαρξιακής φύσης}, δηλαδή δεν κατασκευάζει την ζητούμενη \textquote{βάση}, παρά μόνο μας βεβαιώνει για την ύπαρξή της. Σε αντίθεση με τα σύγχρονα μαθηματικά, την εποχή του Hilbert οι αποδείξεις των θεωρημάτων ήταν \emph{κατασκευαστικής φύσης}, δηλαδή αν ήθελες να αποδείξεις ότι κάτι υπάρχει έπρεπε να το κατασκευάσεις. Το γεγονός αυτό οδήγησε σύγχρονους του Hilbert, όπως ο Gordan\footnote{Ο οποίος το 1868 απέδειξε την ειδική περίπτωση $n=2$ (και $R$ ένα σώμα) κατασκευαστικά και αναφέρετε ότι προσπαθούσε να λύσει την περίπτωση $n=3$ μέχρι και το 1890 όπου ο Hilbert δημοσίευσε την απόδειξη του.} (ακαδημαϊκός επιβλέποντας της Noether) να σχολιάσουν \textquote{This is not mathematics; it is theology}\footnote{Για την ιστορία, αργότερα ο Hilbert κατασκεύασε μια \textquote{βάση} για το πρόβλημα για το οποίο αρχικώς απέδειξε το Θεώρημα που φέρει το ονομά του. Αυτό ανάγκασε τον Gordan να κάνει το εξής σχόλιο \textquote{I have convinced myself that theology also has its advantages}.}.
+        \item Η διατύπωση του θεωρήματος στην σημερινή του μορφή οφείλεται στην επιδραστικό\-τητα των ιδεών της Noether. Σε δύο πολύ επιδραστικά άρθρα της, το 1921 και το 1927, εισήγαγε τις έννοιες του δακτύλιου και του προτύπου πάνω από δακτύλιο με τον τρόπο που τις χρησιμοποιούμε σήμερα, και επισήμανε την σπουδαιότητα της συνθήκης αύξουσας αλυσίδας. Αυτό, σε συνδυασμό με το σύγγραμα \textquote{Modern Algebra} του van der Waerden, που πρωτοεμφανίστηκε το 1930 και έκανε προσιτές τις ιδέες της Noether στο ευρύ κοινό\footnote{Τόσο μάλιστα, που ο Birkhoff σχολίασε, μεταξύ άλλων, \textquote{van der Waerden made modern algebra suddenly seem central in mathematics}.}, οδήγησε στην (ραγδαία) άνθηση της σύγχρονης (αφηρημένης) άλγεβρας.
+        \item Με την ανάπτυξη των υπολογιστών στο δεύτερο μισό του 20ου αιώνα, μπορεί κανείς να υπολογίσει γρήγορα και αποτελεσματικά σύνολα γεννητόρων χρησιμοποιώντας τις λεγόμενες \emph{βάσεις Gr\"{o}bner}.
+    \end{itemize}
+\end{remark}
+
+Κλείνουμε την ενότητα αυτή με μια ακόμη εφαρμογή του Θεωρήματος \ref{thm:hilbert_basis}. Θυμίζουμε ότι, διαισθητικά, μια $F$-άλγεβρα είναι ένας διανυσματικός χώρος πάνω από το $F$ εφοδιασμένος με δομή δακτύλιου, όπου ο βαθμωτός πολλαπλασιασμός και ο πολλαπλασιασμός είναι συμβατοί.
+
+\begin{definition}
+    \label{def:finitely_generated_algebras}
+    Μια $F$-άλγεβρα $A$ ονομάζεται \defn{πεπερασμένα παραγόμενη} αν υπάρχει $\{a_1, a_2,$ $\dots, a_n\} \subseteq A$ τέτοιο ώστε κάθε στοιχείο του $A$ να μπορεί να γραφεί ως πολυώνυμο στα $a_1, a_2, \dots, a_n$ με συντελεστές\footnote{Για λόγους απλότητας, μπορούμε να υποθέσουμε ότι $F \subseteq A$. Διαφορετικά, θα έπρεπε να θεωρήσουμε συντελεστές πάνω από το $u(F)$.} από το $F$.
+\end{definition}
+
+Για παράδειγμα, κάθε πολυωνυμικός δακτύλιος με συντελεστές από το $F$ είναι πεπερασμένα παραγόμενη $F$-άλγεβρα. Ο Ορισμός \ref{def:finitely_generated_algebras} μας πληροφορεί ότι μια $F$-άλγεβρα είναι πεπερασμένα παραγόμενη αν και μόνο αν υπάρχουν $a_1, a_2, \dots, a_n \in A$ τέτοια ώστε ο ομομορφισμός εκτίμησης
+\begin{align*}
+    \ev_{a_1, a_2, \dots, a_n} : F[x_1, x_2, \dots, x_n] &\to A \\
+    x_i &\mapsto a_i
+\end{align*}
+είναι επιμορφισμός. 
+
+Με άλλα λόγια, από το πρώτο θεώρημα ισομορφισμού, κάθε πεπερασμένα παραγόμενη $F$-άλγεβρα είναι της μορφής 
+\[
+F[x_1, x_2, \dots, x_n] / I
+\]
+για κάποιο ιδεώδες $I$ του $\Pol{n}$. Από το Θεώρημα \ref{thm:hilbert_basis} σε συνδυασμό με το Πόρισμα 8.7 έπεται ότι κάθε πεπερασμένα παραγόμενη άλγεβρα είναι πρότυπο της Noether. 
+
+Ξεκινώντας από μια πολλαπλότητα, μπορούμε να ορίσουμε μια πεπερασμένα παραγόμενη $F$-άλγεβρα με φυσικό τρόπο.
+\begin{definition}
+    \label{def:coordinate_ring}
+    Αν $V \subseteq \AA^n$ είναι μια πολλαπλότητα, τότε η $F$-άλγεβρα 
+    \[
+    F[V] \coloneqq F[x_1, x_2, \dots, x_n] / \iI(V)
+    \]
+    ονομάζεται \defn{δακτύλιος συντεταγμένων} (coordinate ring) της $V$.
+\end{definition}
+
+Από την παραπάνω συζήτηση προκύπτει το εξής.
+
+\begin{corollary}
+    \label{cor:coordinate_rings}
+    Κάθε δακτύλιος συντεταγμένων μιας πολλαπλότητας είναι δακτύλιος της Noether.
+\end{corollary}
+
+Στην Ενότητα 3, είδαμε τους δακτύλιους συντεταγμένων των πολλαπλοτήτων 
+\[
+\vV(x^2-1), \ \vV(x), \ \vV(x^2+1) \subseteq \AA^1_{\RR} \quad \text{και} \quad \vV(x^2+y^2-1) \subseteq \AA^2_{\RR},
+\]
+αντίστοιχα. Στην ίδια ενότητα, είδαμε ότι μπορούμε να ταυτίσουμε τον πολυωνυμικό δακτύλιο με την εικόνα του μέσω του ομομορφισμού εκτίμησης
+\[
+\ev : F[x_1, x_2, \dots, x_n] \to \fF(\AA^n, \AA^1).
+\]
+Δυο πολυώνυμα $f, g \in F[x_1, x_2, \dots, x_n]$ ορίζουν την ίδια πολυωνυμική συνάρτηση $V \to \AA^1$ αν και μόνο αν $f - g \in \iI(V)$ ή ισοδύναμα αν είναι ίσα στον δακτύλιο συντεταγμένων της $V$. Αυτή η οπτική, την οποία δε θα εξετάσουμε σε αυτές τις σημειώσεις, είναι ιδιαιτέρως χρήσιμη καθώς συνδέει την αγεβρική γεωμετρία με την ανάλυση.
+
+Στο τέλος της επόμενης ενότητας θα δούμε πως αλγεβρικής φύσης πληοροφορίες για τον δακτύλιο συντεταγμένων μετατρέπονται σε γεωμετρικής φύσης πληροφορίες για την αντίστοιχη πολλαπλότητα. 
+
+Για παράδειγμα, αν $V = \vV(y-x^2)$, τότε στο Παράδειγμα 9.10 είδαμε ότι $\iI(V) = (y-x^2)$ και γι αυτό
+\[
+F[V] = \frac{F[x,y]}{(y-x^2)} \cong F[x],
+\]
+ο οποίος είναι ακέραια περιοχή. Αντιθέτως, αν $W = \vV(xy)$, τότε μπορεί να δείξει κανείς ότι $\iI(W) = (xy)$ και γι αυτό 
+\[
+F[W] = \frac{F[x,y]}{(xy)},
+\]
+ο οποίος \emph{δεν} είναι ακέραια περιοχή, καθώς το ιδεώδες $(xy)$ δεν είναι πρώτο. Τι σημαίνει αυτό για τις πολλαπλότητες $V$ και $W$; Υπάρχει κάποιο γεωμετρικό χαρακτηριστικό τους που τις διαφοροποιεί; 
+
+
+\begin{thebibliography}{99}
+    \bibitem{DF04}
+    D. S. Dummit και R. M. Foote, 
+    \textit{Abstract algebra},
+    third edition, Wiley, 2004.
+    \bibitem{Kle07}
+    I. Kleiner, 
+    \textit{A history of abstract algebra}, 
+    Birkh\"{a}user, 2007.
+\end{thebibliography}
+\end{document}
