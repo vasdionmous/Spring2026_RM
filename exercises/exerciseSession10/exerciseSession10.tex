@@ -1,0 +1,490 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+\definecolor{vpurple}{HTML}{440154}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{exercise}{Άσκηση}
+\newtheorem{solution}{Λύση}
+\newtheorem*{remark}{Παρατήρηση}
+\newtheorem*{example}{Παράδειγμα}
+
+% math ops 
+% fields
+\renewcommand{\AA}{\mathbbmss{A}} 
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+\newcommand{\fp}{\mathfrak{p}}  
+\newcommand{\fm}{\mathfrak{m}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\nN}{\mathcal{N}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+\newcommand{\vV}{\mathcal{V}}
+
+% bold
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmJ}{\mathrm{J}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+\newcommand{\SL}{\mathrm{SL}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\mSpec}{\mathrm{mSpec}}
+\newcommand{\rad}{\mathrm{rad}}
+\newcommand{\Rad}{\mathrm{Rad}}
+\newcommand{\Jac}{\mathrm{Jac}}
+\newcommand{\tor}{\mathrm{tor}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Hilb}{\mathrm{Hilb}}
+\newcommand{\Ass}{\mathrm{Ass}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules \\ Ασκήσεις με Ενδεικτικές Λύσεις}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{18 Μαΐου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{exercise}{42}
+% \setcounter{theorem}{5}
+\setcounter{equation}{10}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+Σε ότι ακολουθεί, με $F$ συμβολίζουμε ένα (άπειρο) σώμα.
+
+\begin{exercise}
+  Να δείξετε ότι το σύνολο \[V = \{(\sin(t), \cos(t), 1) : t \in \RR\}\] είναι πολλαπλότητα.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Από το Πυθαγόρειο Θεώρημα, γνωρίζουμε ότι 
+  \[
+  \sin^2(t) + \cos^2(t) = 1,
+  \]
+  για κάθε $t \in \RR$. Συνεπώς,
+  \[
+  V \subseteq \vV\left(
+    \{x^2 + y^2 -1, z-1\}
+  \right).
+  \]
+  Αντιστρόφως, γνωρίζουμε ότι κάθε σημείο του μοναδιαίου κύκλου στο επίπεδο $z=1$ μπορεί να γραφεί στην μορφή $(\sin(t), \cos(t), 1)$, για κάποιο $t \in \RR$. Επομένως, 
+  \[
+  V = \vV\left(
+    \{x^2 + y^2 -1, z-1\}
+  \right).
+  \]
+\end{proof}
+
+\begin{exercise}
+  \label{ex:nonexample_variety}
+  Να δείξετε ότι το σύνολο \[A = \{(\sin(t), \cos(t), t) : t \in \RR\}\] δεν είναι πολλαπλότητα.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Αν το $A$ είναι πολλαπλότητα, τότε $A = \vV(S)$, για κάποιο $S \subseteq \RR[x,y,z]$, δηλαδή $f(a, b, c) = 0$, για κάθε $f \in S$, για κάθε $(a, b, c) \in A$. Ειδικότερα, αν $f \in S$, τότε 
+  \[
+  f(0, 1, t) = 0
+  \]
+  για κάθε $t \in \RR$ τέτοιο ώστε $\sin(t) = 0$ και $\cos(t) = 1$. Αυτό έχει ως συνέπεια το πολυώνυμο $f(0, 1, x) \in F[x]$ να έχει ρίζες $2k\pi$, για κάθε $k \in \ZZ$ και γι αυτό $f(0,1,x) = 0$. Αυτό είναι αδύνατο, διότι, για παράδειγμα, το σημείο $(0,1,1) \notin A$ (γιατί;). Άρα, το $A$ δεν μπορεί να είναι πολλαπλότητα.
+\end{proof}
+
+%Cox 4.1.3 + Μαλ 8.3
+\begin{exercise}{\rm(\cite[Άσκηση~8.3]{Mal08})}
+  \label{ex:mal_8.3}
+  Αν $I = (x^2 + y^2-1, y-1)$, τότε να βρείτε $f \in \iI(\vV(I))$ τέτοιο ώστε $f \notin I$.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Από το Θεώρημα 11.3 έπεται ότι $\iI(\vV(I)) = \sqrt{I}$. Επομένως, ψάχνουμε κάποιο $f \in \sqrt{I}$ τέτοιο ώστε $f \notin I$ ή ισοδύναμα κάποιο $f \in F[x,y]$ και $k > 1$ τέτοιο ώστε $f^k \in I$, αλλά $f \notin I$. Παρατηρούμε ότι 
+  \[
+  x^2 = x^2 + (y^2 -1) - (y^2-1) = (x^2 + y^2 -1) - (y-1)(y+1) \ \in \ I.
+  \]
+  Όμως, $x \notin I$ (γιατί;). 
+  
+  % Πράγματι, αν $x \in I$, τότε 
+  % \[
+  % x = p(x,y)(x^2 + y^2-1) + q(x,y)(y-1)
+  % \]
+  % για κάποια $p, q \in F[x,y]$. Αντικαθιστώντας $y=1$ παίρνουμε 
+  % \[
+  % x = p(x,1)x^2
+  % \]
+  % το οποίο είναι αδύνατο.
+\end{proof}
+
+\begin{remark}
+  Η Άσκηση \ref{ex:mal_8.3} μας πληροφορεί ότι το ιδεώδες $I$ δεν είναι ριζικό. Γεωμετρικά, η πολλαπλότητα $\vV(I)$ είναι ένα \textquote{παχύ σημείο}, και κατά συνέπεια, ο αντίστοιχος δακτύλιος συντεταγμένων περιέχει μηδενοδύναμα στοιχεία, όπως συνέβει και στην περίπτωση του $\RR[x]$ $/(x^2)$.
+\end{remark}
+
+%DF 15.1.21
+\begin{exercise}{\rm(\cite[Άσκηση~15.1.21]{DF04})}
+  \label{ex:DF_15.1.21}
+  Να δείξετε ότι το σύνολο 
+  \[
+  \SL_n(F) \coloneqq \{A \in \rmM_n(F) : \det(A) = 1\}
+  \]
+  είναι πολλαπλότητα του $\AA^{n^2}$.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Θεωρούμε τον πολυωνυμικό δακτύλιο $F[x_{ij} : 1 \le i, j \le n]$ στις ($n^2$ το πλήθος) μεταβλητές $x_{ij}$. Παρατηρούμε ότι αν $A = (a_{ij})_{1 \le i, j \le n} \in \rmM_n(F)$, τότε 
+  \begin{align*}
+  \det(A) 
+  &= \sum_{\pi \in \rmS_n} \mathrm{sign}(\pi) a_{1\pi(1)}a_{2\pi(2)}\cdots a_{n\pi(n)} \\
+  &= \ev_A\left(
+    \sum_{\pi \in \rmS_n} \mathrm{sign}(\pi) x_{1\pi(1)}x_{2\pi(2)}\cdots x_{n\pi(n)}
+  \right)
+  \end{align*}
+  όπου $\mathrm{sign}(\pi)$ είναι το πρόσημο\footnote{Μια μετάθεση $\pi \in \fS_n$ λέμε ότι έχει πρόσημο $+1$ (αντ. $-1$) αν μπορεί να γραφεί ως γινόμενο άρτιου (αντ. περιττού) πλήθους αντιμεταθέσεων, δηλαδή κύκλων μήκους $2$. Για παράδειγμα, αν $\pi = \left(
+    \begin{smallmatrix}
+      1 & 2 & 3 & 4 & 5 \\
+      3 & 4 & 5 & 2 & 1 
+    \end{smallmatrix}
+  \right) = \cycle{1,5}\cycle{1,3}\cycle{2,4} \in \rmS_5$, τότε $\mathrm{sign}(\pi) = -1$.} της μετάθεσης $\pi$ και 
+  \begin{align*}
+    \ev_A : F[x_{ij} : 1 \le i, j \le n] &\to F \\
+    x_{ij} &\mapsto a_{ij}.
+  \end{align*}
+  Με άλλα λόγια, θέτοντας 
+  \[
+  f(x_{11}, \dots, x_{nn}) = \sum_{\pi \in \rmS_n} \mathrm{sign}(\pi) x_{1\pi(1)}x_{2\pi(2)}\cdots x_{n\pi(n)},
+  \]
+  έπεται ότι $\det(A) = f(\bfa)$, όπου 
+  \[
+  \bfa = \left(
+    a_{11}, a_{12}, \dots, a_{1n}, a_{21}, a_{22}, \dots, a_{2n}, \dots, a_{nn} 
+  \right) \ \in \ \AA^{2n}.
+  \]
+  Κατά συνέπεια, κάνοντας την ταύτιση $\rmM_n(F) \cong F^{2n}$ έχουμε
+  \[
+  \SL_n(F) = \vV(f-1).
+  \]
+\end{proof}
+
+\begin{remark}
+  Η $\SL_n$ ονομάζεται \emph{ειδική γραμμική ομάδα} (special linear group). Ομάδες όπως η $\SL_n$, που έχουν ταυτόχρονα δομή ομάδας και πολλαπλότητας ονομάζονται \emph{αλγεβρικές ομάδες}.
+\end{remark}
+
+%Cox 4.1.1b
+\begin{exercise}{\rm(\cite[Άσκηση~4.1.1~(b)]{CLOS15})}
+  Να δείξετε ότι κάθε πολλαπλότητα του πραγματικού αφφινικού χώρου είναι υπερεπιφάνεια.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Έστω $V$ μια πολλαπλότητα στον $\AA_{\RR}^n$. Από το Θεώρημα 10.1 έπεται ότι 
+  \[
+  V = \vV\left(
+    \{
+      f_1, f_2, \dots, f_m
+    \}
+  \right),
+  \]
+  για κάποια $f_1, f_2, \dots, f_m \in F[x_1, x_2, \dots, x_n]$. Θεωρούμε το πολυώνυμο 
+  \[
+  f = f_1^2 + f_2^2 + \cdots + f_m^2.
+  \]
+  Ισχυριζόμαστε ότι $V = \vV(f)$. Πράγματι, αν $\bfa \in V$, τότε $f_i(\bfa) = 0$, για κάθε $1 \le i \le m$ και γι αυτό $f(\bfa) = 0$ που σημαίνει ότι $\bfa \in \vV(f)$. Αντιστρόφως, αν $\bfa \in \vV(f)$, τότε 
+  \[
+  \left(f_1(\bfa)\right)^2 + \left(f_2(\bfa)\right)^2 + \cdots + \left(f_m(\bfa)\right)^2 = 0
+  \]
+  το οποίο, επειδή είμαστε πάνω από το $\RR$, μας πληροφορεί ότι $\left(f_i(\bfa)\right)^2 = 0$ για κάθε $1 \le i \le m$ και κατά συνέπεια $f_i(\bfa) = 0$, για κάθε $1 \le i \le m$. Άρα, $\bfa \in V$.
+\end{proof}
+
+\begin{remark}
+  H Άσκηση βασίζεται στην ιδιότητα του $\RR$ ότι το άθροισμα μη αρνητικών αριθμών ισούται με το μηδέν αν και μόνο αν κάθε αριθμός είναι μηδενικός. Αυτό δεν ισχύει για το $\CC$. Για παράδειγμα, 
+  \[
+  1^2 + i^2 = 0.
+  \]
+\end{remark}
+
+\begin{exercise}{\rm(μέρος της \cite[Άσκηση~8.4]{Mal08})}
+  Έστω $V_x, V_y$ και $V_z$ οι πολλαπλότητες που αντιστοιχούν στους τρεις άξονες του αφφινικού χώρου $\AA^3$. Αν $V = V_x \cup V_y \cup V_z$, τότε
+  \begin{itemize}
+    \item[(1)] να βρείτε ένα σύνολο γεννητόρων του $\iI(V)$, και 
+    \item[(2)] να δείξετε ότι το $\iI(V)$ δεν μπορεί να παραχθεί από λιγότερο από τρία στοιχεία.
+  \end{itemize}
+\end{exercise}
+
+\begin{proof}[Λύση του (1)]
+  Παρατηρούμε ότι το γινόμενο δύο (διακεκεριμένων) μεταβλητών μηδενίζεται σε (τουλάχιστον) δύο εκ των $V_x, V_y$ και $V_z$ (γιατί;). Συνεπώς, $xy, xz, yz \in \iI(V)$ και γι αυτό 
+  \[
+  (xy, xz, yz) \ \subseteq \ \iI(V).
+  \]
+  Θα δείξουμε τον αντίστροφο εγκλεισμό. Έστω $f \in \iI(V)$. Γράφουμε 
+  \[
+  f(x,y,z) = a + f_x + f_y + f_z + \ \left(\text{όροι που περιέχουν $xy$ ή $xz$ ή $yz$}\right),
+  \] 
+  για κάποια $a \in F, f_x \in (x), f_y \in (y)$ και $f_z \in (z)$. Παρατηρούμε ότι  
+  \[
+  \iI(V) = \iI(V_x) \cap \iI(V_y) \cap \iI(V_z)
+  \]
+  (γιατί;). Συνεπώς, $f \in \iI(V_x)$ και γι αυτό 
+  \[
+  a + f_x(t,0,0) = 0
+  \]
+  για κάθε $t \in F$. Άρα, $a = f_x = 0$, από το Παράδειγμα 9.6.
+  Ομοίως, έπεται ότι $f_y = f_z = 0$ (γιατί;). Άρα, $f \in (xy, xz, yz)$ και το ζητούμενο έπεται.
+\end{proof}
+
+\begin{proof}[Υπόδειξη για το (2)]
+  Θεωρείστε το μεγιστικό ιδεώδες $\fm = (x, y, z)$ και \textquote{δείτε} το $\iI(V)/\fm\iI(V)$ ως $(F[x,y,z]/\fm)$-διανυσματικό χώρο, όπως στην απόδειξη του Θεωρήματος 5.6. Δείξτε ότι 
+  \[
+  \dim_F\left(
+    \iI(V)/\fm\iI(V)
+  \right) \ge 3,
+  \]
+  βρίσκοντα τρία γραμμικά ανεξάρτητα στοιχεία και συμπεράνετε το ζητούμενο.
+\end{proof}
+
+\begin{thebibliography}{99}
+    \bibitem{CLOS15}
+    D.~Cox, J.~Little and D.~O'Shea,
+    \textit{Ideals, Varieties, and Algorithms, An Introduction to Computational Algebraic Geometry and Commutative Algebra},
+    fourth edition, Springer-Verlag, New York, NY, 2015.
+    \bibitem{DF04}
+    D. S. Dummit και R. M. Foote, 
+    \textit{Abstract algebra},
+    third edition, Wiley, 2004. 
+    \bibitem{Mal08}
+    Μ. Μαλιάκας, 
+    \textit{Εισαγωγή στην Μεταθετική Άλγεβρα}, 
+    Εκδόσεις Σοφία, 2008.
+\end{thebibliography}
+\end{document}
