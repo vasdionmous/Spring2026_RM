@@ -1,0 +1,412 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd,stmaryrd} 
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{theorem}{Θεώρημα}
+\newtheorem{proposition}[theorem]{Πρόταση}
+\newtheorem{lemma}[theorem]{Λήμμα}
+\newtheorem{corollary}[theorem]{Πόρισμα}
+\newtheorem{conjecture}[theorem]{Εικασία}
+\newtheorem{problem}[theorem]{Πρόβλημα}
+\newtheorem*{claim}{Ισχυρισμός}
+\newtheorem{observation}[theorem]{Παρατήρηση}
+\newtheorem{definition}[theorem]{Ορισμός}
+\newtheorem{question}[theorem]{Ερώτημα}
+\newtheorem*{questions}{Ερωτήματα}
+\newtheorem*{que}{Ερώτημα}
+\newtheorem{example}[theorem]{Παράδειγμα}
+\newtheorem{exercise}{Άσκηση}
+\newtheorem*{zorn}{Λήμμα του Zorn}
+\newtheorem*{example_6.6}{Παράδειγμα~6.6}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Παρατήρηση}
+
+% fixes the correct numbering of environments
+\numberwithin{theorem}{section}
+\numberwithin{exercise}{section}
+\numberwithin{equation}{section}
+
+% math ops 
+% fields
+\renewcommand{\AA}{\mathbbmss{A}} 
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+
+% frak
+\newcommand{\fS}{\mathfrak{S}}  
+\newcommand{\fm}{\mathfrak{m}}  
+\newcommand{\fp}{\mathfrak{p}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\qQ}{\mathcal{Q}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+\newcommand{\vV}{\mathcal{V}}
+\newcommand{\zZ}{\mathcal{Z}}
+
+% bold
+\newcommand{\bfa}{\pmb{a}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmF}{\mathrm{F}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Set}{\pmb{\mathrm{Set}}}
+\newcommand{\Rmod}{\pmb{\mathrm{mod}}}
+\newcommand{\rmrank}{\mathrm{rank}}
+\newcommand{\mSpec}{\mathrm{mSpec}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\tor}{\mathrm{tor}}
+\newcommand{\rad}{\mathrm{rad}}
+\newcommand{\Pol}[1]{F[x_1, x_2, \dots, x_{#1}]}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% restriction
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \littletaller % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+\newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{19 Μαΐου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{section}{11}
+\setcounter{theorem}{4}
+\setcounter{equation}{2}
+\begin{center}
+    \textbf{11. Το Θεώρημα μηδενικών του Hilbert
+} (Συνέχεια)
+\end{center}
+
+Θα εμπλουτίσουμε την \textquote{γέφυρα} μεταξύ άλγεβρας και γεωμετρίας που \textquote{έχτισε} το ισχυρό θεώρημα μηδενικών του Hilbert συζητώντας κάποιες πολλαπλότητες που μοιάζουν να είναι τα δομικά συστατικά όλων των πολλαπλοτήτων.
+  
+Η Πρόταση 9.3 μας πληροφόρησε ότι η ένωση δύο πολλαπλοτήτων είναι πολλαπλότητα. Για παράδειγμα, 
+\[
+\vV(\{xz, yz\}) = \vV(\{x, y\}) \cup \vV(z) \ \subseteq \AA_F^3
+\]
+Με άλλα λόγια, η πολλαπλότητα αυτή αποτελείται από δυο κομμάτια, μια \textquote{ευθεία} και ένα \textquote{επίπεδο}, τα οποία διαισθητικά μοιάζουν να είναι \textquote{αδιάσπαστα}.
+
+\begin{definition}
+  \label{def:variety_irreducible}
+  Μια (μη κενή) πολλαπλότητα $V \subseteq \AA_F^n$ ονομάζεται\footnote{Αυτός είναι ο ορισμός της πολλαπλότητας στα συγγράμματα όπου χρησιμοποιείται ο όρος αλγεβρικός σύνολο γι' αυτό που ονομάσαμε εμείς πολλαπλότητα.} \defn{ανάγωγη} (irreducible) αν δεν μπορεί να γραφεί ως $V = V_1 \cup V_2$, για κάποιες γνήσιες πολλαπλότητες $V_1, V_2 \subsetneqq V$.
+\end{definition}
+
+Για παράδειγμα, η πολλαπλότητα $\vV(\{xz, yz\})$ δεν είναι ανάγωγη. Διαισθητικά, ένα ση\-μείο, μια ευθεία και ένα επίπεδο θα πρέπει να είναι ανάγωγα. Με γνώμονα την διαίσθηση, το ίδιο πρέπει να ισχύει και για την πολλαπλότητα $\vV(y-x^2)$ στο πραγματικό αφφινικό χώρο. Αλλά, πως μπορούμε να το αποδείξουμε;
+
+\begin{proposition}
+  \label{prop:prime_irreducible}
+  Μια πολλαπλότητα είναι ανάγωγη αν και μόνο αν το ιδεώδες μηδενισμού της είναι πρώτο, ή ισοδύναμα, αν και μόνο αν ο δακτύλιος συντεταγμένων της είναι ακέραια περιοχή.
+\end{proposition}
+
+\begin{proof}[Απόδειξη]
+  Ο δεύτερος ισχυρισμός έπεται άμεσα από την Πρόταση 1.11. Για τον πρώτο ισχυρι\-σμό, έστω $V$ μια ανάγωγη πολλαπλότητα. Θα δείξουμε ότι το $\iI(V)$ είναι πρώτο ιδεώδες. Αν $fg \in \iI(V)$, τότε 
+  \[
+  V = \left(
+    V \cap \vV(f)
+  \right) \cup \left(
+    V \cap \vV(g)
+  \right),
+  \]
+  διότι για κάθε $\bfa \in V$ έχουμε $f(\bfa)g(\bfa) = 0$ που σημαίνει ότι είτε $f(\bfa) = 0$, είτε $g(\bfa) = 0$. Όμως, επειδή η $V$ είναι ανάγωγη, έπεται ότι είτε $V = V \cap \vV(f)$, είτε $V = V \cap \vV(g)$. Κατά συνέπεια, είτε $f \in \iI(V)$, είτε $g \in \iI(V)$.
+  
+  Αντιστρόφως, υποθέτουμε ότι το $\iI(V)$ είναι πρώτο ιδεώδες και ότι $V = V_1 \cup V_2$, για κάποιες πολλαπλότητες $V_1, V_2 \subseteq V$. Αν $V \neq V_1$, τότε ισχυριζόμαστε ότι $\iI(V) = \iI(V_2)$ και κατά συνέπεια $V = V_2$, διότι η απεικόνιση $W \mapsto \iI(W)$ είναι ένα-προς-ένα (γιατί;). Πράγματι, επειδή $V_2 \subseteq V$, έπεται ότι $\iI(V) \subseteq \iI(V_2)$ (βλ. παρατήρηση μετά τον Ορισμό 9.6). Για τον αντίστροφο εγκλεισμό, έστω $f \in \iI(V_2)$. Επειδή $V_1 \subsetneqq V$ από την ίδια παρατήρηση έπεται ότι $\iI(V) \subsetneqq \iI(V_1)$ και γι αυτό μπορούμε να διαλέξουμε $g \in \iI(V_1) \sm \iI(V)$. Όμως, $V = V_1 \cup V_2$ και γι αυτό $fg \in \iI(V)$ που σημαίνει ότι είτε $f \in \iI(V)$, είτε $g \in \iI(V)$, διότι το $\iI(V)$ είναι πρώτο ιδεώδες. Το δεύτερο δεν μπορεί να συμβεί εξ' επιλογής του $g$ και γι αυτό $f \in \iI(V)$ και το ζητούμενο έπεται.
+\end{proof}
+
+Εφαρμόζοντας την Πρόταση \ref{prop:prime_irreducible}, μπορούμε να δείξουμε ότι οι πολλαπλότητες 
+\[     
+\vV(\{x,y\}), \ \vV(z), \ \text{και} \ \vV(y-x^2)
+\]
+είναι ανάγωγες. Για την πρώτες δύο, παρατηρούμε 
+\[
+\frac{F[x,y,z]}{(x,y)} \cong F[z], \quad \text{και} \quad 
+\frac{F[x,y,z]}{(z)} \cong F[x,y],
+\]
+αντίστοιχα, (γιατί;) τα οποία είναι ακέραιες περιοχές. Για την τρίτη, από το Θεώρημα 10.3 έπεται ότι 
+\[
+\iI\left(\vV\left(y-x^2\right)\right) = \sqrt{(y-x^2)} = (y-x^2).
+\]
+Όμως, 
+\[
+\frac{F[x,y]}{(y-x^2)} \cong F[x],
+\]
+το οποίο είναι επίσης ακέραια περιοχή.
+
+Συνοψίζουμε τα αποτελέσματα της ενότητας αυτής στο παρακάτω \textquote{αλγεβρογεωμετρικό λεξικό}, με την προϋπόθεση ότι δουλεύουμε πάνω από αλγεβρικά κλειστό σώμα:
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\begin{tabular}{c|c}
+\textbf{Άλγεβρα}       & \textbf{Γεωμετρία} \\ \hline
+ριζικό ιδεώδες         & πολλαπλότητα \\ \hline 
+πρώτο ιδεώδες          & ανάγωγη πολλαπλότητα \\ \hline 
+μεγιστικό ιδεώδες      & σημεία του αφφινικού χώρου \\ \hline 
+πρόσθεση ιδεωδών       & τομή πολλαπλοτήτων \\ \hline 
+γινόμενο/τομή ιδεωδών  & ένωση πολλαπλοτήτων 
+\end{tabular}
+\end{table}
+\noindent
+
+\newpage
+\setcounter{section}{12}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+\begin{center}
+    \textbf{12. Το Λήμμα κανονονικοποίησης της Noether}
+\end{center}
+
+TBW.
+
+
+% \begin{thebibliography}{99}
+%     \bibitem{Alu09}
+%     P.~Aluffi,
+%     \textit{Algebra, Chapter 0},
+%     Grad. Stud. in Math. {\bf104},
+%     Amer. Math. Soc., Providence, RI, 2009.
+%     \bibitem{DF04}
+%     D. S. Dummit και R. M. Foote, 
+%     \textit{Abstract algebra},
+%     third edition, Wiley, 2004. 
+% \end{thebibliography}
+\end{document}
