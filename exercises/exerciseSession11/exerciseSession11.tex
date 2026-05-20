@@ -1,0 +1,476 @@
+\documentclass[12pt,a4paper,reqno]{amsart}
+
+% language
+\usepackage[greek,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alphabeta}
+
+% change default names to greek
+\addto\captionsenglish{
+    \renewcommand{\contentsname}{Περιεχόμενα}
+    \renewcommand{\refname}{Βιβλιογραφία}
+    \renewcommand{\datename}{Ημερομηνία:}
+    \renewcommand{\urladdrname}{Ιστοσελίδα}
+}
+
+% math 
+\usepackage{amsmath,amsthm,amssymb,amscd}
+
+% font
+\usepackage[cal=euler]{mathalfa}
+\usepackage{libertinus-type1}
+% \usepackage{txfonts} % for upright greek letters
+\usepackage{bm} % for bold symbols
+\usepackage{bbm} % for the simply-looking bb symbols
+
+% miscellaneous 
+\usepackage{changepage} %for indenting environments
+\usepackage{csquotes} % example: \textcquote{}
+\usepackage{blkarray}
+\setcounter{MaxMatrixCols}{20} % default for pmatrix is 10!!
+\usepackage{ytableau}
+\usepackage{array} %needed to increase the vertical length in a tabular
+
+% drawing
+\usepackage{tikz,tikz-cd}
+\usetikzlibrary{shapes.misc, patterns, matrix, calc, intersections,positioning,arrows.meta}
+\usepackage{graphics,graphicx}
+\usepackage{float} % provides enhanced control and customization options for floating objects such as figures and tables
+
+% colors
+\usepackage{xcolor}
+\definecolor{darkcandyapplered}{rgb}{0.64, 0.0, 0.0}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{mylightblue}{HTML}{336699}
+\definecolor{burntorange}{rgb}{0.8, 0.33, 0.0}
+\definecolor{iceberg}{rgb}{0.44, 0.65, 0.82}
+\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
+\definecolor{canaryyellow}{rgb}{1.0, 0.94, 0.0}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}
+\definecolor{vpurple}{HTML}{440154}
+
+% hrefs
+\usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
+\hypersetup{
+    pdftoolbar=true,        
+    pdfmenubar=true,        
+    pdffitwindow=false,     
+    pdfstartview={FitH},  % fits the width of the page to the window
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfnewwindow=true,  % links in new window
+    colorlinks=true,  % false: boxed links; true: colored links
+    linkcolor=darkcandyapplered,   % color of internal links
+    citecolor=midnightblue,  % color of links to bibliography
+    urlcolor=cyan,  % color of external links
+    linktocpage=true  % changes the links from the section body to the page number
+    }
+
+% geometry
+\textwidth=16cm 
+\textheight=21cm 
+\hoffset=-55pt 
+\footskip=25pt
+
+% thm envs (you might need to change the path)
+\theoremstyle{definition}
+\newtheorem{exercise}{Άσκηση}
+\newtheorem{solution}{Λύση}
+\newtheorem*{remark}{Παρατήρηση}
+\newtheorem*{example}{Παράδειγμα}
+
+% math ops 
+% fields
+\renewcommand{\AA}{\mathbbmss{A}} 
+\newcommand{\NN}{\mathbbmss{N}} 
+\newcommand{\ZZ}{\mathbbmss{Z}} 
+\newcommand{\QQ}{\mathbbmss{Q}} 
+\newcommand{\RR}{\mathbbmss{R}} 
+\newcommand{\CC}{\mathbbmss{C}} 
+\newcommand{\KK}{\mathbbmss{K}} 
+\newcommand{\FF}{\mathbbmss{F}} 
+\newcommand{\HH}{\mathbbmss{H}} 
+
+% symmetric group
+\newcommand{\fS}{\mathfrak{S}}  
+\newcommand{\fp}{\mathfrak{p}}  
+\newcommand{\fm}{\mathfrak{m}}  
+
+% calligraphic 
+\newcommand{\aA}{\mathcal{A}} 
+\newcommand{\bB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\dD}{\mathcal{D}}
+\newcommand{\eE}{\mathcal{E}}
+\newcommand{\fF}{\mathcal{F}}
+\newcommand{\hH}{\mathcal{H}}
+\newcommand{\iI}{\mathcal{I}}
+\newcommand{\lL}{\mathcal{L}}
+\newcommand{\nN}{\mathcal{N}}
+\newcommand{\oO}{\mathcal{O}}
+\newcommand{\pP}{\mathcal{P}}
+\newcommand{\sS}{\mathcal{S}}
+\newcommand{\mM}{\mathcal{M}}
+\newcommand{\uU}{\mathcal{U}}
+\newcommand{\vV}{\mathcal{V}}
+
+% bold
+\newcommand{\bfa}{\mathbf{a}}
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bfF}{\pmb{F}}
+\newcommand{\bfR}{\pmb{R}}
+\newcommand{\bfv}{\mathbf{v}}
+%\newcommand{\bfx}{\bm{x}}
+%\newcommand{\bfx}{\mathbf{x}} 
+\newcommand{\bfx}{\pmb{x}}
+\newcommand{\bfX}{\pmb{X}}
+\newcommand{\bfy}{\pmb{y}}
+\newcommand{\bfz}{\pmb{z}}
+
+% roman
+\newcommand{\rmA}{\mathrm{A}}
+\newcommand{\rmB}{\mathrm{B}}
+\newcommand{\rmC}{\mathrm{C}}
+\newcommand{\rmD}{\mathrm{D}} 
+\newcommand{\rmH}{\mathrm{H}} 
+\newcommand{\rmh}{\mathrm{h}} 
+\newcommand{\rmI}{\mathrm{I}} 
+\newcommand{\rmJ}{\mathrm{J}} 
+\newcommand{\rmK}{\mathrm{K}}
+\newcommand{\rmM}{\mathrm{M}}
+\newcommand{\rmP}{\mathrm{P}}  
+\newcommand{\rmp}{\mathrm{p}}  
+\newcommand{\rmQ}{\mathrm{Q}}  
+\newcommand{\rmR}{\mathrm{R}}
+\newcommand{\rmS}{\mathrm{S}}
+\newcommand{\rmT}{\mathrm{T}}
+\newcommand{\rmU}{\mathrm{U}}
+\newcommand{\rmV}{\mathrm{V}}
+\newcommand{\rmY}{\mathrm{Y}}
+\newcommand{\rmZ}{\mathrm{Z}}
+\newcommand{\rmz}{\mathrm{z}}
+\newcommand{\SL}{\mathrm{SL}}
+
+% arrows and symbols 
+\renewcommand{\to}{\rightarrow}
+\newcommand{\toto}{\longrightarrow}
+\newcommand{\mapstoto}{\longmapsto}
+\newcommand{\then}{\Rightarrow}
+\newcommand{\IFF}{\Leftrightarrow}
+\newcommand{\tl}{\tilde}
+\newcommand{\wtl}{\widetilde}
+\newcommand{\ol}{\overline}
+\newcommand{\ul}{\underline}
+\newcommand{\oldemptyset}{\emptyset}
+\renewcommand{\emptyset}{\varnothing}
+\DeclareMathSymbol{\Arg}{\mathbin}{AMSa}{"39} % for arguments 
+\newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\tle}{\trianglelefteq}
+\newcommand{\tge}{\trianglerighteq}
+
+% custom ops
+\newcommand{\rmKer}{\mathrm{Ker}}
+\newcommand{\rmIm}{\mathrm{Im}}
+\newcommand{\lcm}{\mathrm{lcm}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\ev}{\mathrm{ev}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\rmid}{\mathrm{id}}
+\newcommand{\rmspan}{\mathrm{span}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\mSpec}{\mathrm{mSpec}}
+\newcommand{\rad}{\mathrm{rad}}
+\newcommand{\Rad}{\mathrm{Rad}}
+\newcommand{\Jac}{\mathrm{Jac}}
+\newcommand{\tor}{\mathrm{tor}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Hilb}{\mathrm{Hilb}}
+\newcommand{\Ass}{\mathrm{Ass}}
+
+% absolute value symbol
+\usepackage{mathtools} 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+% tensor symbol
+\newcommand{\tensor}[1]{%
+  \mathbin{\mathop{\otimes}\limits_{#1}}%
+}
+
+% permutation cycle notation
+\ExplSyntaxOn
+\NewDocumentCommand{\cycle}{ O{\;} m }
+ {
+  (
+  \alec_cycle:nn { #1 } { #2 }
+  )
+ }
+
+\seq_new:N \l_alec_cycle_seq
+\cs_new_protected:Npn \alec_cycle:nn #1 #2
+ {
+  \seq_set_split:Nnn \l_alec_cycle_seq { , } { #2 }
+  \seq_use:Nn \l_alec_cycle_seq { #1 }
+ }
+\ExplSyntaxOff
+
+% setminus symbol
+\newcommand{\mysetminusD}{\hbox{\tikz{\draw[line width=0.6pt,line cap=round] (3pt,0) -- (0,6pt);}}}
+\newcommand{\mysetminusT}{\mysetminusD}
+\newcommand{\mysetminusS}{\hbox{\tikz{\draw[line width=0.45pt,line cap=round] (2pt,0) -- (0,4pt);}}}
+\newcommand{\mysetminusSS}{\hbox{\tikz{\draw[line width=0.4pt,line cap=round] (1.5pt,0) -- (0,3pt);}}}
+\newcommand{\sm}{\mathbin{\mathchoice{\mysetminusD}{\mysetminusT}{\mysetminusS}{\mysetminusSS}}}
+
+% miscellaneous commands
+\newcommand{\defn}[1]{{\color{mylightblue}{#1}}}
+\newcommand{\toDo}{{\bf\color{red} TODO}}
+\newcommand{\toCite}{{\bf\color{green} CITE}}
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}} % for matrices with column vectors
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}} % for matrices with row vectors
+\newcommand{\myblue}[1]{{\color{iceberg}{#1}}}
+\newcommand{\myorange}[1]{{\color{burntorange}{#1}}}
+\newcommand{\mygreen}[1]{{\color{applegreen}{#1}}}
+\newcommand{\myred}[1]{{\color{darkcandyapplered}{#1}}}
+
+% ferrer's diagram
+\newcommand{\fdiagram}[1]{
+    \begin{tikzpicture}[scale=.7]
+        \fill foreach \Z [count=\Y] in {#1}
+        {foreach \X in {1,...,\Z} 
+        {(\X,-\Y) circle[radius=3pt]}};
+    \end{tikzpicture}
+}
+
+%
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+
+% 
+\newenvironment{nouppercase}{%
+  \let\uppercase\relax%
+  \renewcommand{\uppercasenonmath}[1]{}}{}
+
+% titlepage
+\title{226: Θεωρία Δακτυλίων και Modules \\ Ασκήσεις με Ενδεικτικές Λύσεις}
+\author[Β.~Δ. Μουστακας]{Βασίλης Διονύσης Μουστάκας \\ Πανεπιστήμιο Κρήτης}
+\date{20 Μαΐου 2026}
+% \urladdr{\href{https://sites.google.com/view/vasmous}{https://sites.google.com/view/vasmous}}
+
+\begin{document}
+
+\begingroup
+\def\uppercasenonmath#1{} % this disables uppercase title
+\let\MakeUppercase\relax % this disables uppercase authors
+\maketitle
+\endgroup
+
+\setcounter{exercise}{48}
+% \setcounter{theorem}{5}
+\setcounter{equation}{10}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+Σε ότι ακολουθεί, με $F$ συμβολίζουμε ένα (άπειρο) σώμα.
+
+\begin{proof}[Λύση του Ερωτήματος (2) της Άσκησης 48]
+  Έστω $\fm = (x, y, z)$. Τότε, 
+  \[
+  F \cong F[x,y,z]/\fm
+  \]
+  και γι αυτό το $\iI(V)/\fm\iI(V)$ είναι διανυσματικός χώρος πάνω από το $F$, όπως στην απόδειξη του Θεωρήματος 5.6. Ισχυριζόμαστε ότι 
+  \[
+  \dim_F\left(
+    \iI(V)/\fm\iI(V)
+  \right) \ge 3.
+  \]
+  Πράγματι, τα στοιχεία 
+  \[
+  xy + \fm\iI(V), \ 
+  xz + \fm\iI(V), \  
+  yz + \fm\iI(V)
+  \]
+  είναι γραμμικά ανεξάρτητα, διότι διαφορετικά θα είχαμε 
+  \[
+  (axy + bxz + cyz) + \fm\iI(V) = 0 + \fm\iI(V)
+  \]
+  για κάποια $a, b, c \in F$, που θα σήμαινε ότι 
+  \[
+  axy + bxz + cyz \in \fm\iI(V),
+  \]
+  πράγμα αδύνατο, καθώς το 
+  \[
+  \fm\iI(V) = (x,y,z)(xy, xz, yz) = \{x^2y, x^2z, xy^2, xz^2, y^2z, yz^2, xyz, \dots\}
+  \]
+  δεν περιέχει όρους βαθμού $\le 2$.
+
+  Όμως, αν $\{f_1, f_2, \dots, f_n\}$ είναι ένα σύνολο γεννητόρων του $\iI(V)$, τότε το σύνολο $\{f_1+\fm\iI(V), f_2+\fm\iI(V), \dots, f_n+\fm\iI(V)\}$ παράγει τον διανυσματικό χώρο $\iI(V)/\fm\iI(V)$ (γιατί;). Επειδή η διάσταση του τελευταίου είναι τουλάχιστον $3$, το ζητούμενο έπεται.
+\end{proof}
+
+% fulton 1.23
+\begin{exercise}
+  Να βρείτε μια διάσπαση της πολλαπλότητας 
+  \[      
+  V = \vV(\{y^4 - x^2, y^4 - x^2y^2 + xy^2 - x^3\})
+  \]   
+  σε ανάγωγες συνιστώσες.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Αν $(a,b) \in V$, τότε 
+  \begin{align*}
+    b^4 - a^2 &= 0 \\
+    b^4 - a^2b^2 + ab^2 - a^3 &= 0.
+  \end{align*}
+  Από την πρώτη σχέση έχουμε 
+  \[
+  0 = b^4 - a^2 = (b^2-a)(b^2+a)
+  \]
+  και γι αυτό είτε $b^2-a = 0$ ή $b^2 + a = 0$. Διακρίνουμε περιπτώσεις
+  \begin{itemize}
+    \item Αν $b^2 - a = 0$, τότε από την δεύτερη σχέση έχουμε 
+    \begin{align*}
+    0 &= b^4 - a^2b^2 + ab^2 - a^3 \\ 
+    &= a^2 - a^2a + aa - a^3 \\
+    &= a^2 - a^3 + a^2 - a^3\\
+    &= 2a^2(1-a)
+    \end{align*}
+    και γι αυτό είτε $a^2 = 0$ που σημαίνει ότι $a=0$ ή $a = 1$. Συνεπώς, στην περίπτωση αυτή έχουμε τις επιλογές 
+    \[
+    (a,b) \in \{
+      (0,0), (1,1), (1,-1)
+    \}.
+    \]
+    \item Αν $b^2 + a = 0$, τότε η δεύτερη σχέση ικανοποιείται ταυτοτικά (γιατί;). Συνεπώς, στην περίπτωση αυτή ολόκληρη η πολλαπλότητα $\vV(y^2+x)$ περιέχεται στην $V$.
+  \end{itemize}
+  Επειδή $(0,0) \in \vV(y^2+x)$, έχουμε 
+  \[
+  V = \vV(y^2+x) \cup \vV(\{x-1,y-1\}) \cup \vV(\{x-1,y+1\}),
+  \]
+  από το Παράδειγμα 9.3 (δ). Αυτή είναι η διάσπαση σε ανάγωγες συνιστώσες (γιατί;).
+\end{proof}
+
+% DF example on page 660
+\begin{exercise}
+  Αν $V = \vV(x^3-y^2) \subseteq \AA^2$, τότε να δείξετε ότι $\iI(V) = (x^3-y^2)$.
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Αρχικά παρατηρούμε ότι 
+  \[
+  V = \{(t^2, t^3) : t \in F\}.
+  \]
+  Πράγματι, αν $(a, b) \in V$, τότε $a^3 = b^2$. Αν $a \neq 0$, τότε και $b \neq 0$ και θέτοντας $t = b/a \in F$ έχουμε
+  \begin{align*}
+    t^2 &= \frac{b^2}{a^2} = \frac{a^3}{a^2} = a \\
+    t^3 &= \frac{b^3}{a^3} = \frac{b^3}{b^2} = b.
+  \end{align*}
+  Για τον αντίστροφο εγκλεισμό, αρκεί να παρατηρήσουμε ότι 
+  \[
+  \ev_{t^2, t^3}(x^3-y^2) = t^6 - t^6 = 0.
+  \]
+
+  Έπειτα, παρατηρούμε ότι $\iI(V) = (x^3-y^2)$. Πράγματι, για κάθε $f(x,y) \in F[x,y]$ από την γενικευμένη εκδοχή του Θεωρήματος 3.3 για $R = F[x]$ και $g(\mathcolor{gray}{x},y) = x^3-y^2$ έπεται ότι 
+  \[
+  f(\mathcolor{gray}{x},y) = q(\mathcolor{gray}{x},y)(\mathcolor{gray}{x^3}-y^2) + r(\mathcolor{gray}{x},y),
+  \]
+  όπου $q, r \in R[y]$ με $\deg(r) <2$. Συνεπώς,
+  \[
+  r(\mathcolor{gray}{x},y) = \mathcolor{gray}{f_0(x)} + \mathcolor{gray}{f_1(x)}y
+  \]
+  για κάποια $f_0(x), f_1(x) \in F[x]$. Αν $f(x,y) \in \iI(V)$, τότε $f(t^2,t^3) = 0$, για κάθε $t \in F$ και γι αυτό 
+  \[
+  f_0(t^2) + f_1(t^2)t^3 = 0,
+  \]
+  για κάθε $t \in F$. Αυτό σημαίνει ότι το πολυώνυμο μιας μεταβλητής 
+  \begin{align*}
+  r(X^2, X^3) 
+  &= f_0(X^2) + f_1(X^2)X^3 \\
+  &= \left(
+    a_0 + a_1X^2 + \cdots + a_kX^{2k} 
+  \right) + \left(
+    b_0X^3 + b_1X^5 + \cdots + b_{\ell}X^{2\ell+3} 
+  \right) \\
+  &=0
+  \end{align*}
+  Οι συντελεστές των όρων άρτιου (αντ. περιττού) βαθμού είναι οι συντελεστές των $f_0(x)$ και $f_1(x)$, αντίστοιχα και γι αυτό $f_0(x) = f_1(x) = 0$. Άρα, 
+  \[
+  f(x,y) = q(x,y)(x^3-y^2),
+  \]
+  και γι αυτό $f \in (x^3-y^2)$, όπως θέλαμε.
+\end{proof}
+
+%Cox Prop 4.2.9 + DF 15.1.19
+\begin{exercise}{\cite[Άσκηση~15.1.19]{DF04}}
+  Έστω $f \in F[x_1, x_2, \dots, x_n]$ και $I = (f)$. Αν 
+  \[
+  f = c f_1^{k_1}f_2^{k_2}\cdots f_m^{k_m}
+  \]
+  είναι η παραγοντοποίηση του $f$ σε ανάγωγα στοιχεία του $F[x_1, \dots, x_n]$, τότε να δείξετε ότι 
+  \[
+  \sqrt{I} = \left(
+    f_1f_2\cdots{f_m}
+  \right).
+  \]
+  Συμπεράνετε τα εξής:
+  \begin{itemize}
+    \item Το $I$ είναι ριζικό ιδεώδες αν και μόνο αν το $f$ είναι ελεύθερο τετραγώνων
+    \item (\cite[Άσκηση~15.2.15]{DF04}) Αν το $F$ είναι αλγεβρικά κλειστό, τότε η υπερεπιφάνεια $\vV(f)$ είναι ανάγωγη αν και μόνο αν το $f$ είναι ανάγωγο.
+  \end{itemize}
+\end{exercise}
+
+\begin{proof}[Λύση]
+  Οι δύο τελευταίοι ισχυρισμοί αφήνονται ως ασκήσεις. Για τον πρώτο ισχυρισμό, εργαζόμαστε ως εξής:
+  Για την κατεύθυνση \textquote{$\supseteq$}, αν $k = \max\{k_1, k_2, \dots, k_m\}$, τότε 
+  \[
+  \left(
+    f_1f_2\cdots f_m
+  \right)^k = \underbrace{f_1^{k-k_1}f_2^{k-k_2}\cdots f_m^{k-k_m}}_{\in \ F[x_1, x_2, \dots, x_n]} f \ \in \ I.
+  \]
+  Οπότε, $f_1f_2\cdots f_m \in \sqrt{I}$ και γι αυτό 
+  \[
+  \left(
+    f_1f_2\cdots{f_m}
+  \right) \subseteq \sqrt{I}.
+  \]
+
+  Για την αντίστροφη κατεύθυνση, έστω $g \in \sqrt{I}$. Τότε $g^k \in I$, για κάποιο $k \ge 1$, και γι αυτό $g^k = hf$, για κάποιο 
+  \[
+  g^k = h f_1^{k_1}f_2^{k_2}\cdots f_m^{k_m}
+  \]
+  για κάποιο $h \in F[x_1, x_2, \dots, x_n]$. Από το Θεώρημα 3.6 γνωρίζουμε ότι ο πολυωνυμικός δακτύλιος είναι περιοχή μονοσήμαντης παραγοντοποίησης και γι αυτό $f_i \mid g^k$, για κάθε $1 \le i \le m$. Από το Λήμμα 2.14 γνωρίζουμε ότι σε μια περιοχή μονοσήμαντης παραγοντοποίησης κάθε ανάγωγο στοιχείο είναι και πρώτο και γι αυτό $f_i \mid g$, για κάθε $1 \le i \le m$. Με άλλα λόγια, $g \in (f_i)$, για κάθε $1 \le i \le m$. Οπότε, 
+  \[
+  g \in \left(
+    f_1f_2\cdots{f_m}
+  \right)
+  \]
+  και το ζητούμενο έπεται.
+\end{proof}
+
+\begin{remark}
+  Αν το $F$ δεν είναι αλγεβρικά κλειστό, τότε δεν ισχύει απαραίτητα. Για παράδειγμα, το πολυώνυμο $f(x,y) = y^2 + x^2(x-1)^2$ είναι ανάγωγο στο $\RR[x,y]$ (γιατί;), αλλά η αντίστοιχη υπερεπιφάνεια του $\AA_\RR^2$ δεν είναι.
+\end{remark}
+
+\begin{thebibliography}{99}
+    \bibitem{DF04}
+    D. S. Dummit και R. M. Foote, 
+    \textit{Abstract algebra},
+    third edition, Wiley, 2004. 
+\end{thebibliography}
+\end{document}
